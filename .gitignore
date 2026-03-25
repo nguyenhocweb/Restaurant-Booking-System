@@ -1,6 +1,6 @@
 # Frontend
-frontend/node_modules/
-frontend/.next/
+fe/node_modules/
+fe/.next/
 
 # Backend
 backend/node_modules/
