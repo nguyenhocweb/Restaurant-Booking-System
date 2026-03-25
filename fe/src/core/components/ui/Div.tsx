@@ -12,7 +12,8 @@ const DivVariantProps = cva(
                     "border border-white/25 bg-white/10 shadow-lg",
                     "backdrop-blur-[8px] -webkit-backdrop-blur-[18px]" // Đảm bảo hỗ trợ Safari
                 ],
-               black_transparent: "bg-gradient-to-b from-transparent from-[1%] to-black to-[99%]"
+               black_transparent: "bg-gradient-to-b from-transparent from-[1%] to-black to-[99%]",
+               card:"grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
             },
             shape: {
                 circle: "rounded-full",

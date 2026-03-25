@@ -12,8 +12,8 @@ const PageHome = () => {
             <Div vitri="col_none" className="px-10 gap-y-20" >
 
 
-                <FeaturedBrandComponent />
-                <Featured_Restaurant_Component />
+                <FeaturedBrandComponent type="home"/>
+                {/* <Featured_Restaurant_Component /> */}
                 <FeaturedDishComponent/>
             </Div>
            

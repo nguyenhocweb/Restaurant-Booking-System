@@ -1,13 +1,12 @@
 "use client"
 import { Div, P, A } from "@/src/core/components/ui";
 import FadeIn from "@/src/core/components/animation/FadeIn";
-import { useRestaurandCard_home } from "../restaurant_hook/useRestaurantCardHome_hook";
+import { useRestaurandCard } from "../restaurant_hook/useRestaurantCard_hook";
 import Card_Restaurant_Component from "./card-restaurant-component";
 import Loading from "@/src/core/components/layout/public-loading"
-const Featured_Restaurant_Component = () => {
-    const {data,isLoading,isFetched}=useRestaurandCard_home();
+const Featured_Restaurant_Component = ({page=1,limit=5}:{page:number,limit:number}) => {
+    const {data,isLoading,isFetched}=useRestaurandCard({page:page,limit:limit});
     console.log(data);
-    
     if(isLoading) return <Loading/>
     return (
         <Div id="restaurantHome" vitri="col_none" size="full" >

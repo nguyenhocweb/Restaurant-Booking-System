@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { BrandCardHomeSevice } from "../brands_services/BrandCardHome_service";
-export const useBrandCard_hook = () => {
+import { BrandCardSevice } from "../brands_services/BrandCard_service";
+import { BrandCardRequestType } from "../brands_type/brand-card-type";
+export const useBrandCard_hook = ({page,limit,search,city}:BrandCardRequestType) => {
     return useQuery({
-        queryKey: ["brandHome", "home"],
-        queryFn: () => BrandCardHomeSevice(),
+        queryKey: ["brandPage", {page,limit,search,city}],
+        queryFn: () => BrandCardSevice({page,limit,search,city}),
 
 
         placeholderData: (prev) => prev, // 🔥 giữ data cũ khi đổi page
