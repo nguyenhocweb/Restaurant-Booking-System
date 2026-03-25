@@ -12,6 +12,13 @@ import route from "./router/index.js";
 
 import { errorHandler } from "./core/middlewares/error.middleware.js";
 import { NotFoundError } from "./core/constants/error/index.js";
+import cookieParser from "cookie-parser";
+
+
+
+import session  from "express-session";// ✅ Phải nằm ở đây, TRƯỚC khi dùng
+import {passport} from "./config/passport.config.js"
+import { initCronJob } from "./jobs/index.js";
 
 const app= express();
 // --- 1. INIT MIDDLEWARES ---
@@ -25,8 +32,27 @@ app.use(cors(corsOptions));
 
 
 app.use(express.json()); // Đọc được JSON từ body
-app.use(express.urlencoded({ extended: true }));
 
+
+// đọc cookie
+
+app.use(cookieParser())
+
+
+/// cấu hình cấu hình Passport
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: true,
+
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+// chạy dữ liệu ngầm db mỗi 0h 
+initCronJob();
 // router 
 app.use("/api",route);
 

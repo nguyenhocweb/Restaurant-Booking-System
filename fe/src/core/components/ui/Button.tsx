@@ -1,0 +1,77 @@
+import * as React from "react";
+import { cn } from "../../lib/tw";
+import { cva, type VariantProps } from "class-variance-authority";
+const ButtonVariantProps = cva(
+    "cursor-pointer ",
+    {
+        variants: {
+            variant: {
+                default: "",
+                icon: "border-none ",
+                mau1: [
+                    "border border-red-500 shadow-[0_0_10px_0px_red] backdrop-blur-[10px]",
+                    "hover:bg-red-500/20"
+                ],
+                google: "border border-red-500 shadow-[0_0_10px_0px_red] hover:bg-red-500/50",
+                fb: "border border-blue-500 shadow-[0_0_10px_0px_blue] hover:bg-blue-500/50",
+                green: [" flex items-center justify-center  rounded-xl text-white text-sm font-medium ",
+                    "bg-gradient-to-r from-green-500 to-green-600",
+                    "  shadow-md",
+                    "  transition-all duration-300",
+                    " hover:from-green-600 hover:to-green-700",
+                    "hover:shadow-lg hover:scale-[1.03]",
+                    "active:scale-95"
+                ],
+                gray: [" flex items-center justify-center  rounded-xl text-black text-sm font-medium ",
+                    "bg-gradient-to-r from-gray-200 to-gray-300",
+                    "  shadow-md",
+                    "  transition-all duration-300",
+                    " hover:from-gray-300 hover:to-gray-400",
+                    "hover:shadow-lg hover:scale-[1.03]",
+                    "active:scale-95"
+                ],
+                black: [" flex items-center justify-center  rounded-xl text-white text-sm font-medium ",
+                    "bg-gradient-to-r from-gray-500 to-gray-600",
+                    "  shadow-md",
+                    "  transition-all duration-300",
+                    " hover:from-gray-600 hover:to-gray-700",
+                    "hover:shadow-lg hover:scale-[1.03]",
+                    "active:scale-95"
+                ],
+
+            },
+            shape: {
+                circle: "rounded-full",
+                square: "rounded-lg",
+            },
+            sizea: {
+                full: "w-full",
+                p2_1: "px-2 py-1",
+                p3_2: "px-3 py-2",
+                p4_3: "px-4 py-3",
+                p5_3: "px-5 py-3",
+            },
+
+        },
+        defaultVariants: {
+            variant: "default",
+            shape: "square",
+        }
+    }
+)
+interface ButtonProps extends React.ComponentPropsWithoutRef<"button">, VariantProps<typeof ButtonVariantProps> { }
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+    ({ className, variant, shape, type, sizea, ...props }, ref) => {
+        return (
+            <button
+                type={type}
+                className={cn(ButtonVariantProps({ variant, shape, sizea, className }))}
+                ref={ref}
+                {...props}
+            />
+        )
+    }
+);
+Button.displayName = "Button"; // Quan trọng để debug trong React DevTools
+
+export { Button };

@@ -1,1 +1,0 @@
-//Data Transfer Object (Validate dữ liệu đầu vào)

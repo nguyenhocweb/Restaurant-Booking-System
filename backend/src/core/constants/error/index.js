@@ -31,7 +31,7 @@ export class BadRequestError extends ApiError {
   constructor(message = 'Bad Request') {
     super(message, 400);
   }
-}
+} 
 
 /**
  * Lỗi 401 - Chưa đăng nhập hoặc Token sai

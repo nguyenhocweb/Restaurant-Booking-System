@@ -1,4 +1,4 @@
-import { appConfig } from "../../config/app.config";// src/config/cors.config.ts
+import { appConfig } from "../../config/app.config.js";// src/config/cors.config.ts
 
 
 const allowedOrigins = appConfig.url_client?.split(',') || [];
