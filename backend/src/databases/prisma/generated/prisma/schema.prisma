@@ -221,6 +221,7 @@ model Brand {
   images         String[]
   isActive       isActive                  @default(ACTIVE)
   address        String?
+  city           String?
   isFeatured     Boolean                   @default(false) // 👈 tiêu biểu
   new            Boolean                   @default(true)
   restaurants    Restaurant[] // 1 Brand có nhiều Nhà hàng
@@ -441,8 +442,8 @@ model MenuItem {
   spice_level  Int?
   prep_time    Int?
   calories     Int?
-  is_available Boolean @default(true)
-  is_featured  Boolean @default(false)
+  is_available Boolean @default(true) // còn bán hay không
+  is_featured  Boolean @default(false) // món có hot không
 
   sort_order Int         @default(0)
   createdAt  DateTime    @default(now())
@@ -525,9 +526,9 @@ model OrderItem {
   menuItemId String    @db.ObjectId
   // optional relation (không bắt buộc vì đã snapshot)
   menuItem   MenuItem? @relation(fields: [menuItemId], references: [id])
-
-  name     String
-  quantity Int
+  isNew      Boolean   @default(true)
+  name       String
+  quantity   Int
 
   unitPrice Float
   subtotal  Float

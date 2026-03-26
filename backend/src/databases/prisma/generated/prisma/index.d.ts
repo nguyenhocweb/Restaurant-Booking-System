@@ -11618,6 +11618,7 @@ export namespace Prisma {
     imageMain: string | null
     isActive: $Enums.isActive | null
     address: string | null
+    city: string | null
     isFeatured: boolean | null
     new: boolean | null
     createdAt: Date | null
@@ -11636,6 +11637,7 @@ export namespace Prisma {
     imageMain: string | null
     isActive: $Enums.isActive | null
     address: string | null
+    city: string | null
     isFeatured: boolean | null
     new: boolean | null
     createdAt: Date | null
@@ -11655,6 +11657,7 @@ export namespace Prisma {
     images: number
     isActive: number
     address: number
+    city: number
     isFeatured: number
     new: number
     createdAt: number
@@ -11675,6 +11678,7 @@ export namespace Prisma {
     imageMain?: true
     isActive?: true
     address?: true
+    city?: true
     isFeatured?: true
     new?: true
     createdAt?: true
@@ -11693,6 +11697,7 @@ export namespace Prisma {
     imageMain?: true
     isActive?: true
     address?: true
+    city?: true
     isFeatured?: true
     new?: true
     createdAt?: true
@@ -11712,6 +11717,7 @@ export namespace Prisma {
     images?: true
     isActive?: true
     address?: true
+    city?: true
     isFeatured?: true
     new?: true
     createdAt?: true
@@ -11804,6 +11810,7 @@ export namespace Prisma {
     images: string[]
     isActive: $Enums.isActive
     address: string | null
+    city: string | null
     isFeatured: boolean
     new: boolean
     createdAt: Date
@@ -11840,6 +11847,7 @@ export namespace Prisma {
     images?: boolean
     isActive?: boolean
     address?: boolean
+    city?: boolean
     isFeatured?: boolean
     new?: boolean
     createdAt?: boolean
@@ -11867,13 +11875,14 @@ export namespace Prisma {
     images?: boolean
     isActive?: boolean
     address?: boolean
+    city?: boolean
     isFeatured?: boolean
     new?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type BrandOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "logo" | "email_contact" | "phone_contact" | "description" | "tax_code" | "link" | "imageMain" | "images" | "isActive" | "address" | "isFeatured" | "new" | "createdAt" | "updatedAt", ExtArgs["result"]["brand"]>
+  export type BrandOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "logo" | "email_contact" | "phone_contact" | "description" | "tax_code" | "link" | "imageMain" | "images" | "isActive" | "address" | "city" | "isFeatured" | "new" | "createdAt" | "updatedAt", ExtArgs["result"]["brand"]>
   export type BrandInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     restaurants?: boolean | Brand$restaurantsArgs<ExtArgs>
     employments?: boolean | Brand$employmentsArgs<ExtArgs>
@@ -11905,6 +11914,7 @@ export namespace Prisma {
       images: string[]
       isActive: $Enums.isActive
       address: string | null
+      city: string | null
       isFeatured: boolean
       new: boolean
       createdAt: Date
@@ -12318,6 +12328,7 @@ export namespace Prisma {
     readonly images: FieldRef<"Brand", 'String[]'>
     readonly isActive: FieldRef<"Brand", 'isActive'>
     readonly address: FieldRef<"Brand", 'String'>
+    readonly city: FieldRef<"Brand", 'String'>
     readonly isFeatured: FieldRef<"Brand", 'Boolean'>
     readonly new: FieldRef<"Brand", 'Boolean'>
     readonly createdAt: FieldRef<"Brand", 'DateTime'>
@@ -17615,6 +17626,7 @@ export namespace Prisma {
     id: string | null
     orderId: string | null
     menuItemId: string | null
+    isNew: boolean | null
     name: string | null
     quantity: number | null
     unitPrice: number | null
@@ -17630,6 +17642,7 @@ export namespace Prisma {
     id: string | null
     orderId: string | null
     menuItemId: string | null
+    isNew: boolean | null
     name: string | null
     quantity: number | null
     unitPrice: number | null
@@ -17645,6 +17658,7 @@ export namespace Prisma {
     id: number
     orderId: number
     menuItemId: number
+    isNew: number
     name: number
     quantity: number
     unitPrice: number
@@ -17678,6 +17692,7 @@ export namespace Prisma {
     id?: true
     orderId?: true
     menuItemId?: true
+    isNew?: true
     name?: true
     quantity?: true
     unitPrice?: true
@@ -17693,6 +17708,7 @@ export namespace Prisma {
     id?: true
     orderId?: true
     menuItemId?: true
+    isNew?: true
     name?: true
     quantity?: true
     unitPrice?: true
@@ -17708,6 +17724,7 @@ export namespace Prisma {
     id?: true
     orderId?: true
     menuItemId?: true
+    isNew?: true
     name?: true
     quantity?: true
     unitPrice?: true
@@ -17810,6 +17827,7 @@ export namespace Prisma {
     id: string
     orderId: string
     menuItemId: string
+    isNew: boolean
     name: string
     quantity: number
     unitPrice: number
@@ -17844,6 +17862,7 @@ export namespace Prisma {
     id?: boolean
     orderId?: boolean
     menuItemId?: boolean
+    isNew?: boolean
     name?: boolean
     quantity?: boolean
     unitPrice?: boolean
@@ -17863,6 +17882,7 @@ export namespace Prisma {
     id?: boolean
     orderId?: boolean
     menuItemId?: boolean
+    isNew?: boolean
     name?: boolean
     quantity?: boolean
     unitPrice?: boolean
@@ -17874,7 +17894,7 @@ export namespace Prisma {
     createdAt?: boolean
   }
 
-  export type OrderItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orderId" | "menuItemId" | "name" | "quantity" | "unitPrice" | "subtotal" | "discountAmount" | "totalPrice" | "note" | "status" | "createdAt", ExtArgs["result"]["orderItem"]>
+  export type OrderItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orderId" | "menuItemId" | "isNew" | "name" | "quantity" | "unitPrice" | "subtotal" | "discountAmount" | "totalPrice" | "note" | "status" | "createdAt", ExtArgs["result"]["orderItem"]>
   export type OrderItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     order?: boolean | OrderDefaultArgs<ExtArgs>
     menuItem?: boolean | OrderItem$menuItemArgs<ExtArgs>
@@ -17890,6 +17910,7 @@ export namespace Prisma {
       id: string
       orderId: string
       menuItemId: string
+      isNew: boolean
       name: string
       quantity: number
       unitPrice: number
@@ -18296,6 +18317,7 @@ export namespace Prisma {
     readonly id: FieldRef<"OrderItem", 'String'>
     readonly orderId: FieldRef<"OrderItem", 'String'>
     readonly menuItemId: FieldRef<"OrderItem", 'String'>
+    readonly isNew: FieldRef<"OrderItem", 'Boolean'>
     readonly name: FieldRef<"OrderItem", 'String'>
     readonly quantity: FieldRef<"OrderItem", 'Int'>
     readonly unitPrice: FieldRef<"OrderItem", 'Float'>
@@ -31265,6 +31287,7 @@ export namespace Prisma {
     images: 'images',
     isActive: 'isActive',
     address: 'address',
+    city: 'city',
     isFeatured: 'isFeatured',
     new: 'new',
     createdAt: 'createdAt',
@@ -31361,6 +31384,7 @@ export namespace Prisma {
     id: 'id',
     orderId: 'orderId',
     menuItemId: 'menuItemId',
+    isNew: 'isNew',
     name: 'name',
     quantity: 'quantity',
     unitPrice: 'unitPrice',
@@ -32584,6 +32608,7 @@ export namespace Prisma {
     images?: StringNullableListFilter<"Brand">
     isActive?: EnumisActiveFilter<"Brand"> | $Enums.isActive
     address?: StringNullableFilter<"Brand"> | string | null
+    city?: StringNullableFilter<"Brand"> | string | null
     isFeatured?: BoolFilter<"Brand"> | boolean
     new?: BoolFilter<"Brand"> | boolean
     createdAt?: DateTimeFilter<"Brand"> | Date | string
@@ -32608,6 +32633,7 @@ export namespace Prisma {
     images?: SortOrder
     isActive?: SortOrder
     address?: SortOrder
+    city?: SortOrder
     isFeatured?: SortOrder
     new?: SortOrder
     createdAt?: SortOrder
@@ -32635,6 +32661,7 @@ export namespace Prisma {
     images?: StringNullableListFilter<"Brand">
     isActive?: EnumisActiveFilter<"Brand"> | $Enums.isActive
     address?: StringNullableFilter<"Brand"> | string | null
+    city?: StringNullableFilter<"Brand"> | string | null
     isFeatured?: BoolFilter<"Brand"> | boolean
     new?: BoolFilter<"Brand"> | boolean
     createdAt?: DateTimeFilter<"Brand"> | Date | string
@@ -32659,6 +32686,7 @@ export namespace Prisma {
     images?: SortOrder
     isActive?: SortOrder
     address?: SortOrder
+    city?: SortOrder
     isFeatured?: SortOrder
     new?: SortOrder
     createdAt?: SortOrder
@@ -32684,6 +32712,7 @@ export namespace Prisma {
     images?: StringNullableListFilter<"Brand">
     isActive?: EnumisActiveWithAggregatesFilter<"Brand"> | $Enums.isActive
     address?: StringNullableWithAggregatesFilter<"Brand"> | string | null
+    city?: StringNullableWithAggregatesFilter<"Brand"> | string | null
     isFeatured?: BoolWithAggregatesFilter<"Brand"> | boolean
     new?: BoolWithAggregatesFilter<"Brand"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Brand"> | Date | string
@@ -33148,6 +33177,7 @@ export namespace Prisma {
     id?: StringFilter<"OrderItem"> | string
     orderId?: StringFilter<"OrderItem"> | string
     menuItemId?: StringFilter<"OrderItem"> | string
+    isNew?: BoolFilter<"OrderItem"> | boolean
     name?: StringFilter<"OrderItem"> | string
     quantity?: IntFilter<"OrderItem"> | number
     unitPrice?: FloatFilter<"OrderItem"> | number
@@ -33165,6 +33195,7 @@ export namespace Prisma {
     id?: SortOrder
     orderId?: SortOrder
     menuItemId?: SortOrder
+    isNew?: SortOrder
     name?: SortOrder
     quantity?: SortOrder
     unitPrice?: SortOrder
@@ -33185,6 +33216,7 @@ export namespace Prisma {
     NOT?: OrderItemWhereInput | OrderItemWhereInput[]
     orderId?: StringFilter<"OrderItem"> | string
     menuItemId?: StringFilter<"OrderItem"> | string
+    isNew?: BoolFilter<"OrderItem"> | boolean
     name?: StringFilter<"OrderItem"> | string
     quantity?: IntFilter<"OrderItem"> | number
     unitPrice?: FloatFilter<"OrderItem"> | number
@@ -33202,6 +33234,7 @@ export namespace Prisma {
     id?: SortOrder
     orderId?: SortOrder
     menuItemId?: SortOrder
+    isNew?: SortOrder
     name?: SortOrder
     quantity?: SortOrder
     unitPrice?: SortOrder
@@ -33225,6 +33258,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"OrderItem"> | string
     orderId?: StringWithAggregatesFilter<"OrderItem"> | string
     menuItemId?: StringWithAggregatesFilter<"OrderItem"> | string
+    isNew?: BoolWithAggregatesFilter<"OrderItem"> | boolean
     name?: StringWithAggregatesFilter<"OrderItem"> | string
     quantity?: IntWithAggregatesFilter<"OrderItem"> | number
     unitPrice?: FloatWithAggregatesFilter<"OrderItem"> | number
@@ -34980,6 +35014,7 @@ export namespace Prisma {
     images?: BrandCreateimagesInput | string[]
     isActive?: $Enums.isActive
     address?: string | null
+    city?: string | null
     isFeatured?: boolean
     new?: boolean
     createdAt?: Date | string
@@ -35004,6 +35039,7 @@ export namespace Prisma {
     images?: BrandCreateimagesInput | string[]
     isActive?: $Enums.isActive
     address?: string | null
+    city?: string | null
     isFeatured?: boolean
     new?: boolean
     createdAt?: Date | string
@@ -35027,6 +35063,7 @@ export namespace Prisma {
     images?: BrandUpdateimagesInput | string[]
     isActive?: EnumisActiveFieldUpdateOperationsInput | $Enums.isActive
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     new?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35050,6 +35087,7 @@ export namespace Prisma {
     images?: BrandUpdateimagesInput | string[]
     isActive?: EnumisActiveFieldUpdateOperationsInput | $Enums.isActive
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     new?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35074,6 +35112,7 @@ export namespace Prisma {
     images?: BrandCreateimagesInput | string[]
     isActive?: $Enums.isActive
     address?: string | null
+    city?: string | null
     isFeatured?: boolean
     new?: boolean
     createdAt?: Date | string
@@ -35092,6 +35131,7 @@ export namespace Prisma {
     images?: BrandUpdateimagesInput | string[]
     isActive?: EnumisActiveFieldUpdateOperationsInput | $Enums.isActive
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     new?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35110,6 +35150,7 @@ export namespace Prisma {
     images?: BrandUpdateimagesInput | string[]
     isActive?: EnumisActiveFieldUpdateOperationsInput | $Enums.isActive
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     new?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -35606,6 +35647,7 @@ export namespace Prisma {
 
   export type OrderItemCreateInput = {
     id?: string
+    isNew?: boolean
     name: string
     quantity: number
     unitPrice: number
@@ -35623,6 +35665,7 @@ export namespace Prisma {
     id?: string
     orderId: string
     menuItemId: string
+    isNew?: boolean
     name: string
     quantity: number
     unitPrice: number
@@ -35635,6 +35678,7 @@ export namespace Prisma {
   }
 
   export type OrderItemUpdateInput = {
+    isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: FloatFieldUpdateOperationsInput | number
@@ -35651,6 +35695,7 @@ export namespace Prisma {
   export type OrderItemUncheckedUpdateInput = {
     orderId?: StringFieldUpdateOperationsInput | string
     menuItemId?: StringFieldUpdateOperationsInput | string
+    isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: FloatFieldUpdateOperationsInput | number
@@ -35666,6 +35711,7 @@ export namespace Prisma {
     id?: string
     orderId: string
     menuItemId: string
+    isNew?: boolean
     name: string
     quantity: number
     unitPrice: number
@@ -35678,6 +35724,7 @@ export namespace Prisma {
   }
 
   export type OrderItemUpdateManyMutationInput = {
+    isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: FloatFieldUpdateOperationsInput | number
@@ -35692,6 +35739,7 @@ export namespace Prisma {
   export type OrderItemUncheckedUpdateManyInput = {
     orderId?: StringFieldUpdateOperationsInput | string
     menuItemId?: StringFieldUpdateOperationsInput | string
+    isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: FloatFieldUpdateOperationsInput | number
@@ -37816,6 +37864,7 @@ export namespace Prisma {
     images?: SortOrder
     isActive?: SortOrder
     address?: SortOrder
+    city?: SortOrder
     isFeatured?: SortOrder
     new?: SortOrder
     createdAt?: SortOrder
@@ -37834,6 +37883,7 @@ export namespace Prisma {
     imageMain?: SortOrder
     isActive?: SortOrder
     address?: SortOrder
+    city?: SortOrder
     isFeatured?: SortOrder
     new?: SortOrder
     createdAt?: SortOrder
@@ -37852,6 +37902,7 @@ export namespace Prisma {
     imageMain?: SortOrder
     isActive?: SortOrder
     address?: SortOrder
+    city?: SortOrder
     isFeatured?: SortOrder
     new?: SortOrder
     createdAt?: SortOrder
@@ -38233,6 +38284,7 @@ export namespace Prisma {
     id?: SortOrder
     orderId?: SortOrder
     menuItemId?: SortOrder
+    isNew?: SortOrder
     name?: SortOrder
     quantity?: SortOrder
     unitPrice?: SortOrder
@@ -38256,6 +38308,7 @@ export namespace Prisma {
     id?: SortOrder
     orderId?: SortOrder
     menuItemId?: SortOrder
+    isNew?: SortOrder
     name?: SortOrder
     quantity?: SortOrder
     unitPrice?: SortOrder
@@ -38271,6 +38324,7 @@ export namespace Prisma {
     id?: SortOrder
     orderId?: SortOrder
     menuItemId?: SortOrder
+    isNew?: SortOrder
     name?: SortOrder
     quantity?: SortOrder
     unitPrice?: SortOrder
@@ -42190,6 +42244,7 @@ export namespace Prisma {
     images?: BrandCreateimagesInput | string[]
     isActive?: $Enums.isActive
     address?: string | null
+    city?: string | null
     isFeatured?: boolean
     new?: boolean
     createdAt?: Date | string
@@ -42213,6 +42268,7 @@ export namespace Prisma {
     images?: BrandCreateimagesInput | string[]
     isActive?: $Enums.isActive
     address?: string | null
+    city?: string | null
     isFeatured?: boolean
     new?: boolean
     createdAt?: Date | string
@@ -42518,6 +42574,7 @@ export namespace Prisma {
     images?: BrandUpdateimagesInput | string[]
     isActive?: EnumisActiveFieldUpdateOperationsInput | $Enums.isActive
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     new?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -42540,6 +42597,7 @@ export namespace Prisma {
     images?: BrandUpdateimagesInput | string[]
     isActive?: EnumisActiveFieldUpdateOperationsInput | $Enums.isActive
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     new?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -43251,6 +43309,7 @@ export namespace Prisma {
     images?: BrandCreateimagesInput | string[]
     isActive?: $Enums.isActive
     address?: string | null
+    city?: string | null
     isFeatured?: boolean
     new?: boolean
     createdAt?: Date | string
@@ -43274,6 +43333,7 @@ export namespace Prisma {
     images?: BrandCreateimagesInput | string[]
     isActive?: $Enums.isActive
     address?: string | null
+    city?: string | null
     isFeatured?: boolean
     new?: boolean
     createdAt?: Date | string
@@ -43399,6 +43459,7 @@ export namespace Prisma {
     images?: BrandUpdateimagesInput | string[]
     isActive?: EnumisActiveFieldUpdateOperationsInput | $Enums.isActive
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     new?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -43421,6 +43482,7 @@ export namespace Prisma {
     images?: BrandUpdateimagesInput | string[]
     isActive?: EnumisActiveFieldUpdateOperationsInput | $Enums.isActive
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     new?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -44416,6 +44478,7 @@ export namespace Prisma {
     images?: BrandCreateimagesInput | string[]
     isActive?: $Enums.isActive
     address?: string | null
+    city?: string | null
     isFeatured?: boolean
     new?: boolean
     createdAt?: Date | string
@@ -44439,6 +44502,7 @@ export namespace Prisma {
     images?: BrandCreateimagesInput | string[]
     isActive?: $Enums.isActive
     address?: string | null
+    city?: string | null
     isFeatured?: boolean
     new?: boolean
     createdAt?: Date | string
@@ -44589,6 +44653,7 @@ export namespace Prisma {
     images?: BrandUpdateimagesInput | string[]
     isActive?: EnumisActiveFieldUpdateOperationsInput | $Enums.isActive
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     new?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -44611,6 +44676,7 @@ export namespace Prisma {
     images?: BrandUpdateimagesInput | string[]
     isActive?: EnumisActiveFieldUpdateOperationsInput | $Enums.isActive
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     new?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -44775,6 +44841,7 @@ export namespace Prisma {
     images?: BrandCreateimagesInput | string[]
     isActive?: $Enums.isActive
     address?: string | null
+    city?: string | null
     isFeatured?: boolean
     new?: boolean
     createdAt?: Date | string
@@ -44798,6 +44865,7 @@ export namespace Prisma {
     images?: BrandCreateimagesInput | string[]
     isActive?: $Enums.isActive
     address?: string | null
+    city?: string | null
     isFeatured?: boolean
     new?: boolean
     createdAt?: Date | string
@@ -44898,6 +44966,7 @@ export namespace Prisma {
 
   export type OrderItemCreateWithoutMenuItemInput = {
     id?: string
+    isNew?: boolean
     name: string
     quantity: number
     unitPrice: number
@@ -44913,6 +44982,7 @@ export namespace Prisma {
   export type OrderItemUncheckedCreateWithoutMenuItemInput = {
     id?: string
     orderId: string
+    isNew?: boolean
     name: string
     quantity: number
     unitPrice: number
@@ -44985,6 +45055,7 @@ export namespace Prisma {
     images?: BrandUpdateimagesInput | string[]
     isActive?: EnumisActiveFieldUpdateOperationsInput | $Enums.isActive
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     new?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -45007,6 +45078,7 @@ export namespace Prisma {
     images?: BrandUpdateimagesInput | string[]
     isActive?: EnumisActiveFieldUpdateOperationsInput | $Enums.isActive
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     new?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -45127,6 +45199,7 @@ export namespace Prisma {
     id?: StringFilter<"OrderItem"> | string
     orderId?: StringFilter<"OrderItem"> | string
     menuItemId?: StringFilter<"OrderItem"> | string
+    isNew?: BoolFilter<"OrderItem"> | boolean
     name?: StringFilter<"OrderItem"> | string
     quantity?: IntFilter<"OrderItem"> | number
     unitPrice?: FloatFilter<"OrderItem"> | number
@@ -45475,6 +45548,7 @@ export namespace Prisma {
 
   export type OrderItemCreateWithoutOrderInput = {
     id?: string
+    isNew?: boolean
     name: string
     quantity: number
     unitPrice: number
@@ -45490,6 +45564,7 @@ export namespace Prisma {
   export type OrderItemUncheckedCreateWithoutOrderInput = {
     id?: string
     menuItemId: string
+    isNew?: boolean
     name: string
     quantity: number
     unitPrice: number
@@ -47292,6 +47367,7 @@ export namespace Prisma {
     images?: BrandCreateimagesInput | string[]
     isActive?: $Enums.isActive
     address?: string | null
+    city?: string | null
     isFeatured?: boolean
     new?: boolean
     createdAt?: Date | string
@@ -47315,6 +47391,7 @@ export namespace Prisma {
     images?: BrandCreateimagesInput | string[]
     isActive?: $Enums.isActive
     address?: string | null
+    city?: string | null
     isFeatured?: boolean
     new?: boolean
     createdAt?: Date | string
@@ -47773,6 +47850,7 @@ export namespace Prisma {
     images?: BrandUpdateimagesInput | string[]
     isActive?: EnumisActiveFieldUpdateOperationsInput | $Enums.isActive
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     new?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -47795,6 +47873,7 @@ export namespace Prisma {
     images?: BrandUpdateimagesInput | string[]
     isActive?: EnumisActiveFieldUpdateOperationsInput | $Enums.isActive
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
     isFeatured?: BoolFieldUpdateOperationsInput | boolean
     new?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -50350,6 +50429,7 @@ export namespace Prisma {
   export type OrderItemCreateManyMenuItemInput = {
     id?: string
     orderId: string
+    isNew?: boolean
     name: string
     quantity: number
     unitPrice: number
@@ -50362,6 +50442,7 @@ export namespace Prisma {
   }
 
   export type OrderItemUpdateWithoutMenuItemInput = {
+    isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: FloatFieldUpdateOperationsInput | number
@@ -50376,6 +50457,7 @@ export namespace Prisma {
 
   export type OrderItemUncheckedUpdateWithoutMenuItemInput = {
     orderId?: StringFieldUpdateOperationsInput | string
+    isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: FloatFieldUpdateOperationsInput | number
@@ -50389,6 +50471,7 @@ export namespace Prisma {
 
   export type OrderItemUncheckedUpdateManyWithoutMenuItemInput = {
     orderId?: StringFieldUpdateOperationsInput | string
+    isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: FloatFieldUpdateOperationsInput | number
@@ -50403,6 +50486,7 @@ export namespace Prisma {
   export type OrderItemCreateManyOrderInput = {
     id?: string
     menuItemId: string
+    isNew?: boolean
     name: string
     quantity: number
     unitPrice: number
@@ -50425,6 +50509,7 @@ export namespace Prisma {
   }
 
   export type OrderItemUpdateWithoutOrderInput = {
+    isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: FloatFieldUpdateOperationsInput | number
@@ -50439,6 +50524,7 @@ export namespace Prisma {
 
   export type OrderItemUncheckedUpdateWithoutOrderInput = {
     menuItemId?: StringFieldUpdateOperationsInput | string
+    isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: FloatFieldUpdateOperationsInput | number
@@ -50452,6 +50538,7 @@ export namespace Prisma {
 
   export type OrderItemUncheckedUpdateManyWithoutOrderInput = {
     menuItemId?: StringFieldUpdateOperationsInput | string
+    isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: FloatFieldUpdateOperationsInput | number

@@ -11,9 +11,12 @@ export const countRestauran = async (where) => {
         }
     });
 }
-export const getRestaurants = async ({ page, limit }) => {
+export const getRestaurants = async ({ page, limit,where }) => {
     const result = await prisma.restaurant.findMany({
-        where: { isActive: "ACTIVE" },
+        where: { AND:[
+            ...where,
+            {isActive:"ACTIVE"}
+        ] },
         skip: (page - 1) * limit,
         take: limit,
         orderBy: [

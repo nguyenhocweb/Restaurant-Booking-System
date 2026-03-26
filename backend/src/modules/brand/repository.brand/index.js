@@ -1,10 +1,9 @@
 import { prisma } from "../../../databases/init.mongodb.js";
+
+
 export const countBrands = async (where) => {
     return prisma.brand.count({
-        where: {
-            isActive: "ACTIVE", // Chỉ đếm những nhà hàng đang hoạt động,
-            ...where
-        }
+        where:where
     });
 }
 export const getBrands = async ({ where, page, limit }) => {
@@ -31,8 +30,8 @@ export const getBrands = async ({ where, page, limit }) => {
             }
         }
     });
-    if(result){
-       return result.map(({_count,...e})=>({...e,numberRestaurant:_count.restaurants}))
+    if (result) {
+        return result.map(({ _count, ...e }) => ({ ...e, numberRestaurant: _count.restaurants }))
     }
-    return  null
+    return null
 }

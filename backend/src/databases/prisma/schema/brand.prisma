@@ -11,6 +11,7 @@ model Brand {
   images      String[]
   isActive    isActive     @default(ACTIVE)
   address     String?
+  city        String?
   isFeatured  Boolean @default(false) // 👈 tiêu biểu
   new        Boolean @default(true)
   restaurants Restaurant[] // 1 Brand có nhiều Nhà hàng

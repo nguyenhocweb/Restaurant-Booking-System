@@ -1,105 +1,21 @@
 "use client"
-import { useState } from "react";
-import { Div, Button, Select,Input } from "@/src/core/components/ui";
+
+import { Div } from "@/src/core/components/ui";
 import PublicBrands from "@/src/core/components/layout/public-brands";
-const FILTERS = [
-    { key: "all", label: "Tất cả" },
-    { key: "new", label: "Mới" },
-    { key: "featured", label: "Tiêu biểu" },
-    { key: "asia-eu", label: "Á - Âu" },
-];
-const provinces = [
-    "Hà Nội",
-    "Hà Giang",
-    "Cao Bằng",
-    "Bắc Kạn",
-    "Tuyên Quang",
-    "Lào Cai",
-    "Yên Bái",
-    "Sơn La",
-    "Phú Thọ",
-    "Vĩnh Phúc",
-    "Bắc Ninh",
-    "Bắc Giang",
-    "Quảng Ninh",
-    "Hải Dương",
-    "Hải Phòng",
-    "Hòa Bình",
-    "Hưng Yên",
-    "Thái Bình",
-    "Hà Nam",
-    "Nam Định",
-    "Ninh Bình",
-    "Thanh Hóa",
-    "Nghệ An",
-    "Hà Tĩnh",
-    "Quảng Bình",
-    "Quảng Trị",
-    "Thừa Thiên Huế",
-    "Đà Nẵng",
-    "Quảng Nam",
-    "Quảng Ngãi",
-    "Bình Định",
-    "Phú Yên",
-    "Khánh Hòa",
-    "Ninh Thuận",
-    "Bình Thuận",
-    "Kon Tum",
-    "Gia Lai",
-    "Đắk Lắk",
-    "Đắk Nông",
-    "Lâm Đồng",
-    "Bình Phước",
-    "Tây Ninh",
-    "Bình Dương",
-    "Đồng Nai",
-    "Bà Rịa - Vũng Tàu",
-    "TP. Hồ Chí Minh",
-    "Long An",
-    "Tiền Giang",
-    "Bến Tre",
-    "Trà Vinh",
-    "Vĩnh Long",
-    "Đồng Tháp",
-    "An Giang",
-    "Kiên Giang",
-    "Cần Thơ",
-    "Hậu Giang",
-    "Sóc Trăng",
-    "Bạc Liêu",
-    "Cà Mau"
-];
+import BrandFilterBar from "@/src/features/brands/brands_components/BrandFilterBar";
+import FeaturedBrandComponent from "@/src/features/brands/brands_components/featured-brands-components";
 const BrandPage = () => {
-    const [keyword, setKeyword] = useState("all");
-    const HandleKey = (key: string) => {
-        setKeyword(key)
-    }
+   
     return (
 
         <Div vitri="col_none" gap='g5_6'>
             {/* giới thiêu */}
             <PublicBrands />
-            <Div className=" justify-between px-30" size="full">
-                <Div className=" justify-start " gap="g2_3">
-                    {FILTERS.map((e, index) => (
-                        <Button key={index} variant={keyword === e.key ? "green" : "gray"} sizea="p3_2"
-                            onClick={() => { HandleKey(e.key) }}
-                        >
-                            {e.label}
-                        </Button>
-                    )
-                    )}
-                    <Select variant="gray" sizea="p3_2" >
-                        <option value="">địa điểm</option>
-                        {
-                            provinces.map((e, index) => (
-                                <option value={e} key={index}>{e}</option>
-                            ))
-                        }
-                    </Select>
-                </Div>
-               <Input placeholder="tìm tên thương hiệu" className="text-black"/>
+            <BrandFilterBar/>
+            <Div className="px-10">
+            <FeaturedBrandComponent type="page"/>
             </Div>
+
         </Div>
 
     )
