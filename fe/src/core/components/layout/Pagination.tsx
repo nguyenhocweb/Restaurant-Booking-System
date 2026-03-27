@@ -40,7 +40,7 @@ export default function Pagination({
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
       >
-        Prev
+        Trước
       </button>
 
       {getPages().map((p, i) =>
@@ -61,7 +61,7 @@ export default function Pagination({
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
       >
-        Next
+        Tiếp
       </button>
     </div>
   );

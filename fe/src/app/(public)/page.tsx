@@ -13,7 +13,7 @@ const PageHome = () => {
 
 
                 <FeaturedBrandComponent type="home"/>
-                {/* <Featured_Restaurant_Component /> */}
+                <Featured_Restaurant_Component type="home"/>
                 <FeaturedDishComponent/>
             </Div>
            

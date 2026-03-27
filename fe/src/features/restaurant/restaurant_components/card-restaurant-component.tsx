@@ -20,8 +20,7 @@ const Card_Restaurant_Component = ({ dataRestaurant, index }: { dataRestaurant: 
                     <P className=" absolute top-2 right-1 bg-white text-xs flex items-center gap-1 rounded-md" >
                         {dataRestaurant.averageRating} <FaStar className="text-yellow-500"/>
                     </P>
-                    }
-                    
+                    } 
                 </div>
                 <Div vitri="col_none" className="p-2" size="full">
 

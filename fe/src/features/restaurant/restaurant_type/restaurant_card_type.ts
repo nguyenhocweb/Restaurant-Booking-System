@@ -8,7 +8,14 @@ export interface RestaurantCardType {
     imageMain:string,
     isNew:boolean,
 }
+
 export interface RestaurantCardResponseType {
     data:RestaurantCardType[],
     total:number,
+}
+export interface RestaurantCardRequestType {
+  page:number,
+  limit:number,
+  city?:string,
+  search?:string
 }

@@ -3,11 +3,14 @@ import { Div, P, A } from "@/src/core/components/ui";
 import FadeIn from "@/src/core/components/animation/FadeIn";
 import { useRestaurandCard } from "../restaurant_hook/useRestaurantCard_hook";
 import Card_Restaurant_Component from "./card-restaurant-component";
-import Loading from "@/src/core/components/layout/public-loading"
-const Featured_Restaurant_Component = ({page=1,limit=5}:{page:number,limit:number}) => {
-    const {data,isLoading,isFetched}=useRestaurandCard({page:page,limit:limit});
+import Loading from "@/src/core/components/layout/public-loading";
+import { usePagination } from "@/src/core/hooks/usePagination";
+const Featured_Restaurant_Component = ({type}:{type:"home"|"page"}) => {
+    const limit=type==="page"?10:5
+   const {currentPage,city,searchKeyword}=usePagination()
+    const { data, isLoading, isFetched } = useRestaurandCard({page:currentPage,limit:limit,city:city??undefined,search:searchKeyword??undefined});
     console.log(data);
-    if(isLoading) return <Loading/>
+    if (isLoading) return <Loading />
     return (
         <Div id="restaurantHome" vitri="col_none" size="full" >
             <Div className="justify-between mb-8 " size="full" >
@@ -25,19 +28,20 @@ const Featured_Restaurant_Component = ({page=1,limit=5}:{page:number,limit:numbe
                 </div>
             </Div>
             <Div gap="g2_3">
-                {data&&
+                {data &&
                     data?.data.map((e, index) => (
                         <Card_Restaurant_Component key={e.id} dataRestaurant={e} index={index} />
                     ))
                 }
             </Div>
             <Div size="full" className="mt-3">
-                <FadeIn delay={0.6}>  <A href="#" sizea="p4_3" variant="gray">
-                    Xem toàn bộ {(data?.total ?? 0) > 99 ? "99+" : (data?.total ?? 0)} nhà hàng
-                </A>
-            </FadeIn>
-        </Div>
-            
+                <FadeIn delay={0.6}>
+                    <A href="#" sizea="p4_3" variant="gray">
+                        Xem toàn bộ {(data?.total ?? 0) > 99 ? "99+" : (data?.total ?? 0)} nhà hàng
+                    </A>
+                </FadeIn>
+            </Div>
+
         </Div >
     )
 }

@@ -1,10 +1,10 @@
-import { Div, Button, Select,Input } from "@/src/core/components/ui";
-const FILTERS = [
-    { key: "all", label: "Tất cả" },
-    { key: "new", label: "Mới" },
-    { key: "featured", label: "Tiêu biểu" },
-    { key: "asia-eu", label: "Á - Âu" },
-];
+import { Div, Button, Select, Input } from "@/src/core/components/ui";
+// const FILTERS = [
+//     { key: "all", label: "Tất cả" },
+//     { key: "new", label: "Mới" },
+//     { key: "featured", label: "Tiêu biểu" },
+//     { key: "asia-eu", label: "Á - Âu" },
+// ];
 const provinces = [
     "Hà Nội",
     "Hà Giang",
@@ -66,43 +66,61 @@ const provinces = [
     "Bạc Liêu",
     "Cà Mau"
 ];
-import React, { useState } from "react";
+import useDebounce from "@/src/core/hooks/useDebounce";
+import React, { useState,useEffect } from "react";
 import { usePagination } from "@/src/core/hooks/usePagination";
-const BrandFilterBar=()=>{
-    const {setSearch,setCity,clean}=usePagination()
-     const [keyword, setKeyword] = useState("all");
-    const HandleKey = (key: string) => {
-        setKeyword(key)
+const BrandFilterBar = () => {
+    const { setSearch, setCity, clean, } = usePagination()
+    const [keyword, setKeyword] = useState("all");
+    // const HandleKey = (key: string) => {
+    //     setKeyword(key)
+    // }
+    const handleCity = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = e.target.value;
+        if (value === "all") return clean("city");
+        setCity(value)
     }
-    const handleCity=(e:React.ChangeEvent<HTMLSelectElement>)=>{
-         const value=e.target.value;
-         if(value==="all") return clean("city");
-         setCity(value)
-    }
+   
+
+     const [searchTerm, setSearchTerm] = useState("");
+        const debouncedSearchTerm = useDebounce({value:searchTerm,delay:1000});
+        useEffect(()=>{
+            if(debouncedSearchTerm){
+             
+                setSearch(debouncedSearchTerm)
+            }
+               if(debouncedSearchTerm==="") return clean("search");
+            
+        },[debouncedSearchTerm])
     return (
-         <Div className=" justify-between px-10" size="full">
-                <Div className=" justify-start " gap="g2_3">
-                    {FILTERS.map((e, index) => (
+        <Div className=" justify-between px-10" size="full">
+            <Div className=" justify-start " gap="g2_3">
+                {/* {FILTERS.map((e, index) => (
                         <Button key={index} variant={keyword === e.key ? "green" : "gray"} sizea="p3_2"
                             onClick={() => { HandleKey(e.key) }}
                         >
                             {e.label}
                         </Button>
                     )
-                    )}
-                    <Select variant="gray" sizea="p3_2" 
-                     onChange={handleCity}
-                    >
-                        <option value="all">tất cả</option>
-                        {
-                            provinces.map((e, index) => (
-                                <option value={e} key={index}>{e}</option>
-                            ))
-                        }
-                    </Select>
-                </Div>
-               <Input placeholder="tìm tên thương hiệu" className="text-black"/>
+                    )} */}
+
             </Div>
+            <Div gap='g4_5'>
+                <Select variant="gray" sizea="p3_2"
+                    onChange={handleCity}
+                >
+                    <option value="all">tất cả</option>
+                    {
+                        provinces.map((e, index) => (
+                            <option value={e} key={index}>{e}</option>
+                        ))
+                    }
+                </Select>
+                <Input placeholder="tìm tên thương hiệu" className="text-black"
+                onChange={(e)=>{setSearchTerm(e.target.value)}}
+                />
+            </Div>
+        </Div>
 
     )
 }
