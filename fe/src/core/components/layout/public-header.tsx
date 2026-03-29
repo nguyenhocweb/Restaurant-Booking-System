@@ -13,8 +13,6 @@ import { useAuthStore } from "@/src/features/auth/auth_store/use-auth-store";
 const PublicHeader = () => {
     const pathname = usePathname();
     const getUser = useAuthStore((state) => state.user);
-console.log("user",getUser);
-
     return (
         <header
             className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md "

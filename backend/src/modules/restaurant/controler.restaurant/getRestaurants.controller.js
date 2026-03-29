@@ -20,7 +20,8 @@ export const getRestaurantsController = asyncHandler(
             case 404:
                 throw new NotFoundError(result.mes)
             case 200:
-                res.status(200).json(result.data)
+                res.status(200).json(result.data);
+                break;
 
         }
     }

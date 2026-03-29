@@ -2,9 +2,10 @@ interface Props {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-  limit:number
+  limit: number
 }
-
+import { FaAngleDoubleRight, FaAngleDoubleLeft } from "react-icons/fa";
+import { Button } from "../ui";
 export default function Pagination({
   currentPage,
   totalPages,
@@ -36,33 +37,38 @@ export default function Pagination({
 
   return (
     <div className="flex gap-2">
-      <button
+      <Button
+        variant="gray"
+        sizea="p3_2"
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
       >
-        Trước
-      </button>
+        <FaAngleDoubleLeft />
+      </Button>
 
       {getPages().map((p, i) =>
         p === "..." ? (
           <span key={i}>...</span>
         ) : (
-          <button
+          <Button
+            variant={currentPage === p ? "green" : "gray"}
+            sizea="p4_2"
             key={i}
             onClick={() => onPageChange(Number(p))}
-            className={currentPage === p ? "font-bold" : ""}
           >
             {p}
-          </button>
+          </Button>
         )
       )}
 
-      <button
+      <Button
+        variant="gray"
+        sizea="p3_2"
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
       >
-        Tiếp
-      </button>
+        <FaAngleDoubleRight />
+      </Button>
     </div>
   );
 }

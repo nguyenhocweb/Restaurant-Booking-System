@@ -16,7 +16,7 @@ export const usePagination = () => {
 
     params.set("page", String(page));
 
-    router.replace(`?${params.toString()}`);
+    router.replace(`?${params.toString()}`,{ scroll: false });
   };
 
   // hàm set lấy bao nhiêu phần tử.... có or ko
@@ -25,7 +25,7 @@ export const usePagination = () => {
 
     params.set("limit", String(newLimit));
 
-    router.replace(`?${params.toString()}`);
+    router.replace(`?${params.toString()}`,{ scroll: false });
   };
   // cac đk khác all nếu có
   const searchKeyword=searchParams.get("search");
@@ -35,7 +35,7 @@ export const usePagination = () => {
 
     params.set("search",newSearch)
    params.set("page", "1");
-    router.replace(`?${params.toString()}`);
+    router.replace(`?${params.toString()}`,{ scroll: false });
   }
   // cac đk khác all nếu có
   const city=searchParams.get("city");
@@ -56,14 +56,14 @@ const clean = (key: CleanKey) => {
 
   if (key === "all") {
     // xoá hết
-    router.replace("?");
+    router.replace("?",{ scroll: false });
     return;
   }
 
   // xoá 1 key cụ thể
   params.delete(key);
 
-  router.replace(`?${params.toString()}`);
+  router.replace(`?${params.toString()}`,{ scroll: false });
 };
   return {
     currentPage,

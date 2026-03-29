@@ -5,18 +5,12 @@ const today = new Date();
 const day = today.getDay();//lấy thứ trong tuần
 export const countRestauran = async (where) => {
     return prisma.restaurant.count({
-        where: {
-            isActive: "ACTIVE", // Chỉ đếm những nhà hàng đang hoạt động,
-            ...where
-        }
+        where: where
     });
 }
 export const getRestaurants = async ({ page, limit,where }) => {
     const result = await prisma.restaurant.findMany({
-        where: { AND:[
-            ...where,
-            {isActive:"ACTIVE"}
-        ] },
+        where: where,
         skip: (page - 1) * limit,
         take: limit,
         orderBy: [

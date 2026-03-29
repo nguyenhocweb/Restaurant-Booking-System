@@ -14,7 +14,7 @@ const PageHome = () => {
 
                 <FeaturedBrandComponent type="home"/>
                 <Featured_Restaurant_Component type="home"/>
-                <FeaturedDishComponent/>
+                <FeaturedDishComponent type="home"/>
             </Div>
            
         </>

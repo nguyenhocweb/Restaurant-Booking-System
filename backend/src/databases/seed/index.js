@@ -19,6 +19,7 @@ import {notificationExtension} from "./extensions/notifications.extension.js"
 import {reviewRestaurantExtension} from "./extensions/review_restaurant.extension.js";
 import {reservationAuditLogsExtension} from "./extensions/reservation_audit_log.extension.js"
 import {menusExtension} from "./extensions/menu.extension.js";
+import {categoriesAndItemsExtension}from "./extensions/menuCategory-items.extension.js"
 const runSeed = async () => {
     try {
         console.log('🌱 Starting Seed...');
@@ -38,8 +39,9 @@ const runSeed = async () => {
         await prisma.special_Schedules.deleteMany();
         await prisma.tables.deleteMany();
         await prisma.restaurant_Areas.deleteMany();
-        await prisma.MenuCategory.deleteMany();
-        await prisma.Menu.deleteMany();
+        await prisma.menuItem.deleteMany();
+        await prisma.menuCategory.deleteMany();
+        await prisma.menu.deleteMany();
         await prisma.restaurant.deleteMany();
         await prisma.brand.deleteMany();
         await prisma.user.deleteMany();
@@ -75,11 +77,14 @@ const runSeed = async () => {
       
         await notificationExtension(prisma);
 
-      //  await reviewRestaurantExtension(prisma);
+       //await reviewRestaurantExtension(prisma);
         
         await reservationAuditLogsExtension(prisma);
         
-        await menusExtension(prisma)
+        await menusExtension(prisma);
+        await categoriesAndItemsExtension(prisma);
+
+        
 
     } catch (error) {
         console.error('❌ Seed Failed:', error);

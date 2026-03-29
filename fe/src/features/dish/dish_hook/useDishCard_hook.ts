@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { DishCardHomeSevice } from "../dish_service/DishCardHome_service";
-export const useDishCard_hook = () => {
+import { DishCardRequestType } from "../dish_type/card_dish_type";
+export const useDishCard_hook = ({type,limit,page,search,id}:DishCardRequestType) => {
     return useQuery({
-        queryKey: ["dishHome", "home"],
-        queryFn: () => DishCardHomeSevice(),
+        queryKey: ["pageDish", {type,limit,page,search,id}],
+        queryFn: () => DishCardHomeSevice({type,limit,page,search,id}),
 
 
         placeholderData: (prev) => prev, // 🔥 giữ data cũ khi đổi page

@@ -1,7 +1,14 @@
 import axiosClient from "@/src/core/api/axios-instance";
-import { Card_Dish_Type } from "../dish_type/card_dish_type";
-
-export const DishCardHomeSevice=async ():Promise<Card_Dish_Type[]>=>{
-    const response=await axiosClient.get<Card_Dish_Type[]>(`/dish?page=1&limit=5`)   ;     
+import { DishCardResponseType,DishCardRequestType } from "../dish_type/card_dish_type";
+export const DishCardHomeSevice=async ({id,type,limit,page,search}:DishCardRequestType):Promise<DishCardResponseType>=>{
+    const params = new URLSearchParams();
+    params.append("type", type);
+    params.append("limit", String(limit));
+    params.append("page", String(page));
+    if (search) {
+        params.append("search", search);
+    }
+    const endpoint = id ? `/dish/${id}` : '/dish';
+    const response=await axiosClient.get<DishCardResponseType>(`${endpoint}?${params.toString()}`)   ;     
     return response.data;
 }

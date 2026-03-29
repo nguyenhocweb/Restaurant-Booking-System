@@ -20,6 +20,7 @@ export const getBrandsController=asyncHandler(
             throw new NotFoundError(result.mes)
         case 200:
             res.status(200).json(result.data)
+            break;
       
        }
     }

@@ -49,7 +49,7 @@ const Brand_Card_Components = ({ dataBrand, index }: { dataBrand: BrandCardType,
                     </Div>
                     {dataBrand.description && <P variant="truncate_2line" className="text-xs text-gray-500">{dataBrand.description}</P>}
 
-                    <A href={`/brand/${dataBrand.id}`} colors="green">Xem chi tiết</A>
+                    <A href={`/brands/${dataBrand.id}`} colors="green">Xem chi tiết</A>
                 </Div>
             </Div>
         </FadeIn>

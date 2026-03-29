@@ -23,7 +23,7 @@ const featuredBrandComponent = ({ type }: { type: "home" | "page" }) => {
     return (
         <Div id="brandHome" vitri="col_none"   >
             <Div className="justify-between mb-8 " size="full" >
-                <Div className="flex-col items-center" size="full">
+                <Div className={`flex-col ${type === "home" ? "items-start" : "items-center"}`} size="full">
                     <FadeIn>
                         <h1 className="text-3xl font-bold text-gray-900 mb-2">
                             Thương hiệu đối tác

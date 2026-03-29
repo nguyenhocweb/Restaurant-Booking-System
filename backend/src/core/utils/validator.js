@@ -2,6 +2,7 @@ import { BadRequestError } from "../constants/error/index.js";
 import { Gender, AccountStatus } from "../../databases/prisma/generated/prisma/client.js";
 import { gender_to_db } from "../../config/locales.js";
 import { z, ZodError } from "zod"
+import e from "express";
 const today = new Date();
 
 const minDate = (min) => new Date(
@@ -116,6 +117,13 @@ export const demoValidator = {
                     : minDays !== undefined
                         ? `${name} phải cách hôm nay ít nhất ${minDays} ngày`
                         : `${name} không được vượt quá ${maxDays} ngày`
+        }),
+        enum: (name, values) => z.enum(values, {
+            errorMap: (issue, ctx) => {
+                return {
+                    message: `${name} phải là một trong các giá trị sau: ${values.join(", ")}`
+                }
+            }
         }),
 
 

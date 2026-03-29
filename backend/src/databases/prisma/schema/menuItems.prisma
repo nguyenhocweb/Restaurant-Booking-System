@@ -42,5 +42,6 @@ orderItems   OrderItem[]
  @@index([is_featured, is_available])
  @@index([discount_until, is_available])
  @@index([createdAt,is_featured,is_available])
+ @@index([name])
   @@map("menu_items")
 }

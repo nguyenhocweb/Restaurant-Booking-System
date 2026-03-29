@@ -50,6 +50,8 @@ const ButtonVariantProps = cva(
                 p3_2: "px-3 py-2",
                 p4_3: "px-4 py-3",
                 p5_3: "px-5 py-3",
+                p4_2: "px-4 py-2",
+                p5_2: "px-5 py-2",
             },
 
         },
