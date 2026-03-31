@@ -9,18 +9,18 @@ import { usePagination } from "@/src/core/hooks/usePagination";
 import Pagination from "@/src/core/components/layout/Pagination";
 import { da } from "zod/locales";
 
-const featuredDishComponent = ({ type, id }: { type: "home" | "isBrand" | "isRestaurant", id?: string }) => {
+const featuredDishComponent = ({ type, id, limit }: { type: "home" | "isBrand" | "isRestaurant", id?: string, limit?: number }) => {
     const { currentPage, searchKeyword,setPage } = usePagination();
-    const limit = type === "home" ? 5 : 10; // nếu là trang home thì chỉ lấy 5 món ăn, còn nếu là trang brand hay restaurant thì lấy 10 món ăn
-    const { data, isLoading } = useDishCard_hook({ type, limit: limit, page: currentPage, search: searchKeyword ?? undefined, id: id || undefined });
+    const limits = limit ?? (type === "home" ? 5 : 10); // nếu là trang home thì chỉ lấy 5 món ăn, còn nếu là trang brand hay restaurant thì lấy 10 món ăn
+    const { data, isLoading } = useDishCard_hook({ type, limit:  limits, page: currentPage, search: searchKeyword ?? undefined, id: id || undefined });
     const dishList = data?.data??[];
     if (isLoading) return <Loading />
     return (
         <Div vitri="col_none" size="full" >
-            <Div className="justify-between mb-8 " size="full" >
-                <Div className="flex-col" size="full">
+            <Div className={` mb-8 ${type === "home" ? "justify-between" : "justify-start"}`} size="full" >
+                <Div  vitri="col_none" className="w-1/2">
                     <FadeIn>
-                        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                        <h1 className="text-3xl font-bold text-gray-900 mb-2 ">
                             Những món ăn {type === "home" ? "được yêu thích nhất" : type === "isBrand" ? "mới nhất của thương hiệu" : "mới nhất của nhà hàng"}
                         </h1>
                     </FadeIn>
@@ -55,7 +55,7 @@ const featuredDishComponent = ({ type, id }: { type: "home" | "isBrand" | "isRes
                 (!dishList || dishList.length === 0) &&
                 <P variant="text_black" className="w-full flex justify-center">Không tìm thấy kết quả</P>
             }
-            {type !== "home" &&
+            {type !== "home" && !!data?.total && 
                 <Div size="full" className=" justify-between">
                     {!!data &&
                         <Div className="mt-10 justify-between px-10" >
@@ -63,13 +63,13 @@ const featuredDishComponent = ({ type, id }: { type: "home" | "isBrand" | "isRes
                         </Div>
                     }
                     {
-                        !!data?.total && data.total > limit &&
+                        !!data?.total && data.total > limits &&
                         <Div className="mt-10 justify-between px-10" >
                             <Pagination
-                                totalPages={Math.ceil((data?.total ? data.total / limit : 0))}
+                                totalPages={Math.ceil((data?.total ? data.total / limits : 0))}
                                 currentPage={currentPage??1}
                                 onPageChange={setPage}
-                                limit={limit}
+                                limit={limits}
                             />
                         </Div>
                     }

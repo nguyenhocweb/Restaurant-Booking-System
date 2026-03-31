@@ -18,7 +18,7 @@ import { TbWorld } from "react-icons/tb";
 import { useBrand_hook } from "@/src/features/brands/brands_hook/useBrand_hook";
 import FeaturedDishComponent from "@/src/features/dish/dish_component/featured-dish-component";
 import Loading from "@/src/core/components/layout/public-loading";
-import { Feature } from "framer-motion";
+import Featured_Restaurant_Component from "@/src/features/restaurant/restaurant_components/featured-restaurant-component";
 const BrandItem = (
     { params }: {
         params: Promise<{ idBrand: string }>
@@ -31,7 +31,7 @@ const BrandItem = (
     }
 
     return (
-        <Div vitri="col_none" className=" gap-y-10" >
+        <Div vitri="col_none" className=" gap-y-40" >
             {data && (
                 <PublicItemImages name={data?.name} isFeatured={data?.isFeatured} images={data?.images} />
             )}
@@ -54,9 +54,11 @@ const BrandItem = (
                     </Div>
                 </Div>
             </Div>
-            <Div  className="px-10">
-                <FeaturedDishComponent type="isBrand" id={idBrand} />
+            <Div  className="px-10 gap-y-40" vitri="col_none" size="full" >
+                <FeaturedDishComponent type="isBrand" id={idBrand} limit={5}/>
+                <Featured_Restaurant_Component type="page" id={idBrand} limit={5} />
             </Div>
+              
         </Div>
     )
 }

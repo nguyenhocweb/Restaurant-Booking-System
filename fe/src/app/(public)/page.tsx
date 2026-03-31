@@ -9,9 +9,7 @@ const PageHome = () => {
     return (
         <>
             <PublicHome />
-            <Div vitri="col_none" className="px-10 gap-y-20" >
-
-
+            <Div vitri="col_none" className="px-10 py-20 gap-y-40" >
                 <FeaturedBrandComponent type="home"/>
                 <Featured_Restaurant_Component type="home"/>
                 <FeaturedDishComponent type="home"/>

@@ -35,7 +35,7 @@ model MenuItem {
   sort_order   Int @default(0)
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
-orderItems   OrderItem[]
+  orderItems   OrderItem[]
  @@index([restaurantId, is_available, sort_order])
  @@index([restaurantId, categoryId, is_available])
  @@index([brandId, is_available])

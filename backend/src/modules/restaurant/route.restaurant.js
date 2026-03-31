@@ -4,4 +4,5 @@ import { validate } from "../../core/middlewares/validator.middleware.js";
 import getRestaurantValidator from "./validator.restaurant/getRestaurant.validator.js";
 const route = Router();
 route.get("", validate(getRestaurantValidator), getRestaurantsController);
+route.get("/:_id", validate(getRestaurantValidator), getRestaurantsController);
 export default route;

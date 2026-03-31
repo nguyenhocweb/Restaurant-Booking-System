@@ -1,6 +1,9 @@
 // extensions/categoriesAndItemsExtension.js
 import { menuCategoriesData, menuItemsData } from "../constants/menucategory-items.data.js";
+import { upsertVector } from "../../../modules/vector/service/vectorDB.service.js";
+import { embedText } from "../../../modules/vector/service/embedding.service.js";
 
+import { buildMenuItemVector } from "../../../modules/vector/builders/menuItem.builder.js";
 export const categoriesAndItemsExtension = async (prisma) => {
   console.log("Creating Menu Categories & Items...");
 
@@ -9,21 +12,10 @@ export const categoriesAndItemsExtension = async (prisma) => {
   // ==========================================
   
   // Lấy danh sách Menu để map ID
-  const menus = await prisma.menu.findMany({
-    select: { id: true, name: true }
-  });
-  const mapMenu = new Map(menus.map(e => [e.name, e.id]));
 
   // Tạo Categories
   const categoryResult = await prisma.menuCategory.createMany({
-    data: menuCategoriesData.map(c => ({
-      menuId: mapMenu.get(c.menuName), // Quan trọng: lấy đúng menuId
-      name: c.name,
-      description: c.description,
-      image_url: c.image_url,
-      sort_order: c.sort_order,
-      is_active: c.is_active
-    }))
+    data: menuCategoriesData
   });
 
   console.log(`✅ Created ${categoryResult.count} menu categories`);
@@ -33,41 +25,41 @@ export const categoriesAndItemsExtension = async (prisma) => {
   // ==========================================
 
   // Lấy các dữ liệu tham chiếu cần thiết
-  const [categories, brands, restaurants] = await Promise.all([
-    prisma.menuCategory.findMany({ select: { id: true, name: true } }),
-    prisma.brand.findMany({ select: { id: true, name: true } }),
-    prisma.restaurant.findMany({ select: { id: true, name: true } })
-  ]);
+  
 
-  const mapCategory = new Map(categories.map(e => [e.name, e.id]));
-  const mapBrand = new Map(brands.map(e => [e.name, e.id]));
-  const mapRestaurant = new Map(restaurants.map(e => [e.name, e.id]));
 
   // Xử lý và map dữ liệu Items
-  const itemsToCreate = menuItemsData.map(item => {
-    return {
-      categoryId: mapCategory.get(item.categoryName),
-      brandId: item.brandName ? mapBrand.get(item.brandName) : null,
-      restaurantId: item.restaurantName ? mapRestaurant.get(item.restaurantName) : null,
-      
-      name: item.name,
-      slug: item.slug,
-      description: item.description,
-      image: item.image,
-      images: item.images,
-      base_price: item.base_price,
-      item_type: item.item_type,
-      dietary_tags: item.dietary_tags || [],
-      allergens: item.allergens || [],
-      is_available: item.is_available,
-      is_featured: item.is_featured,
-      sort_order: item.sort_order
-    };
-  });
+
+  
 
   const itemResult = await prisma.menuItem.createMany({
-    data: itemsToCreate
+    data: menuItemsData
   });
-
+ 
+  // Tạo vector cho từng item
+  for (const item of menuItemsData) {
+    const text = [
+      item.name,
+      item.description,
+      item.dietary_tags?.join(" "),
+      item.allergens?.join(" "),
+      item.restaurantName,
+      item.categoryName,
+      item.base_price ? `Price: ${item.base_price}` : ""
+    ].filter(Boolean).join(" ");
+    const embedding = await embedText(text);
+    const MenuItemVector = buildMenuItemVector({
+      id: `menu_item_${itemResult.id}`,
+      name: item.name,
+      description: item.description,
+      dietary_tags: item.dietary_tags,
+      allergens: item.allergens,
+      embedding: embedding,
+      base_price: item.base_price,
+      restaurantName: item.restaurantName,
+      categoryName: item.categoryName
+    });
+    await upsertVector(MenuItemVector);
+  }
   console.log(`✅ Created ${itemResult.count} menu items`);
 };

@@ -3,11 +3,16 @@ import asyncHandler from "../../../core/utils/asyncHandler.js";
 import { NotFoundError } from "../../../core/constants/error/index.js";
 export const getRestaurantsController = asyncHandler(
     async (req, res) => {
+
         const page = parseInt(req.query.page);
         const limit = parseInt(req.query.limit);
-        const city=req.query.city;
-       const search=req.query.search;
+        const city = req.query.city;
+        const search = req.query.search;
+        const id = req.params._id;
+        console.log("id",id);
+        
         const where = []
+        if (id) where.push({ brandId: id })
         if (city) where.push({ city: city })
         if (search) where.push({
             name: {
@@ -15,7 +20,7 @@ export const getRestaurantsController = asyncHandler(
                 mode: 'insensitive',// Không phân biệt Hoa/Thường
             }
         });
-        const result = await getRestaurantsService(page, limit,where);
+        const result = await getRestaurantsService(page, limit, where);
         switch (result.code) {
             case 404:
                 throw new NotFoundError(result.mes)

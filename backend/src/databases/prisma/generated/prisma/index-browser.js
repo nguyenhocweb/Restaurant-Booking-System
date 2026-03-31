@@ -574,7 +574,8 @@ exports.KitchenStatus = exports.$Enums.KitchenStatus = {
 
 exports.role_enum = exports.$Enums.role_enum = {
   BRAND: 'BRAND',
-  RESTAURANT: 'RESTAURANT'
+  RESTAURANT: 'RESTAURANT',
+  SYSTEM: 'SYSTEM'
 };
 
 exports.ReservationStatus = exports.$Enums.ReservationStatus = {

@@ -168,7 +168,8 @@ export type isActive = (typeof isActive)[keyof typeof isActive]
 
 export const role_enum: {
   BRAND: 'BRAND',
-  RESTAURANT: 'RESTAURANT'
+  RESTAURANT: 'RESTAURANT',
+  SYSTEM: 'SYSTEM'
 };
 
 export type role_enum = (typeof role_enum)[keyof typeof role_enum]

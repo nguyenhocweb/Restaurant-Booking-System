@@ -17,6 +17,7 @@ enum isActive {
 enum role_enum {
     BRAND
     RESTAURANT
+    SYSTEM
 }
 enum salary_type {
      MONTHLY 

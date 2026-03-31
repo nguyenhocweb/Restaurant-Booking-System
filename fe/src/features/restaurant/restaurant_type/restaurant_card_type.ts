@@ -17,5 +17,6 @@ export interface RestaurantCardRequestType {
   page:number,
   limit:number,
   city?:string,
-  search?:string
+  search?:string,
+  id?:string,
 }

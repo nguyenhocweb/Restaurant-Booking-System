@@ -1,7 +1,7 @@
 import { RestaurantCardResponseType } from "../restaurant_type/restaurant_card_type";
 import axiosClient from "@/src/core/api/axios-instance";
 import { RestaurantCardRequestType } from "../restaurant_type/restaurant_card_type";
-export const RestaurantCardService=async({page,limit,city,search}:RestaurantCardRequestType):Promise<RestaurantCardResponseType>=>{
+export const RestaurantCardService=async({page,limit,city,search,id}:RestaurantCardRequestType):Promise<RestaurantCardResponseType>=>{
    const params = new URLSearchParams();
 
     params.append("page", String(page));
@@ -9,6 +9,7 @@ export const RestaurantCardService=async({page,limit,city,search}:RestaurantCard
 
     if (search) params.append("search", search);
     if (city) params.append("city", city);
-       const response=await axiosClient.get<RestaurantCardResponseType>(`/restaurant?${params.toString()}`)
+    const endpoint =id?`/restaurant/${id}`: `/restaurant`;
+       const response=await axiosClient.get<RestaurantCardResponseType>(`${endpoint}?${params.toString()}`);
        return response.data
     }
