@@ -5,7 +5,10 @@ export const specialSchedulesData = [
   {
     id: "65b2a1c0d4f3e2a1b0c9f201",
     restaurantId: "65b2a1c0d4f3e2a1b0c9d999", // Hương Việt Quận 1
-    date: new Date("2026-02-17T00:00:00.000Z"),
+    date: new Date("2026-02-17T00:00:00.000Z"), // Ngày Tết thay đổi theo Âm lịch mỗi năm -> Dùng date cụ thể
+    month: null,
+    day: null,
+    is_recurring: false,
     type: "HOLIDAY",
     open_time: null,
     close_time: null,
@@ -16,7 +19,10 @@ export const specialSchedulesData = [
   {
     id: "65b2a1c0d4f3e2a1b0c9f202",
     restaurantId: "65b2a1c0d4f3e2a1b0c9d999", 
-    date: new Date("2026-12-24T00:00:00.000Z"),
+    date: null,
+    month: 12,
+    day: 24,
+    is_recurring: true, // Lặp lại mỗi năm
     type: "SPECIAL_HOURS",
     open_time: "16:00",
     close_time: "23:59",
@@ -27,10 +33,13 @@ export const specialSchedulesData = [
   {
     id: "65b2a1c0d4f3e2a1b0c9f203",
     restaurantId: "65b2a1c0d4f3e2a1b0c9d999", 
-    date: new Date("2026-12-31T00:00:00.000Z"),
+    date: null,
+    month: 12,
+    day: 31,
+    is_recurring: true, // Lặp lại mỗi năm
     type: "SPECIAL_HOURS",
     open_time: "10:00",
-    close_time: "02:00", // Qua ngày hôm sau
+    close_time: "02:00", 
     reason: "Tết Dương Lịch (Countdown) - Phục vụ xuyên đêm",
     createdAt: new Date(),
     updatedAt: new Date()
@@ -41,10 +50,13 @@ export const specialSchedulesData = [
   // ==========================================
   {
     id: "65b2a1c0d4f3e2a1b0c9f204",
-    restaurantId: "65b2a1c0d4f3e2a1b0c9d99c", // Tokyo Sushi Lê Lợi
+    restaurantId: "65b2a1c0d4f3e2a1b0c9d99c",
     date: new Date("2026-05-20T00:00:00.000Z"),
+    month: null,
+    day: null,
+    is_recurring: false,
     type: "PRIVATE_EVENT",
-    open_time: null, // Đóng cửa với khách vãng lai
+    open_time: null, 
     close_time: null,
     reason: "Đặt trọn nhà hàng cho sự kiện Year-end Doanh nghiệp",
     createdAt: new Date(),
@@ -54,6 +66,9 @@ export const specialSchedulesData = [
     id: "65b2a1c0d4f3e2a1b0c9f205",
     restaurantId: "65b2a1c0d4f3e2a1b0c9d99c",
     date: new Date("2026-08-15T00:00:00.000Z"),
+    month: null,
+    day: null,
+    is_recurring: false,
     type: "CLOSURE",
     open_time: null,
     close_time: null,
@@ -67,8 +82,11 @@ export const specialSchedulesData = [
   // ==========================================
   {
     id: "65b2a1c0d4f3e2a1b0c9f206",
-    restaurantId: "65b2a1c0d4f3e2a1b0c9d99d", // Tokyo Sushi Landmark 81
+    restaurantId: "65b2a1c0d4f3e2a1b0c9d99d",
     date: new Date("2026-06-10T00:00:00.000Z"),
+    month: null,
+    day: null,
+    is_recurring: false,
     type: "CLOSURE",
     open_time: null,
     close_time: null,
@@ -82,9 +100,12 @@ export const specialSchedulesData = [
   // ==========================================
   {
     id: "65b2a1c0d4f3e2a1b0c9f207",
-    restaurantId: "65b2a1c0d4f3e2a1b0c9d99f", // BBQ Master Phạm Văn Đồng
-    date: new Date("2026-09-02T00:00:00.000Z"),
-    type: "SPECIAL_HOURS", // Đổi từ HOLIDAY sang SPECIAL_HOURS vì có mở cửa khung giờ riêng
+    restaurantId: "65b2a1c0d4f3e2a1b0c9d99f",
+    date: null,
+    month: 9,
+    day: 2,
+    is_recurring: true, // Quốc khánh 2/9 lặp lại hàng năm
+    type: "SPECIAL_HOURS", 
     open_time: "16:00",
     close_time: "23:30",
     reason: "Lễ Quốc Khánh 2/9 - Chỉ mở cửa phục vụ tiệc nướng buổi tối",
@@ -97,8 +118,11 @@ export const specialSchedulesData = [
   // ==========================================
   {
     id: "65b2a1c0d4f3e2a1b0c9f208",
-    restaurantId: "65b2a1c0d4f3e2a1b0c9d99e", // BBQ Master Gò Vấp
+    restaurantId: "65b2a1c0d4f3e2a1b0c9d99e",
     date: new Date("2026-07-01T00:00:00.000Z"),
+    month: null,
+    day: null,
+    is_recurring: false,
     type: "CLOSURE",
     open_time: null,
     close_time: null,
@@ -112,8 +136,11 @@ export const specialSchedulesData = [
   // ==========================================
   {
     id: "65b2a1c0d4f3e2a1b0c9f209",
-    restaurantId: "65b2a1c0d4f3e2a1b0c9d9ab", // Fine Dine Elite Đồng Khởi
-    date: new Date("2026-02-14T00:00:00.000Z"),
+    restaurantId: "65b2a1c0d4f3e2a1b0c9d9ab",
+    date: null,
+    month: 2,
+    day: 14,
+    is_recurring: true, // Valentine lặp lại hàng năm
     type: "SPECIAL_HOURS",
     open_time: "17:00",
     close_time: "23:00",
@@ -125,6 +152,9 @@ export const specialSchedulesData = [
     id: "65b2a1c0d4f3e2a1b0c9f20a",
     restaurantId: "65b2a1c0d4f3e2a1b0c9d9ab", 
     date: new Date("2026-10-20T00:00:00.000Z"),
+    month: null,
+    day: null,
+    is_recurring: false,
     type: "PRIVATE_EVENT",
     open_time: null,
     close_time: null,
@@ -138,8 +168,11 @@ export const specialSchedulesData = [
   // ==========================================
   {
     id: "65b2a1c0d4f3e2a1b0c9f20b",
-    restaurantId: "65b2a1c0d4f3e2a1b0c9d9a2", // Coffee & Chill Quận 5
-    date: new Date("2026-04-30T00:00:00.000Z"),
+    restaurantId: "65b2a1c0d4f3e2a1b0c9d9a2",
+    date: null,
+    month: 4,
+    day: 30,
+    is_recurring: true, // Lặp lại hàng năm
     type: "HOLIDAY",
     open_time: null,
     close_time: null,
@@ -150,7 +183,10 @@ export const specialSchedulesData = [
   {
     id: "65b2a1c0d4f3e2a1b0c9f20c",
     restaurantId: "65b2a1c0d4f3e2a1b0c9d9a2", 
-    date: new Date("2026-05-01T00:00:00.000Z"),
+    date: null,
+    month: 5,
+    day: 1,
+    is_recurring: true, // Lặp lại hàng năm
     type: "HOLIDAY",
     open_time: null,
     close_time: null,
@@ -164,8 +200,11 @@ export const specialSchedulesData = [
   // ==========================================
   {
     id: "65b2a1c0d4f3e2a1b0c9f20d",
-    restaurantId: "65b2a1c0d4f3e2a1b0c9d9a9", // Sea Breeze Võ Nguyên Giáp
+    restaurantId: "65b2a1c0d4f3e2a1b0c9d9a9",
     date: new Date("2026-11-15T00:00:00.000Z"),
+    month: null,
+    day: null,
+    is_recurring: false,
     type: "CLOSURE",
     open_time: null,
     close_time: null,
@@ -179,8 +218,11 @@ export const specialSchedulesData = [
   // ==========================================
   {
     id: "65b2a1c0d4f3e2a1b0c9f20e",
-    restaurantId: "65b2a1c0d4f3e2a1b0c9d9a3", // Saigon Vegan Nguyễn Trãi
-    date: new Date("2026-08-28T00:00:00.000Z"), // Giả định là ngày Rằm tháng 7 âm lịch
+    restaurantId: "65b2a1c0d4f3e2a1b0c9d9a3",
+    date: new Date("2026-08-28T00:00:00.000Z"), // Ngày Vu Lan đổi theo Âm lịch mỗi năm -> Dùng date
+    month: null,
+    day: null,
+    is_recurring: false,
     type: "SPECIAL_HOURS",
     open_time: "06:00",
     close_time: "22:00",
@@ -188,6 +230,7 @@ export const specialSchedulesData = [
     createdAt: new Date(),
     updatedAt: new Date()
   },
+
   // ==========================================
   // 10. PIZZA ROMA HAI BÀ TRƯNG (restaurantId: 65b2a1c0d4f3e2a1b0c9d9a5)
   // ==========================================
@@ -195,6 +238,9 @@ export const specialSchedulesData = [
     id: "65b2a1c0d4f3e2a1b0c9f20f",
     restaurantId: "65b2a1c0d4f3e2a1b0c9d9a5",
     date: new Date("2026-05-10T00:00:00.000Z"),
+    month: null,
+    day: null,
+    is_recurring: false,
     type: "CLOSURE",
     open_time: null,
     close_time: null,
@@ -210,6 +256,9 @@ export const specialSchedulesData = [
     id: "65b2a1c0d4f3e2a1b0c9f210",
     restaurantId: "65b2a1c0d4f3e2a1b0c9d9ac",
     date: new Date("2026-08-05T00:00:00.000Z"),
+    month: null,
+    day: null,
+    is_recurring: false,
     type: "PRIVATE_EVENT",
     open_time: null,
     close_time: null,
@@ -220,10 +269,13 @@ export const specialSchedulesData = [
   {
     id: "65b2a1c0d4f3e2a1b0c9f211",
     restaurantId: "65b2a1c0d4f3e2a1b0c9d9ac",
-    date: new Date("2026-12-25T00:00:00.000Z"),
+    date: null,
+    month: 12,
+    day: 25,
+    is_recurring: true, // Lặp lại mỗi năm
     type: "SPECIAL_HOURS",
     open_time: "06:00",
-    close_time: "14:00", // Nghỉ sớm vào buổi chiều
+    close_time: "14:00", 
     reason: "Giáng Sinh - Quán đóng cửa sớm để nhân viên nghỉ lễ",
     createdAt: new Date(),
     updatedAt: new Date()
@@ -236,9 +288,12 @@ export const specialSchedulesData = [
     id: "65b2a1c0d4f3e2a1b0c9f212",
     restaurantId: "65b2a1c0d4f3e2a1b0c9d9a1",
     date: new Date("2026-07-15T00:00:00.000Z"),
+    month: null,
+    day: null,
+    is_recurring: false,
     type: "SPECIAL_HOURS",
     open_time: "10:00",
-    close_time: "20:00", // Đóng cửa lúc 8h tối thay vì 22h
+    close_time: "20:00",
     reason: "Đóng cửa sớm để tổ chức Tiệc Nhân viên (Staff Party) quý 3",
     createdAt: new Date(),
     updatedAt: new Date()
@@ -250,10 +305,13 @@ export const specialSchedulesData = [
   {
     id: "65b2a1c0d4f3e2a1b0c9f213",
     restaurantId: "65b2a1c0d4f3e2a1b0c9d99f",
-    date: new Date("2026-06-20T00:00:00.000Z"), // Giả định có trận Chung kết bóng đá
+    date: new Date("2026-06-20T00:00:00.000Z"),
+    month: null,
+    day: null,
+    is_recurring: false,
     type: "SPECIAL_HOURS",
     open_time: "10:00",
-    close_time: "03:00", // Qua ngày hôm sau
+    close_time: "03:00", 
     reason: "Chung kết World Cup - Mở cửa xuyên đêm phục vụ khách xem bóng đá",
     createdAt: new Date(),
     updatedAt: new Date()
@@ -265,7 +323,10 @@ export const specialSchedulesData = [
   {
     id: "65b2a1c0d4f3e2a1b0c9f214",
     restaurantId: "65b2a1c0d4f3e2a1b0c9d9a2",
-    date: new Date("2026-03-12T00:00:00.000Z"), // Ngày trong quá khứ hoặc tương lai gần
+    date: new Date("2026-03-12T00:00:00.000Z"), 
+    month: null,
+    day: null,
+    is_recurring: false,
     type: "CLOSURE",
     open_time: null,
     close_time: null,
@@ -281,8 +342,11 @@ export const specialSchedulesData = [
     id: "65b2a1c0d4f3e2a1b0c9f215",
     restaurantId: "65b2a1c0d4f3e2a1b0c9d99d",
     date: new Date("2026-09-10T00:00:00.000Z"),
+    month: null,
+    day: null,
+    is_recurring: false,
     type: "PRIVATE_EVENT",
-    open_time: "18:00", // Chỉ đóng sự kiện buổi tối, sáng vẫn bán bình thường
+    open_time: "18:00", 
     close_time: "23:00",
     reason: "Sự kiện ra mắt Menu Mùa Thu (Menu Tasting) dành riêng cho khách mời VIP và KOLs",
     createdAt: new Date(),
@@ -294,8 +358,11 @@ export const specialSchedulesData = [
   // ==========================================
   {
     id: "65b2a1c0d4f3e2a1b0c9f216",
-    restaurantId: "65b2a1c0d4f3e2a1b0c9d99b", // Đang INACTIVE, giả sử chuẩn bị mở lại
+    restaurantId: "65b2a1c0d4f3e2a1b0c9d99b",
     date: new Date("2026-11-01T00:00:00.000Z"),
+    month: null,
+    day: null,
+    is_recurring: false,
     type: "CLOSURE",
     open_time: null,
     close_time: null,

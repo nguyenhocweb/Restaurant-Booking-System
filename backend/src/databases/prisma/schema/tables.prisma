@@ -20,7 +20,7 @@ model Tables {
     pos_x         Float?        //  sơ đồ 
     pos_y         Float?        //  table nhà hàng
 
-    status        TableStatus @default(ACTIVE)
+    status        TableStatus @default(ACTIVE) 
 
      qr_code       String? @unique    // mở link để đặt món tiếp
      reservation_tables   Reservation_Tables[]   // bàn đc phân khi có đơn đặt 

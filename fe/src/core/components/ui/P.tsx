@@ -3,7 +3,7 @@ import { cn } from "../../lib/tw";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const PVariantProps = cva(
-    "flex transition-all duration-300 ", 
+    "flex transition-all duration-300 ",
     {
         variants: {
             variant: {
@@ -12,11 +12,15 @@ const PVariantProps = cva(
                 glow: "text-white shadow-[0_0_20px_rgba(255,255,255,0.3)] bg-white/10 backdrop-blur-md border border-white/20",
                 // Shadow mờ rộng màu sắc rực rỡ (Neon)
                 neon: "text-cyan-400 shadow-[0_0_30px_rgba(34,211,238,0.4)] border border-cyan-500/50 bg-cyan-500/5",
-                mes:"text-red-500",
-                truncate_1line:"line-clamp-1 h-7",
-                truncate_2line:"line-clamp-2 h-14",
-                text_black:"font-semibold text-gray-900 text-lg",
-                text_green:"text-green-600 font-semibold tracking-wide"
+                mes: "text-red-500",
+                truncate_1line: "line-clamp-1 h-7",
+                truncate_2line: "line-clamp-2 h-14",
+                text_black: "font-semibold text-gray-900 text-lg",
+                text_green: "text-green-600 font-semibold tracking-wide"
+            },
+            line: {
+                truncate_1line: "line-clamp-1 h-7",
+                truncate_2line: "line-clamp-2 h-14",
             },
             shape: {
                 circle: "rounded-full px-4 py-2",
@@ -38,10 +42,10 @@ const PVariantProps = cva(
 interface PProps extends React.HTMLAttributes<HTMLParagraphElement>, VariantProps<typeof PVariantProps> { }
 
 const P = React.forwardRef<HTMLParagraphElement, PProps>(
-    ({ className, variant, shape, size, ...props }, ref) => {
+    ({ className, variant, shape,line, size, ...props }, ref) => {
         return (
             <p
-                className={cn(PVariantProps({ variant, shape, size, className }))}
+                className={cn(PVariantProps({ variant,line, shape, size, className }))}
                 ref={ref}
                 {...props}
             />

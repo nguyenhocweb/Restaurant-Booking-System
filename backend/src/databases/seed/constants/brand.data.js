@@ -382,5 +382,191 @@ export default [
     description: "Món ngon miệt vườn với các nguyên liệu đồng quê sạch từ trang trại.",
     isFeatured: false,
     new: true
+  },
+  {
+    id: "65b2a1c0d4f3e2a1b0c9d8fb",
+    name: "Indochine Palace",
+    logo: "https://ui-avatars.com/api/?name=Indochine+Palace&background=random",
+    email_contact: "info@indochinepalace.vn",
+    phone_contact: "0905556677",
+    tax_code: "0312345694",
+    link: "https://indochinepalace.vn",
+    address: "26 Mai Chí Thọ, Quận 2",
+    city: "TP.HCM",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4",
+    images: [
+      "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c",
+      "https://images.unsplash.com/photo-1520209759809-a9bcb6cb3241"
+    ],
+    description: "Nhà hàng phong cách Đông Dương với sự kết hợp tinh tế giữa kiến trúc Pháp và hương vị Việt cổ điển.",
+    isFeatured: true,
+    new: true
+  },
+  {
+    id: "65b2a1c0d4f3e2a1b0c9d8fc",
+    name: "Nướng Ngói Đà Lạt",
+    logo: "https://ui-avatars.com/api/?name=Nuong+Ngoi&background=random",
+    email_contact: "contact@nuongngoidalat.vn",
+    phone_contact: "0906667788",
+    tax_code: "0501234571",
+    link: "https://nuongngoidalat.vn",
+    address: "01 Tô Hiến Thành, Phường 3",
+    city: "Đà Lạt",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1561622539-dffbfc2008fd",
+    images: [
+      "https://images.unsplash.com/photo-1599307734110-33296860368c"
+    ],
+    description: "Trải nghiệm nướng trên ngói độc đáo trong không gian se lạnh đặc trưng của phố núi.",
+    isFeatured: false,
+    new: false
+  },
+  {
+    id: "65b2a1c0d4f3e2a1b0c9d8fd",
+    name: "Pasta & Co",
+    logo: "https://ui-avatars.com/api/?name=Pasta+Co&background=random",
+    email_contact: "ciao@pastaco.vn",
+    phone_contact: "0907778899",
+    tax_code: "0312345695",
+    link: "https://pastaco.vn",
+    address: "102 Thảo Điền, Quận 2",
+    city: "TP.HCM",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1473093226795-af9932fe5856",
+    images: [
+      "https://images.unsplash.com/photo-1551183053-bf91a1d81141",
+      "https://images.unsplash.com/photo-1528733918455-5a59687cedf0"
+    ],
+    description: "Mì Ý tươi được làm thủ công mỗi ngày với các loại sốt nhập khẩu trực tiếp từ vùng Tuscany.",
+    isFeatured: true,
+    new: true
+  },
+  {
+    id: "65b2a1c0d4f3e2a1b0c9d8fe",
+    name: "Hải Sản Phố",
+    logo: "https://ui-avatars.com/api/?name=Hai+San+Pho&background=random",
+    email_contact: "sales@haisanpho.vn",
+    phone_contact: "0908889900",
+    tax_code: "0101234572",
+    link: "https://haisanpho.vn",
+    address: "48 Liễu Giai, Ba Đình",
+    city: "Hà Nội",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1559715745-e1b33a271c8f",
+    images: [
+      "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0"
+    ],
+    description: "Siêu thị hải sản quy mô lớn tại Hà Nội với các bể chứa tôm hùm, cua hoàng đế tươi sống.",
+    isFeatured: true,
+    new: false
+  },
+  {
+    id: "65b2a1c0d4f3e2a1b0c9d8ff",
+    name: "Tapas Bar Viva",
+    logo: "https://ui-avatars.com/api/?name=Tapas+Viva&background=random",
+    email_contact: "hola@tapasviva.vn",
+    phone_contact: "0909990011",
+    tax_code: "0312345696",
+    link: "https://tapasviva.vn",
+    address: "15 Đông Du, Quận 1",
+    city: "TP.HCM",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1515443961218-1523678885b8",
+    images: [
+      "https://images.unsplash.com/photo-1615485290382-441e4d0c9cb5"
+    ],
+    description: "Ẩm thực Tây Ban Nha sôi động với những đĩa Tapas nhỏ xinh và rượu Sangria nồng nàn.",
+    isFeatured: false,
+    new: true
+  },
+  {
+    id: "65b2a1c0d4f3e2a1b0c9d900",
+    name: "Zen Tea House",
+    logo: "https://ui-avatars.com/api/?name=Zen+Tea&background=random",
+    email_contact: "zen@teahouse.vn",
+    phone_contact: "0901110022",
+    tax_code: "0312345697",
+    link: "https://zentea.vn",
+    address: "24 Tú Xương, Quận 3",
+    city: "TP.HCM",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1545048702-79362596cdc9",
+    images: [],
+    description: "Trà đạo Nhật Bản trong không gian tĩnh mịch, giúp bạn tìm lại sự cân bằng giữa lòng thành phố.",
+    isFeatured: false,
+    new: false
+  },
+  {
+    id: "65b2a1c0d4f3e2a1b0c9d901",
+    name: "Lẩu Cá Linh Miền Tây",
+    logo: "https://ui-avatars.com/api/?name=Lau+Ca+Linh&background=random",
+    email_contact: "contact@mientayfood.vn",
+    phone_contact: "0902220033",
+    tax_code: "0701234573",
+    link: "https://mientayfood.vn",
+    address: "55 Mậu Thân, Ninh Kiều",
+    city: "Cần Thơ",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1547592166-23ac45744a05",
+    images: [
+      "https://images.unsplash.com/photo-1511690656952-34342bb7c2f2"
+    ],
+    description: "Đặc sản lẩu mắm và lẩu cá linh bông điên điển chuẩn vị vùng sông nước Cửu Long.",
+    isFeatured: false,
+    new: false
+  },
+  {
+    id: "65b2a1c0d4f3e2a1b0c9d902",
+    name: "The Meatball Co.",
+    logo: "https://ui-avatars.com/api/?name=Meatball+Co&background=random",
+    email_contact: "meat@ball.vn",
+    phone_contact: "0903330044",
+    tax_code: "0312345698",
+    link: "https://meatball.vn",
+    address: "18 Phan Xích Long, Phú Nhuận",
+    city: "TP.HCM",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1529042410759-3b12603502c1",
+    images: [
+      "https://images.unsplash.com/photo-1626074353765-517a681e40be"
+    ],
+    description: "Chuyên các món thịt viên phong cách Châu Âu kết hợp với các loại sốt kem đặc trưng.",
+    isFeatured: false,
+    new: true
+  },
+  {
+    id: "65b2a1c0d4f3e2a1b0c9d903",
+    name: "Lebanese Kebab",
+    logo: "https://ui-avatars.com/api/?name=Kebab&background=random",
+    email_contact: "kebab@lebanese.vn",
+    phone_contact: "0904440055",
+    tax_code: "0101234574",
+    link: "https://kebab.vn",
+    address: "12 Hàng Bè, Hoàn Kiếm",
+    city: "Hà Nội",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1561651823-34feb02250e4",
+    images: [],
+    description: "Kebab Trung Đông với gia vị tẩm ướp độc đáo và bánh mì pita nướng nóng hổi.",
+    isFeatured: false,
+    new: false
+  },
+  {
+    id: "65b2a1c0d4f3e2a1b0c9d904",
+    name: "Mì Quảng Ếch Đà Thành",
+    logo: "https://ui-avatars.com/api/?name=Mi+Quang&background=random",
+    email_contact: "contact@miquangech.vn",
+    phone_contact: "0905550066",
+    tax_code: "0401234575",
+    link: "https://miquangech.vn",
+    address: "24 Pasteur, Hải Châu",
+    city: "Đà Nẵng",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1563245372-f21724e3856d",
+    images: [],
+    description: "Mì Quảng ếch trứ danh Đà Nẵng, phục vụ trong niêu đất giữ nhiệt cực tốt.",
+    isFeatured: true,
+    new: false
   }
 ];

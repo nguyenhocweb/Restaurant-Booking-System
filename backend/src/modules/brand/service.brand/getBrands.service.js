@@ -1,10 +1,23 @@
 import { getBrands, countBrands } from "../repository.brand/index.js";
-export const getBrandsService = async (page, limit, where) => {
+import { searchAIService } from "../../ai/ai.service/index.js  "
+export const getBrandsService = async (page, limit, city, search) => {
+    let brandIds = [];
+    if (search) {
+        const aiResult = await searchAIService({ query: search, topK: 20 });
+        if (!aiResult || aiResult.length === 0) {
+            return { code: 404, mes: "không tìm thấy tài nguyên" };
+        }
+        brandIds = aiResult.filter(result => result.type === "brand").map(result => result.id);
+
+    }
+
+
     const baseWhere = [
-        ...(Array.isArray(where) ? where : where ? [where] : []),
+
         { isActive: "ACTIVE" },
-        { isFeatured: false }
     ];
+    if (brandIds.length > 0) baseWhere.push({ id: { in: brandIds } });
+    if (city) baseWhere.push({ restaurants: { some: { city: city } } });
 
     const finalWhere = {
         AND: baseWhere
@@ -17,6 +30,14 @@ export const getBrandsService = async (page, limit, where) => {
         }),
         countBrands(finalWhere)
     ])
+    let resultBrand = brands;
+    // sắp xếp theo tìm kiêm AI
+    if (brandIds.length > 0) {
+        resultBrand = brandIds.map(id => brands.find(brand => brand.id === id)).filter(Boolean);
+        console.log(brandIds);
+        
+        console.log("resultBrand:", resultBrand);
+    }
 
-    return brands ? { code: 200, data: { data: brands, total: total } } : { code: 404, mes: "không tìm thấy tài nguyên" }
+    return resultBrand.length > 0 ? { code: 200, data: { data: resultBrand, total: total } } : { code: 404, mes: "không tìm thấy tài nguyên" }
 }

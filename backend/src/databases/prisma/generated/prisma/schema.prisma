@@ -678,8 +678,8 @@ model Reservations {
 model Restaurant {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
-  brandId       String       @db.ObjectId
-  brand         Brand        @relation(fields: [brandId], references: [id], onDelete: Cascade)
+  brandId       String?      @db.ObjectId
+  brand         Brand?       @relation(fields: [brandId], references: [id], onDelete: Cascade)
   logo          String?
   isNew         Boolean      @default(true)
   name          String?
@@ -792,9 +792,11 @@ model Special_Schedules {
   restaurantId String     @db.ObjectId
   restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
 
-  date DateTime //Ngày áp dụng lịch đặc biệt
-
-  type ScheduleType
+  date         DateTime? // dùng cho ngày cụ thể
+  month        Int? // dùng cho holiday
+  day          Int?
+  is_recurring Boolean      @default(false) // có lặp mỗi năm không
+  type         ScheduleType
 
   open_time  String? // giờ mở đặc biệt null nếu cả nagyf đều đóng
   close_time String? // giờ đóng đặc biệt null nếu cả nagyf đều đóng

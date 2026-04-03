@@ -20,6 +20,8 @@ import {reviewRestaurantExtension} from "./extensions/review_restaurant.extensio
 import {reservationAuditLogsExtension} from "./extensions/reservation_audit_log.extension.js"
 import {menusExtension} from "./extensions/menu.extension.js";
 import {categoriesAndItemsExtension}from "./extensions/menuCategory-items.extension.js"
+
+import {deleteAllVector} from "../../modules/vector/service/vectorDB.service.js"
 const runSeed = async () => {
     try {
         console.log('🌱 Starting Seed...');
@@ -27,6 +29,7 @@ const runSeed = async () => {
         // 1. Kết nối
         await connectDB();
         //
+        await deleteAllVector();
         await prisma.permission_vs_Employment.deleteMany({});
         await prisma.permission.deleteMany({});
         await prisma.notifications.deleteMany({})

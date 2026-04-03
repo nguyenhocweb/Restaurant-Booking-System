@@ -26,7 +26,7 @@ export const validator = {
         let schema = z.coerce
             .number({
                 error: `Vui lòng nhập ${name.toLowerCase()}`,
-                message: `${name} phải là một số hợp lệ`,
+                
             });
 
         if (min !== undefined) {
@@ -41,14 +41,15 @@ export const validator = {
         z.coerce
             .number({
                 error: `Vui lòng nhập ${name.toLowerCase()}`,
-                message: `${name} phải là số hợp lệ`,
+               
             })
             .positive(`${name} phải lớn hơn 0`)
             .max(max, `${name} không được vượt quá ${max.toLocaleString('vi-VN')}đ`),
     boolean: (name: string) =>
         z.coerce.boolean({
-            error: `Vui lòng chọn ${name.toLowerCase()}`,
-            message: `${name} chỉ nhận giá trị Đúng/Sai`,
+            error: (issue) => issue.input === undefined 
+            ? `Vui lòng chọn ${name.toLowerCase()}` 
+            : `${name} chỉ nhận giá trị Đúng/Sai`,
         }),
     // 8. FILE (Upload 1 file đơn lẻ)
     file: (
@@ -78,7 +79,7 @@ export const validator = {
     date: (name: string = "Ngày", options?: { minDate?: Date; maxDate?: Date }) => {
         let schema = z.coerce.date({
             error: `Vui lòng chọn ${name.toLowerCase()}`,
-            message: `${name} không hợp lệ`,
+            
         });
 
         if (options?.minDate) {
@@ -95,7 +96,7 @@ export const validator = {
     dob: (name: string = "Ngày sinh", options?: { minAge?: number; maxAge?: number }) => {
         return z.coerce.date({
             error: `Vui lòng chọn ${name.toLowerCase()}`,
-            message: `${name} không hợp lệ`,
+            
         })
             .max(new Date(), `${name} không được lớn hơn ngày hiện tại`) // Chắc chắn ngày sinh phải trong quá khứ
             .superRefine((date, ctx) => {

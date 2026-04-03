@@ -13,12 +13,20 @@ const DivVariantProps = cva(
                     "backdrop-blur-[8px] -webkit-backdrop-blur-[18px]" // Đảm bảo hỗ trợ Safari
                 ],
                black_transparent: "bg-gradient-to-b from-transparent from-[1%] to-black to-[99%]",
-               card:"grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
+               card:"grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5",
+               restaurant_template1_svg: "bg-svg-restaurant-template1 absolute p-4 gap-4 inset-0 pointer-events-none z-0  bg-repeat ",
+                restaurant_template1: "bg-bg-restaurant-template1 ",
+                bg_gray:"bg-gray-200 shadow-xl shadow-gray-300",
+                bg_white:"bg-white shadow-xl shadow-gray-300 px-6 py-3"
+
+              
             },
             shape: {
                 circle: "rounded-full",
                 square: "rounded-2xl",
-                none: ""
+                none: "",
+                r_lg:"rounded-lg",
+                r_xl:"rounded-xl",
             },
             size: {
                 full_screen: "min-h-screen w-full",
@@ -37,6 +45,12 @@ const DivVariantProps = cva(
             },
             vitri: {
                 col_none: "flex-col items-start justify-start"
+            },
+            grids:{
+                col_1:"grid grid-cols-1",
+                col_2:"grid grid-cols-2",
+                col_3:"grid grid-cols-3",
+                col_4:"grid grid-cols-4",
             }
         },
         defaultVariants: {
@@ -46,12 +60,12 @@ const DivVariantProps = cva(
     }
 )
 interface DivProps extends React.ComponentPropsWithoutRef<"div">, VariantProps<typeof DivVariantProps> { }
-const Div = React.forwardRef<HTMLInputElement, DivProps>(
-    ({ className, variant, shape, size, gap, vitri, ...props }, ref) => {
+const Div = React.forwardRef<HTMLDivElement, DivProps>(
+    ({ className, variant, shape, size, gap,grids, vitri, ...props }, ref) => {
         return (
             <div
 
-                className={cn(DivVariantProps({ variant, shape, size, gap, vitri, className }))}
+                className={cn(DivVariantProps({ variant, shape, size,grids, gap, vitri, className }))}
                 ref={ref}
                 {...props}
             />

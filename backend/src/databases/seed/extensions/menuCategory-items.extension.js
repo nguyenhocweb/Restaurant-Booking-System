@@ -49,7 +49,7 @@ export const categoriesAndItemsExtension = async (prisma) => {
     ].filter(Boolean).join(" ");
     const embedding = await embedText(text);
     const MenuItemVector = buildMenuItemVector({
-      id: `menu_item_${itemResult.id}`,
+      id: `menuItem_${itemResult.id}`,
       name: item.name,
       description: item.description,
       dietary_tags: item.dietary_tags,

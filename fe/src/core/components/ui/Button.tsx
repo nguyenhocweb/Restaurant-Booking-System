@@ -14,7 +14,7 @@ const ButtonVariantProps = cva(
                 ],
                 google: "border border-red-500 shadow-[0_0_10px_0px_red] hover:bg-red-500/50",
                 fb: "border border-blue-500 shadow-[0_0_10px_0px_blue] hover:bg-blue-500/50",
-                green: [" flex items-center justify-center  rounded-xl text-white text-sm font-medium ",
+                green: [" flex items-center justify-center   text-white text-sm font-medium ",
                     "bg-gradient-to-r from-green-500 to-green-600",
                     "  shadow-md",
                     "  transition-all duration-300",
@@ -22,7 +22,7 @@ const ButtonVariantProps = cva(
                     "hover:shadow-lg hover:scale-[1.03]",
                     "active:scale-95"
                 ],
-                gray: [" flex items-center justify-center  rounded-xl text-black text-sm font-medium ",
+                gray: [" flex items-center justify-center  text-black text-sm font-medium ",
                     "bg-gradient-to-r from-gray-200 to-gray-300",
                     "  shadow-md",
                     "  transition-all duration-300",
@@ -38,11 +38,22 @@ const ButtonVariantProps = cva(
                     "hover:shadow-lg hover:scale-[1.03]",
                     "active:scale-95"
                 ],
+                green_shadow: [
+                    "flex items-center justify-center bg-white text-black   relative",
+                    "before:content-[''] ",
+                    "before:absolute before:-inset-1 before:-z-1  ",
+                    "before:bg-gradient-to-r before:from-green-400 before:to-[#462f82] ",
+                    "before:opacity-70 before:blur-md ",
+                    "before:transition-opacity before:duration-500 ",
+                    "hover:before:opacity-100"
+                ]
 
             },
             shape: {
                 circle: "rounded-full",
                 square: "rounded-lg",
+                before_Circle:"before:rounded-full rounded-full",
+                before_Square:"before:rounded-lg rounded-lg",
             },
             sizea: {
                 full: "w-full",
@@ -66,7 +77,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({ className, variant, shape, type, sizea, ...props }, ref) => {
         return (
             <button
-                type={type}
+
+                type={type ?? "button"}
                 className={cn(ButtonVariantProps({ variant, shape, sizea, className }))}
                 ref={ref}
                 {...props}

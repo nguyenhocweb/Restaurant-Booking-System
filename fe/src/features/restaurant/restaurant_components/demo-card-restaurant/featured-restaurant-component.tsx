@@ -1,15 +1,15 @@
 "use client"
 import { Div, P, A } from "@/src/core/components/ui";
 import FadeIn from "@/src/core/components/animation/FadeIn";
-import { useRestaurandCard } from "../restaurant_hook/useRestaurantCard_hook";
+import { useRestaurandCard } from "@/src/features/restaurant/restaurant_hook/useRestaurantCard_hook";
 import Card_Restaurant_Component from "./card-restaurant-component";
 import Loading from "@/src/core/components/layout/public-loading";
 import { usePagination } from "@/src/core/hooks/usePagination";
 import Pagination from "@/src/core/components/layout/Pagination";
 const Featured_Restaurant_Component = ({ type, id, limit }: { type: "home" | "page", id?: string, limit?: number }) => {
     const limits = limit ?? (type === "page" ? 10 : 5);
-    const { currentPage, city, searchKeyword,setPage } = usePagination()
-    const { data, isLoading, isFetched } = useRestaurandCard({ page: currentPage || 1, limit: limits, city: city ?? undefined, search: searchKeyword ?? undefined, id: id });
+    const { pageRestaurant, city, searchKeyword,setPageRestaurant} = usePagination()
+    const { data, isLoading, isFetched } = useRestaurandCard({ page: pageRestaurant || 1, limit: limits, city: city ?? undefined, search: searchKeyword ?? undefined, id: id });
     console.log(data);
     if (isLoading) return <Loading />
     return (
@@ -51,9 +51,9 @@ const Featured_Restaurant_Component = ({ type, id, limit }: { type: "home" | "pa
                     <P variant="text_black">Hiện có {data.total} nhà hàng</P>
                     <Pagination
                         totalPages={Math.ceil((data?.total ? data.total / limits : 0))}
-                        currentPage={currentPage}
+                        currentPage={pageRestaurant??1}
                         limit={limits}
-                        onPageChange={setPage}
+                        onPageChange={setPageRestaurant}
                     />
                 </Div>
             }

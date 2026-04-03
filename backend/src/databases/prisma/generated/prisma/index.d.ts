@@ -24525,7 +24525,7 @@ export namespace Prisma {
 
   export type RestaurantGroupByOutputType = {
     id: string
-    brandId: string
+    brandId: string | null
     logo: string | null
     isNew: boolean
     name: string | null
@@ -24600,7 +24600,7 @@ export namespace Prisma {
     average_food_rating?: boolean
     average_service_rating?: boolean
     average_ambiance_rating?: boolean
-    brand?: boolean | BrandDefaultArgs<ExtArgs>
+    brand?: boolean | Restaurant$brandArgs<ExtArgs>
     employments?: boolean | Restaurant$employmentsArgs<ExtArgs>
     restaurant_areas?: boolean | Restaurant$restaurant_areasArgs<ExtArgs>
     tabels?: boolean | Restaurant$tabelsArgs<ExtArgs>
@@ -24648,7 +24648,7 @@ export namespace Prisma {
 
   export type RestaurantOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "brandId" | "logo" | "isNew" | "name" | "address" | "city" | "email_contact" | "phone_contact" | "description" | "isActive" | "imageMain" | "images" | "slug" | "max_party_size" | "booking_window_days" | "cancellation_hours" | "deposit_required" | "deposit_amount" | "createdAt" | "updatedAt" | "weightedScore" | "totalRating" | "averageRating" | "average_food_rating" | "average_service_rating" | "average_ambiance_rating", ExtArgs["result"]["restaurant"]>
   export type RestaurantInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    brand?: boolean | BrandDefaultArgs<ExtArgs>
+    brand?: boolean | Restaurant$brandArgs<ExtArgs>
     employments?: boolean | Restaurant$employmentsArgs<ExtArgs>
     restaurant_areas?: boolean | Restaurant$restaurant_areasArgs<ExtArgs>
     tabels?: boolean | Restaurant$tabelsArgs<ExtArgs>
@@ -24665,7 +24665,7 @@ export namespace Prisma {
   export type $RestaurantPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Restaurant"
     objects: {
-      brand: Prisma.$BrandPayload<ExtArgs>
+      brand: Prisma.$BrandPayload<ExtArgs> | null
       employments: Prisma.$EmploymentPayload<ExtArgs>[]
       restaurant_areas: Prisma.$Restaurant_AreasPayload<ExtArgs>[]
       tabels: Prisma.$TablesPayload<ExtArgs>[]
@@ -24679,7 +24679,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      brandId: string
+      brandId: string | null
       logo: string | null
       isNew: boolean
       name: string | null
@@ -25068,7 +25068,7 @@ export namespace Prisma {
    */
   export interface Prisma__RestaurantClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    brand<T extends BrandDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BrandDefaultArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    brand<T extends Restaurant$brandArgs<ExtArgs> = {}>(args?: Subset<T, Restaurant$brandArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     employments<T extends Restaurant$employmentsArgs<ExtArgs> = {}>(args?: Subset<T, Restaurant$employmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     restaurant_areas<T extends Restaurant$restaurant_areasArgs<ExtArgs> = {}>(args?: Subset<T, Restaurant$restaurant_areasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Restaurant_AreasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     tabels<T extends Restaurant$tabelsArgs<ExtArgs> = {}>(args?: Subset<T, Restaurant$tabelsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TablesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -25502,6 +25502,25 @@ export namespace Prisma {
      * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
      */
     options?: InputJsonValue
+  }
+
+  /**
+   * Restaurant.brand
+   */
+  export type Restaurant$brandArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Brand
+     */
+    select?: BrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Brand
+     */
+    omit?: BrandOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BrandInclude<ExtArgs> | null
+    where?: BrandWhereInput
   }
 
   /**
@@ -28949,14 +28968,29 @@ export namespace Prisma {
 
   export type AggregateSpecial_Schedules = {
     _count: Special_SchedulesCountAggregateOutputType | null
+    _avg: Special_SchedulesAvgAggregateOutputType | null
+    _sum: Special_SchedulesSumAggregateOutputType | null
     _min: Special_SchedulesMinAggregateOutputType | null
     _max: Special_SchedulesMaxAggregateOutputType | null
+  }
+
+  export type Special_SchedulesAvgAggregateOutputType = {
+    month: number | null
+    day: number | null
+  }
+
+  export type Special_SchedulesSumAggregateOutputType = {
+    month: number | null
+    day: number | null
   }
 
   export type Special_SchedulesMinAggregateOutputType = {
     id: string | null
     restaurantId: string | null
     date: Date | null
+    month: number | null
+    day: number | null
+    is_recurring: boolean | null
     type: $Enums.ScheduleType | null
     open_time: string | null
     close_time: string | null
@@ -28969,6 +29003,9 @@ export namespace Prisma {
     id: string | null
     restaurantId: string | null
     date: Date | null
+    month: number | null
+    day: number | null
+    is_recurring: boolean | null
     type: $Enums.ScheduleType | null
     open_time: string | null
     close_time: string | null
@@ -28981,6 +29018,9 @@ export namespace Prisma {
     id: number
     restaurantId: number
     date: number
+    month: number
+    day: number
+    is_recurring: number
     type: number
     open_time: number
     close_time: number
@@ -28991,10 +29031,23 @@ export namespace Prisma {
   }
 
 
+  export type Special_SchedulesAvgAggregateInputType = {
+    month?: true
+    day?: true
+  }
+
+  export type Special_SchedulesSumAggregateInputType = {
+    month?: true
+    day?: true
+  }
+
   export type Special_SchedulesMinAggregateInputType = {
     id?: true
     restaurantId?: true
     date?: true
+    month?: true
+    day?: true
+    is_recurring?: true
     type?: true
     open_time?: true
     close_time?: true
@@ -29007,6 +29060,9 @@ export namespace Prisma {
     id?: true
     restaurantId?: true
     date?: true
+    month?: true
+    day?: true
+    is_recurring?: true
     type?: true
     open_time?: true
     close_time?: true
@@ -29019,6 +29075,9 @@ export namespace Prisma {
     id?: true
     restaurantId?: true
     date?: true
+    month?: true
+    day?: true
+    is_recurring?: true
     type?: true
     open_time?: true
     close_time?: true
@@ -29066,6 +29125,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: Special_SchedulesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Special_SchedulesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: Special_SchedulesMinAggregateInputType
@@ -29096,6 +29167,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: Special_SchedulesCountAggregateInputType | true
+    _avg?: Special_SchedulesAvgAggregateInputType
+    _sum?: Special_SchedulesSumAggregateInputType
     _min?: Special_SchedulesMinAggregateInputType
     _max?: Special_SchedulesMaxAggregateInputType
   }
@@ -29103,7 +29176,10 @@ export namespace Prisma {
   export type Special_SchedulesGroupByOutputType = {
     id: string
     restaurantId: string
-    date: Date
+    date: Date | null
+    month: number | null
+    day: number | null
+    is_recurring: boolean
     type: $Enums.ScheduleType
     open_time: string | null
     close_time: string | null
@@ -29111,6 +29187,8 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     _count: Special_SchedulesCountAggregateOutputType | null
+    _avg: Special_SchedulesAvgAggregateOutputType | null
+    _sum: Special_SchedulesSumAggregateOutputType | null
     _min: Special_SchedulesMinAggregateOutputType | null
     _max: Special_SchedulesMaxAggregateOutputType | null
   }
@@ -29133,6 +29211,9 @@ export namespace Prisma {
     id?: boolean
     restaurantId?: boolean
     date?: boolean
+    month?: boolean
+    day?: boolean
+    is_recurring?: boolean
     type?: boolean
     open_time?: boolean
     close_time?: boolean
@@ -29148,6 +29229,9 @@ export namespace Prisma {
     id?: boolean
     restaurantId?: boolean
     date?: boolean
+    month?: boolean
+    day?: boolean
+    is_recurring?: boolean
     type?: boolean
     open_time?: boolean
     close_time?: boolean
@@ -29156,7 +29240,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type Special_SchedulesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "restaurantId" | "date" | "type" | "open_time" | "close_time" | "reason" | "createdAt" | "updatedAt", ExtArgs["result"]["special_Schedules"]>
+  export type Special_SchedulesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "restaurantId" | "date" | "month" | "day" | "is_recurring" | "type" | "open_time" | "close_time" | "reason" | "createdAt" | "updatedAt", ExtArgs["result"]["special_Schedules"]>
   export type Special_SchedulesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     restaurant?: boolean | RestaurantDefaultArgs<ExtArgs>
   }
@@ -29169,7 +29253,10 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       restaurantId: string
-      date: Date
+      date: Date | null
+      month: number | null
+      day: number | null
+      is_recurring: boolean
       type: $Enums.ScheduleType
       open_time: string | null
       close_time: string | null
@@ -29572,6 +29659,9 @@ export namespace Prisma {
     readonly id: FieldRef<"Special_Schedules", 'String'>
     readonly restaurantId: FieldRef<"Special_Schedules", 'String'>
     readonly date: FieldRef<"Special_Schedules", 'DateTime'>
+    readonly month: FieldRef<"Special_Schedules", 'Int'>
+    readonly day: FieldRef<"Special_Schedules", 'Int'>
+    readonly is_recurring: FieldRef<"Special_Schedules", 'Boolean'>
     readonly type: FieldRef<"Special_Schedules", 'ScheduleType'>
     readonly open_time: FieldRef<"Special_Schedules", 'String'>
     readonly close_time: FieldRef<"Special_Schedules", 'String'>
@@ -31559,6 +31649,9 @@ export namespace Prisma {
     id: 'id',
     restaurantId: 'restaurantId',
     date: 'date',
+    month: 'month',
+    day: 'day',
+    is_recurring: 'is_recurring',
     type: 'type',
     open_time: 'open_time',
     close_time: 'close_time',
@@ -33712,7 +33805,7 @@ export namespace Prisma {
     OR?: RestaurantWhereInput[]
     NOT?: RestaurantWhereInput | RestaurantWhereInput[]
     id?: StringFilter<"Restaurant"> | string
-    brandId?: StringFilter<"Restaurant"> | string
+    brandId?: StringNullableFilter<"Restaurant"> | string | null
     logo?: StringNullableFilter<"Restaurant"> | string | null
     isNew?: BoolFilter<"Restaurant"> | boolean
     name?: StringNullableFilter<"Restaurant"> | string | null
@@ -33738,7 +33831,7 @@ export namespace Prisma {
     average_food_rating?: FloatFilter<"Restaurant"> | number
     average_service_rating?: FloatFilter<"Restaurant"> | number
     average_ambiance_rating?: FloatFilter<"Restaurant"> | number
-    brand?: XOR<BrandScalarRelationFilter, BrandWhereInput>
+    brand?: XOR<BrandNullableScalarRelationFilter, BrandWhereInput> | null
     employments?: EmploymentListRelationFilter
     restaurant_areas?: Restaurant_AreasListRelationFilter
     tabels?: TablesListRelationFilter
@@ -33797,7 +33890,7 @@ export namespace Prisma {
     AND?: RestaurantWhereInput | RestaurantWhereInput[]
     OR?: RestaurantWhereInput[]
     NOT?: RestaurantWhereInput | RestaurantWhereInput[]
-    brandId?: StringFilter<"Restaurant"> | string
+    brandId?: StringNullableFilter<"Restaurant"> | string | null
     logo?: StringNullableFilter<"Restaurant"> | string | null
     isNew?: BoolFilter<"Restaurant"> | boolean
     name?: StringNullableFilter<"Restaurant"> | string | null
@@ -33823,7 +33916,7 @@ export namespace Prisma {
     average_food_rating?: FloatFilter<"Restaurant"> | number
     average_service_rating?: FloatFilter<"Restaurant"> | number
     average_ambiance_rating?: FloatFilter<"Restaurant"> | number
-    brand?: XOR<BrandScalarRelationFilter, BrandWhereInput>
+    brand?: XOR<BrandNullableScalarRelationFilter, BrandWhereInput> | null
     employments?: EmploymentListRelationFilter
     restaurant_areas?: Restaurant_AreasListRelationFilter
     tabels?: TablesListRelationFilter
@@ -33876,7 +33969,7 @@ export namespace Prisma {
     OR?: RestaurantScalarWhereWithAggregatesInput[]
     NOT?: RestaurantScalarWhereWithAggregatesInput | RestaurantScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Restaurant"> | string
-    brandId?: StringWithAggregatesFilter<"Restaurant"> | string
+    brandId?: StringNullableWithAggregatesFilter<"Restaurant"> | string | null
     logo?: StringNullableWithAggregatesFilter<"Restaurant"> | string | null
     isNew?: BoolWithAggregatesFilter<"Restaurant"> | boolean
     name?: StringNullableWithAggregatesFilter<"Restaurant"> | string | null
@@ -34133,7 +34226,10 @@ export namespace Prisma {
     NOT?: Special_SchedulesWhereInput | Special_SchedulesWhereInput[]
     id?: StringFilter<"Special_Schedules"> | string
     restaurantId?: StringFilter<"Special_Schedules"> | string
-    date?: DateTimeFilter<"Special_Schedules"> | Date | string
+    date?: DateTimeNullableFilter<"Special_Schedules"> | Date | string | null
+    month?: IntNullableFilter<"Special_Schedules"> | number | null
+    day?: IntNullableFilter<"Special_Schedules"> | number | null
+    is_recurring?: BoolFilter<"Special_Schedules"> | boolean
     type?: EnumScheduleTypeFilter<"Special_Schedules"> | $Enums.ScheduleType
     open_time?: StringNullableFilter<"Special_Schedules"> | string | null
     close_time?: StringNullableFilter<"Special_Schedules"> | string | null
@@ -34147,6 +34243,9 @@ export namespace Prisma {
     id?: SortOrder
     restaurantId?: SortOrder
     date?: SortOrder
+    month?: SortOrder
+    day?: SortOrder
+    is_recurring?: SortOrder
     type?: SortOrder
     open_time?: SortOrder
     close_time?: SortOrder
@@ -34162,7 +34261,10 @@ export namespace Prisma {
     OR?: Special_SchedulesWhereInput[]
     NOT?: Special_SchedulesWhereInput | Special_SchedulesWhereInput[]
     restaurantId?: StringFilter<"Special_Schedules"> | string
-    date?: DateTimeFilter<"Special_Schedules"> | Date | string
+    date?: DateTimeNullableFilter<"Special_Schedules"> | Date | string | null
+    month?: IntNullableFilter<"Special_Schedules"> | number | null
+    day?: IntNullableFilter<"Special_Schedules"> | number | null
+    is_recurring?: BoolFilter<"Special_Schedules"> | boolean
     type?: EnumScheduleTypeFilter<"Special_Schedules"> | $Enums.ScheduleType
     open_time?: StringNullableFilter<"Special_Schedules"> | string | null
     close_time?: StringNullableFilter<"Special_Schedules"> | string | null
@@ -34176,6 +34278,9 @@ export namespace Prisma {
     id?: SortOrder
     restaurantId?: SortOrder
     date?: SortOrder
+    month?: SortOrder
+    day?: SortOrder
+    is_recurring?: SortOrder
     type?: SortOrder
     open_time?: SortOrder
     close_time?: SortOrder
@@ -34183,8 +34288,10 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: Special_SchedulesCountOrderByAggregateInput
+    _avg?: Special_SchedulesAvgOrderByAggregateInput
     _max?: Special_SchedulesMaxOrderByAggregateInput
     _min?: Special_SchedulesMinOrderByAggregateInput
+    _sum?: Special_SchedulesSumOrderByAggregateInput
   }
 
   export type Special_SchedulesScalarWhereWithAggregatesInput = {
@@ -34193,7 +34300,10 @@ export namespace Prisma {
     NOT?: Special_SchedulesScalarWhereWithAggregatesInput | Special_SchedulesScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Special_Schedules"> | string
     restaurantId?: StringWithAggregatesFilter<"Special_Schedules"> | string
-    date?: DateTimeWithAggregatesFilter<"Special_Schedules"> | Date | string
+    date?: DateTimeNullableWithAggregatesFilter<"Special_Schedules"> | Date | string | null
+    month?: IntNullableWithAggregatesFilter<"Special_Schedules"> | number | null
+    day?: IntNullableWithAggregatesFilter<"Special_Schedules"> | number | null
+    is_recurring?: BoolWithAggregatesFilter<"Special_Schedules"> | boolean
     type?: EnumScheduleTypeWithAggregatesFilter<"Special_Schedules"> | $Enums.ScheduleType
     open_time?: StringNullableWithAggregatesFilter<"Special_Schedules"> | string | null
     close_time?: StringNullableWithAggregatesFilter<"Special_Schedules"> | string | null
@@ -36229,7 +36339,7 @@ export namespace Prisma {
     average_food_rating?: number
     average_service_rating?: number
     average_ambiance_rating?: number
-    brand: BrandCreateNestedOneWithoutRestaurantsInput
+    brand?: BrandCreateNestedOneWithoutRestaurantsInput
     employments?: EmploymentCreateNestedManyWithoutRestaurantInput
     restaurant_areas?: Restaurant_AreasCreateNestedManyWithoutRestaurantInput
     tabels?: TablesCreateNestedManyWithoutRestaurantInput
@@ -36244,7 +36354,7 @@ export namespace Prisma {
 
   export type RestaurantUncheckedCreateInput = {
     id?: string
-    brandId: string
+    brandId?: string | null
     logo?: string | null
     isNew?: boolean
     name?: string | null
@@ -36308,7 +36418,7 @@ export namespace Prisma {
     average_food_rating?: FloatFieldUpdateOperationsInput | number
     average_service_rating?: FloatFieldUpdateOperationsInput | number
     average_ambiance_rating?: FloatFieldUpdateOperationsInput | number
-    brand?: BrandUpdateOneRequiredWithoutRestaurantsNestedInput
+    brand?: BrandUpdateOneWithoutRestaurantsNestedInput
     employments?: EmploymentUpdateManyWithoutRestaurantNestedInput
     restaurant_areas?: Restaurant_AreasUpdateManyWithoutRestaurantNestedInput
     tabels?: TablesUpdateManyWithoutRestaurantNestedInput
@@ -36322,7 +36432,7 @@ export namespace Prisma {
   }
 
   export type RestaurantUncheckedUpdateInput = {
-    brandId?: StringFieldUpdateOperationsInput | string
+    brandId?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -36362,7 +36472,7 @@ export namespace Prisma {
 
   export type RestaurantCreateManyInput = {
     id?: string
-    brandId: string
+    brandId?: string | null
     logo?: string | null
     isNew?: boolean
     name?: string | null
@@ -36419,7 +36529,7 @@ export namespace Prisma {
   }
 
   export type RestaurantUncheckedUpdateManyInput = {
-    brandId?: StringFieldUpdateOperationsInput | string
+    brandId?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -36672,7 +36782,10 @@ export namespace Prisma {
 
   export type Special_SchedulesCreateInput = {
     id?: string
-    date: Date | string
+    date?: Date | string | null
+    month?: number | null
+    day?: number | null
+    is_recurring?: boolean
     type: $Enums.ScheduleType
     open_time?: string | null
     close_time?: string | null
@@ -36685,7 +36798,10 @@ export namespace Prisma {
   export type Special_SchedulesUncheckedCreateInput = {
     id?: string
     restaurantId: string
-    date: Date | string
+    date?: Date | string | null
+    month?: number | null
+    day?: number | null
+    is_recurring?: boolean
     type: $Enums.ScheduleType
     open_time?: string | null
     close_time?: string | null
@@ -36695,7 +36811,10 @@ export namespace Prisma {
   }
 
   export type Special_SchedulesUpdateInput = {
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    month?: NullableIntFieldUpdateOperationsInput | number | null
+    day?: NullableIntFieldUpdateOperationsInput | number | null
+    is_recurring?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumScheduleTypeFieldUpdateOperationsInput | $Enums.ScheduleType
     open_time?: NullableStringFieldUpdateOperationsInput | string | null
     close_time?: NullableStringFieldUpdateOperationsInput | string | null
@@ -36707,7 +36826,10 @@ export namespace Prisma {
 
   export type Special_SchedulesUncheckedUpdateInput = {
     restaurantId?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    month?: NullableIntFieldUpdateOperationsInput | number | null
+    day?: NullableIntFieldUpdateOperationsInput | number | null
+    is_recurring?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumScheduleTypeFieldUpdateOperationsInput | $Enums.ScheduleType
     open_time?: NullableStringFieldUpdateOperationsInput | string | null
     close_time?: NullableStringFieldUpdateOperationsInput | string | null
@@ -36719,7 +36841,10 @@ export namespace Prisma {
   export type Special_SchedulesCreateManyInput = {
     id?: string
     restaurantId: string
-    date: Date | string
+    date?: Date | string | null
+    month?: number | null
+    day?: number | null
+    is_recurring?: boolean
     type: $Enums.ScheduleType
     open_time?: string | null
     close_time?: string | null
@@ -36729,7 +36854,10 @@ export namespace Prisma {
   }
 
   export type Special_SchedulesUpdateManyMutationInput = {
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    month?: NullableIntFieldUpdateOperationsInput | number | null
+    day?: NullableIntFieldUpdateOperationsInput | number | null
+    is_recurring?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumScheduleTypeFieldUpdateOperationsInput | $Enums.ScheduleType
     open_time?: NullableStringFieldUpdateOperationsInput | string | null
     close_time?: NullableStringFieldUpdateOperationsInput | string | null
@@ -36740,7 +36868,10 @@ export namespace Prisma {
 
   export type Special_SchedulesUncheckedUpdateManyInput = {
     restaurantId?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    month?: NullableIntFieldUpdateOperationsInput | number | null
+    day?: NullableIntFieldUpdateOperationsInput | number | null
+    is_recurring?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumScheduleTypeFieldUpdateOperationsInput | $Enums.ScheduleType
     open_time?: NullableStringFieldUpdateOperationsInput | string | null
     close_time?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38952,6 +39083,9 @@ export namespace Prisma {
     id?: SortOrder
     restaurantId?: SortOrder
     date?: SortOrder
+    month?: SortOrder
+    day?: SortOrder
+    is_recurring?: SortOrder
     type?: SortOrder
     open_time?: SortOrder
     close_time?: SortOrder
@@ -38960,10 +39094,18 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type Special_SchedulesAvgOrderByAggregateInput = {
+    month?: SortOrder
+    day?: SortOrder
+  }
+
   export type Special_SchedulesMaxOrderByAggregateInput = {
     id?: SortOrder
     restaurantId?: SortOrder
     date?: SortOrder
+    month?: SortOrder
+    day?: SortOrder
+    is_recurring?: SortOrder
     type?: SortOrder
     open_time?: SortOrder
     close_time?: SortOrder
@@ -38976,12 +39118,20 @@ export namespace Prisma {
     id?: SortOrder
     restaurantId?: SortOrder
     date?: SortOrder
+    month?: SortOrder
+    day?: SortOrder
+    is_recurring?: SortOrder
     type?: SortOrder
     open_time?: SortOrder
     close_time?: SortOrder
     reason?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type Special_SchedulesSumOrderByAggregateInput = {
+    month?: SortOrder
+    day?: SortOrder
   }
 
   export type EnumScheduleTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -40956,10 +41106,12 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type BrandUpdateOneRequiredWithoutRestaurantsNestedInput = {
+  export type BrandUpdateOneWithoutRestaurantsNestedInput = {
     create?: XOR<BrandCreateWithoutRestaurantsInput, BrandUncheckedCreateWithoutRestaurantsInput>
     connectOrCreate?: BrandCreateOrConnectWithoutRestaurantsInput
     upsert?: BrandUpsertWithoutRestaurantsInput
+    disconnect?: boolean
+    delete?: BrandWhereInput | boolean
     connect?: BrandWhereUniqueInput
     update?: XOR<XOR<BrandUpdateToOneWithWhereWithoutRestaurantsInput, BrandUpdateWithoutRestaurantsInput>, BrandUncheckedUpdateWithoutRestaurantsInput>
   }
@@ -42312,7 +42464,7 @@ export namespace Prisma {
     average_food_rating?: number
     average_service_rating?: number
     average_ambiance_rating?: number
-    brand: BrandCreateNestedOneWithoutRestaurantsInput
+    brand?: BrandCreateNestedOneWithoutRestaurantsInput
     restaurant_areas?: Restaurant_AreasCreateNestedManyWithoutRestaurantInput
     tabels?: TablesCreateNestedManyWithoutRestaurantInput
     menu?: MenuCreateNestedManyWithoutRestaurantInput
@@ -42326,7 +42478,7 @@ export namespace Prisma {
 
   export type RestaurantUncheckedCreateWithoutEmploymentsInput = {
     id?: string
-    brandId: string
+    brandId?: string | null
     logo?: string | null
     isNew?: boolean
     name?: string | null
@@ -42646,7 +42798,7 @@ export namespace Prisma {
     average_food_rating?: FloatFieldUpdateOperationsInput | number
     average_service_rating?: FloatFieldUpdateOperationsInput | number
     average_ambiance_rating?: FloatFieldUpdateOperationsInput | number
-    brand?: BrandUpdateOneRequiredWithoutRestaurantsNestedInput
+    brand?: BrandUpdateOneWithoutRestaurantsNestedInput
     restaurant_areas?: Restaurant_AreasUpdateManyWithoutRestaurantNestedInput
     tabels?: TablesUpdateManyWithoutRestaurantNestedInput
     menu?: MenuUpdateManyWithoutRestaurantNestedInput
@@ -42659,7 +42811,7 @@ export namespace Prisma {
   }
 
   export type RestaurantUncheckedUpdateWithoutEmploymentsInput = {
-    brandId?: StringFieldUpdateOperationsInput | string
+    brandId?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -43241,7 +43393,7 @@ export namespace Prisma {
     average_food_rating?: number
     average_service_rating?: number
     average_ambiance_rating?: number
-    brand: BrandCreateNestedOneWithoutRestaurantsInput
+    brand?: BrandCreateNestedOneWithoutRestaurantsInput
     employments?: EmploymentCreateNestedManyWithoutRestaurantInput
     restaurant_areas?: Restaurant_AreasCreateNestedManyWithoutRestaurantInput
     tabels?: TablesCreateNestedManyWithoutRestaurantInput
@@ -43255,7 +43407,7 @@ export namespace Prisma {
 
   export type RestaurantUncheckedCreateWithoutPaymentConfigsInput = {
     id?: string
-    brandId: string
+    brandId?: string | null
     logo?: string | null
     isNew?: boolean
     name?: string | null
@@ -43387,7 +43539,7 @@ export namespace Prisma {
     average_food_rating?: FloatFieldUpdateOperationsInput | number
     average_service_rating?: FloatFieldUpdateOperationsInput | number
     average_ambiance_rating?: FloatFieldUpdateOperationsInput | number
-    brand?: BrandUpdateOneRequiredWithoutRestaurantsNestedInput
+    brand?: BrandUpdateOneWithoutRestaurantsNestedInput
     employments?: EmploymentUpdateManyWithoutRestaurantNestedInput
     restaurant_areas?: Restaurant_AreasUpdateManyWithoutRestaurantNestedInput
     tabels?: TablesUpdateManyWithoutRestaurantNestedInput
@@ -43400,7 +43552,7 @@ export namespace Prisma {
   }
 
   export type RestaurantUncheckedUpdateWithoutPaymentConfigsInput = {
-    brandId?: StringFieldUpdateOperationsInput | string
+    brandId?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -44341,7 +44493,7 @@ export namespace Prisma {
     OR?: RestaurantScalarWhereInput[]
     NOT?: RestaurantScalarWhereInput | RestaurantScalarWhereInput[]
     id?: StringFilter<"Restaurant"> | string
-    brandId?: StringFilter<"Restaurant"> | string
+    brandId?: StringNullableFilter<"Restaurant"> | string | null
     logo?: StringNullableFilter<"Restaurant"> | string | null
     isNew?: BoolFilter<"Restaurant"> | boolean
     name?: StringNullableFilter<"Restaurant"> | string | null
@@ -44546,7 +44698,7 @@ export namespace Prisma {
     average_food_rating?: number
     average_service_rating?: number
     average_ambiance_rating?: number
-    brand: BrandCreateNestedOneWithoutRestaurantsInput
+    brand?: BrandCreateNestedOneWithoutRestaurantsInput
     employments?: EmploymentCreateNestedManyWithoutRestaurantInput
     restaurant_areas?: Restaurant_AreasCreateNestedManyWithoutRestaurantInput
     tabels?: TablesCreateNestedManyWithoutRestaurantInput
@@ -44560,7 +44712,7 @@ export namespace Prisma {
 
   export type RestaurantUncheckedCreateWithoutMenuInput = {
     id?: string
-    brandId: string
+    brandId?: string | null
     logo?: string | null
     isNew?: boolean
     name?: string | null
@@ -44725,7 +44877,7 @@ export namespace Prisma {
     average_food_rating?: FloatFieldUpdateOperationsInput | number
     average_service_rating?: FloatFieldUpdateOperationsInput | number
     average_ambiance_rating?: FloatFieldUpdateOperationsInput | number
-    brand?: BrandUpdateOneRequiredWithoutRestaurantsNestedInput
+    brand?: BrandUpdateOneWithoutRestaurantsNestedInput
     employments?: EmploymentUpdateManyWithoutRestaurantNestedInput
     restaurant_areas?: Restaurant_AreasUpdateManyWithoutRestaurantNestedInput
     tabels?: TablesUpdateManyWithoutRestaurantNestedInput
@@ -44738,7 +44890,7 @@ export namespace Prisma {
   }
 
   export type RestaurantUncheckedUpdateWithoutMenuInput = {
-    brandId?: StringFieldUpdateOperationsInput | string
+    brandId?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -44909,7 +45061,7 @@ export namespace Prisma {
     average_food_rating?: number
     average_service_rating?: number
     average_ambiance_rating?: number
-    brand: BrandCreateNestedOneWithoutRestaurantsInput
+    brand?: BrandCreateNestedOneWithoutRestaurantsInput
     employments?: EmploymentCreateNestedManyWithoutRestaurantInput
     restaurant_areas?: Restaurant_AreasCreateNestedManyWithoutRestaurantInput
     tabels?: TablesCreateNestedManyWithoutRestaurantInput
@@ -44923,7 +45075,7 @@ export namespace Prisma {
 
   export type RestaurantUncheckedCreateWithoutItemsInput = {
     id?: string
-    brandId: string
+    brandId?: string | null
     logo?: string | null
     isNew?: boolean
     name?: string | null
@@ -45127,7 +45279,7 @@ export namespace Prisma {
     average_food_rating?: FloatFieldUpdateOperationsInput | number
     average_service_rating?: FloatFieldUpdateOperationsInput | number
     average_ambiance_rating?: FloatFieldUpdateOperationsInput | number
-    brand?: BrandUpdateOneRequiredWithoutRestaurantsNestedInput
+    brand?: BrandUpdateOneWithoutRestaurantsNestedInput
     employments?: EmploymentUpdateManyWithoutRestaurantNestedInput
     restaurant_areas?: Restaurant_AreasUpdateManyWithoutRestaurantNestedInput
     tabels?: TablesUpdateManyWithoutRestaurantNestedInput
@@ -45140,7 +45292,7 @@ export namespace Prisma {
   }
 
   export type RestaurantUncheckedUpdateWithoutItemsInput = {
-    brandId?: StringFieldUpdateOperationsInput | string
+    brandId?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -45239,7 +45391,7 @@ export namespace Prisma {
     average_food_rating?: number
     average_service_rating?: number
     average_ambiance_rating?: number
-    brand: BrandCreateNestedOneWithoutRestaurantsInput
+    brand?: BrandCreateNestedOneWithoutRestaurantsInput
     employments?: EmploymentCreateNestedManyWithoutRestaurantInput
     restaurant_areas?: Restaurant_AreasCreateNestedManyWithoutRestaurantInput
     tabels?: TablesCreateNestedManyWithoutRestaurantInput
@@ -45253,7 +45405,7 @@ export namespace Prisma {
 
   export type RestaurantUncheckedCreateWithoutOperating_hoursInput = {
     id?: string
-    brandId: string
+    brandId?: string | null
     logo?: string | null
     isNew?: boolean
     name?: string | null
@@ -45332,7 +45484,7 @@ export namespace Prisma {
     average_food_rating?: FloatFieldUpdateOperationsInput | number
     average_service_rating?: FloatFieldUpdateOperationsInput | number
     average_ambiance_rating?: FloatFieldUpdateOperationsInput | number
-    brand?: BrandUpdateOneRequiredWithoutRestaurantsNestedInput
+    brand?: BrandUpdateOneWithoutRestaurantsNestedInput
     employments?: EmploymentUpdateManyWithoutRestaurantNestedInput
     restaurant_areas?: Restaurant_AreasUpdateManyWithoutRestaurantNestedInput
     tabels?: TablesUpdateManyWithoutRestaurantNestedInput
@@ -45345,7 +45497,7 @@ export namespace Prisma {
   }
 
   export type RestaurantUncheckedUpdateWithoutOperating_hoursInput = {
-    brandId?: StringFieldUpdateOperationsInput | string
+    brandId?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -46758,7 +46910,7 @@ export namespace Prisma {
     average_food_rating?: number
     average_service_rating?: number
     average_ambiance_rating?: number
-    brand: BrandCreateNestedOneWithoutRestaurantsInput
+    brand?: BrandCreateNestedOneWithoutRestaurantsInput
     employments?: EmploymentCreateNestedManyWithoutRestaurantInput
     restaurant_areas?: Restaurant_AreasCreateNestedManyWithoutRestaurantInput
     tabels?: TablesCreateNestedManyWithoutRestaurantInput
@@ -46772,7 +46924,7 @@ export namespace Prisma {
 
   export type RestaurantUncheckedCreateWithoutReservationsInput = {
     id?: string
-    brandId: string
+    brandId?: string | null
     logo?: string | null
     isNew?: boolean
     name?: string | null
@@ -47114,7 +47266,7 @@ export namespace Prisma {
     average_food_rating?: FloatFieldUpdateOperationsInput | number
     average_service_rating?: FloatFieldUpdateOperationsInput | number
     average_ambiance_rating?: FloatFieldUpdateOperationsInput | number
-    brand?: BrandUpdateOneRequiredWithoutRestaurantsNestedInput
+    brand?: BrandUpdateOneWithoutRestaurantsNestedInput
     employments?: EmploymentUpdateManyWithoutRestaurantNestedInput
     restaurant_areas?: Restaurant_AreasUpdateManyWithoutRestaurantNestedInput
     tabels?: TablesUpdateManyWithoutRestaurantNestedInput
@@ -47127,7 +47279,7 @@ export namespace Prisma {
   }
 
   export type RestaurantUncheckedUpdateWithoutReservationsInput = {
-    brandId?: StringFieldUpdateOperationsInput | string
+    brandId?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -47593,7 +47745,10 @@ export namespace Prisma {
 
   export type Special_SchedulesCreateWithoutRestaurantInput = {
     id?: string
-    date: Date | string
+    date?: Date | string | null
+    month?: number | null
+    day?: number | null
+    is_recurring?: boolean
     type: $Enums.ScheduleType
     open_time?: string | null
     close_time?: string | null
@@ -47604,7 +47759,10 @@ export namespace Prisma {
 
   export type Special_SchedulesUncheckedCreateWithoutRestaurantInput = {
     id?: string
-    date: Date | string
+    date?: Date | string | null
+    month?: number | null
+    day?: number | null
+    is_recurring?: boolean
     type: $Enums.ScheduleType
     open_time?: string | null
     close_time?: string | null
@@ -48037,7 +48195,10 @@ export namespace Prisma {
     NOT?: Special_SchedulesScalarWhereInput | Special_SchedulesScalarWhereInput[]
     id?: StringFilter<"Special_Schedules"> | string
     restaurantId?: StringFilter<"Special_Schedules"> | string
-    date?: DateTimeFilter<"Special_Schedules"> | Date | string
+    date?: DateTimeNullableFilter<"Special_Schedules"> | Date | string | null
+    month?: IntNullableFilter<"Special_Schedules"> | number | null
+    day?: IntNullableFilter<"Special_Schedules"> | number | null
+    is_recurring?: BoolFilter<"Special_Schedules"> | boolean
     type?: EnumScheduleTypeFilter<"Special_Schedules"> | $Enums.ScheduleType
     open_time?: StringNullableFilter<"Special_Schedules"> | string | null
     close_time?: StringNullableFilter<"Special_Schedules"> | string | null
@@ -48137,7 +48298,7 @@ export namespace Prisma {
     average_food_rating?: number
     average_service_rating?: number
     average_ambiance_rating?: number
-    brand: BrandCreateNestedOneWithoutRestaurantsInput
+    brand?: BrandCreateNestedOneWithoutRestaurantsInput
     employments?: EmploymentCreateNestedManyWithoutRestaurantInput
     tabels?: TablesCreateNestedManyWithoutRestaurantInput
     menu?: MenuCreateNestedManyWithoutRestaurantInput
@@ -48151,7 +48312,7 @@ export namespace Prisma {
 
   export type RestaurantUncheckedCreateWithoutRestaurant_areasInput = {
     id?: string
-    brandId: string
+    brandId?: string | null
     logo?: string | null
     isNew?: boolean
     name?: string | null
@@ -48275,7 +48436,7 @@ export namespace Prisma {
     average_food_rating?: FloatFieldUpdateOperationsInput | number
     average_service_rating?: FloatFieldUpdateOperationsInput | number
     average_ambiance_rating?: FloatFieldUpdateOperationsInput | number
-    brand?: BrandUpdateOneRequiredWithoutRestaurantsNestedInput
+    brand?: BrandUpdateOneWithoutRestaurantsNestedInput
     employments?: EmploymentUpdateManyWithoutRestaurantNestedInput
     tabels?: TablesUpdateManyWithoutRestaurantNestedInput
     menu?: MenuUpdateManyWithoutRestaurantNestedInput
@@ -48288,7 +48449,7 @@ export namespace Prisma {
   }
 
   export type RestaurantUncheckedUpdateWithoutRestaurant_areasInput = {
-    brandId?: StringFieldUpdateOperationsInput | string
+    brandId?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -48492,7 +48653,7 @@ export namespace Prisma {
     average_food_rating?: number
     average_service_rating?: number
     average_ambiance_rating?: number
-    brand: BrandCreateNestedOneWithoutRestaurantsInput
+    brand?: BrandCreateNestedOneWithoutRestaurantsInput
     employments?: EmploymentCreateNestedManyWithoutRestaurantInput
     restaurant_areas?: Restaurant_AreasCreateNestedManyWithoutRestaurantInput
     tabels?: TablesCreateNestedManyWithoutRestaurantInput
@@ -48506,7 +48667,7 @@ export namespace Prisma {
 
   export type RestaurantUncheckedCreateWithoutReview_restaurantInput = {
     id?: string
-    brandId: string
+    brandId?: string | null
     logo?: string | null
     isNew?: boolean
     name?: string | null
@@ -48717,7 +48878,7 @@ export namespace Prisma {
     average_food_rating?: FloatFieldUpdateOperationsInput | number
     average_service_rating?: FloatFieldUpdateOperationsInput | number
     average_ambiance_rating?: FloatFieldUpdateOperationsInput | number
-    brand?: BrandUpdateOneRequiredWithoutRestaurantsNestedInput
+    brand?: BrandUpdateOneWithoutRestaurantsNestedInput
     employments?: EmploymentUpdateManyWithoutRestaurantNestedInput
     restaurant_areas?: Restaurant_AreasUpdateManyWithoutRestaurantNestedInput
     tabels?: TablesUpdateManyWithoutRestaurantNestedInput
@@ -48730,7 +48891,7 @@ export namespace Prisma {
   }
 
   export type RestaurantUncheckedUpdateWithoutReview_restaurantInput = {
-    brandId?: StringFieldUpdateOperationsInput | string
+    brandId?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -48886,7 +49047,7 @@ export namespace Prisma {
     average_food_rating?: number
     average_service_rating?: number
     average_ambiance_rating?: number
-    brand: BrandCreateNestedOneWithoutRestaurantsInput
+    brand?: BrandCreateNestedOneWithoutRestaurantsInput
     employments?: EmploymentCreateNestedManyWithoutRestaurantInput
     restaurant_areas?: Restaurant_AreasCreateNestedManyWithoutRestaurantInput
     tabels?: TablesCreateNestedManyWithoutRestaurantInput
@@ -48900,7 +49061,7 @@ export namespace Prisma {
 
   export type RestaurantUncheckedCreateWithoutSpecial_schedulesInput = {
     id?: string
-    brandId: string
+    brandId?: string | null
     logo?: string | null
     isNew?: boolean
     name?: string | null
@@ -48979,7 +49140,7 @@ export namespace Prisma {
     average_food_rating?: FloatFieldUpdateOperationsInput | number
     average_service_rating?: FloatFieldUpdateOperationsInput | number
     average_ambiance_rating?: FloatFieldUpdateOperationsInput | number
-    brand?: BrandUpdateOneRequiredWithoutRestaurantsNestedInput
+    brand?: BrandUpdateOneWithoutRestaurantsNestedInput
     employments?: EmploymentUpdateManyWithoutRestaurantNestedInput
     restaurant_areas?: Restaurant_AreasUpdateManyWithoutRestaurantNestedInput
     tabels?: TablesUpdateManyWithoutRestaurantNestedInput
@@ -48992,7 +49153,7 @@ export namespace Prisma {
   }
 
   export type RestaurantUncheckedUpdateWithoutSpecial_schedulesInput = {
-    brandId?: StringFieldUpdateOperationsInput | string
+    brandId?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -49056,7 +49217,7 @@ export namespace Prisma {
     average_food_rating?: number
     average_service_rating?: number
     average_ambiance_rating?: number
-    brand: BrandCreateNestedOneWithoutRestaurantsInput
+    brand?: BrandCreateNestedOneWithoutRestaurantsInput
     employments?: EmploymentCreateNestedManyWithoutRestaurantInput
     restaurant_areas?: Restaurant_AreasCreateNestedManyWithoutRestaurantInput
     menu?: MenuCreateNestedManyWithoutRestaurantInput
@@ -49070,7 +49231,7 @@ export namespace Prisma {
 
   export type RestaurantUncheckedCreateWithoutTabelsInput = {
     id?: string
-    brandId: string
+    brandId?: string | null
     logo?: string | null
     isNew?: boolean
     name?: string | null
@@ -49246,7 +49407,7 @@ export namespace Prisma {
     average_food_rating?: FloatFieldUpdateOperationsInput | number
     average_service_rating?: FloatFieldUpdateOperationsInput | number
     average_ambiance_rating?: FloatFieldUpdateOperationsInput | number
-    brand?: BrandUpdateOneRequiredWithoutRestaurantsNestedInput
+    brand?: BrandUpdateOneWithoutRestaurantsNestedInput
     employments?: EmploymentUpdateManyWithoutRestaurantNestedInput
     restaurant_areas?: Restaurant_AreasUpdateManyWithoutRestaurantNestedInput
     menu?: MenuUpdateManyWithoutRestaurantNestedInput
@@ -49259,7 +49420,7 @@ export namespace Prisma {
   }
 
   export type RestaurantUncheckedUpdateWithoutTabelsInput = {
-    brandId?: StringFieldUpdateOperationsInput | string
+    brandId?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     isNew?: BoolFieldUpdateOperationsInput | boolean
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -50867,7 +51028,10 @@ export namespace Prisma {
 
   export type Special_SchedulesCreateManyRestaurantInput = {
     id?: string
-    date: Date | string
+    date?: Date | string | null
+    month?: number | null
+    day?: number | null
+    is_recurring?: boolean
     type: $Enums.ScheduleType
     open_time?: string | null
     close_time?: string | null
@@ -51141,7 +51305,10 @@ export namespace Prisma {
   }
 
   export type Special_SchedulesUpdateWithoutRestaurantInput = {
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    month?: NullableIntFieldUpdateOperationsInput | number | null
+    day?: NullableIntFieldUpdateOperationsInput | number | null
+    is_recurring?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumScheduleTypeFieldUpdateOperationsInput | $Enums.ScheduleType
     open_time?: NullableStringFieldUpdateOperationsInput | string | null
     close_time?: NullableStringFieldUpdateOperationsInput | string | null
@@ -51151,7 +51318,10 @@ export namespace Prisma {
   }
 
   export type Special_SchedulesUncheckedUpdateWithoutRestaurantInput = {
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    month?: NullableIntFieldUpdateOperationsInput | number | null
+    day?: NullableIntFieldUpdateOperationsInput | number | null
+    is_recurring?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumScheduleTypeFieldUpdateOperationsInput | $Enums.ScheduleType
     open_time?: NullableStringFieldUpdateOperationsInput | string | null
     close_time?: NullableStringFieldUpdateOperationsInput | string | null
@@ -51161,7 +51331,10 @@ export namespace Prisma {
   }
 
   export type Special_SchedulesUncheckedUpdateManyWithoutRestaurantInput = {
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    month?: NullableIntFieldUpdateOperationsInput | number | null
+    day?: NullableIntFieldUpdateOperationsInput | number | null
+    is_recurring?: BoolFieldUpdateOperationsInput | boolean
     type?: EnumScheduleTypeFieldUpdateOperationsInput | $Enums.ScheduleType
     open_time?: NullableStringFieldUpdateOperationsInput | string | null
     close_time?: NullableStringFieldUpdateOperationsInput | string | null

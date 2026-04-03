@@ -1,7 +1,7 @@
 import { Div, A, P } from "../ui"
 const PublicFooter = () => {
     return (
-        <footer className="bg-gray-100 border-t mt-16 w-full">
+        <footer className="bg-gray-100 border-t  w-full">
             <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 
                 {/* Brand */}

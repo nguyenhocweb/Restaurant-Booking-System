@@ -1,5 +1,5 @@
 
-import axios from "axios";
+
 import { useMutation } from "@tanstack/react-query";
 import { User } from "../auth_types/login_type";
 import { loginSuccessSevice } from "../auth_services/login_success_service";

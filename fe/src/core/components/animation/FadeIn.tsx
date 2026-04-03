@@ -6,10 +6,12 @@ export default function FadeIn({
     children,
     delay = 0,
     isFirstFolder = false,
+    className = ""
 }: {
     children: React.ReactNode;
     delay?: number;
     isFirstFolder?: boolean;
+    className?: string; // 2. Khai báo type cho className
 }) {
     const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref, { once: true, margin: "0px 0px -100px 0px" });
@@ -34,6 +36,7 @@ export default function FadeIn({
 
     return (
         <motion.div
+            className={className}
             ref={ref}
             initial={{ opacity: 0, y: 20 }}
             animate={shouldShow ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}

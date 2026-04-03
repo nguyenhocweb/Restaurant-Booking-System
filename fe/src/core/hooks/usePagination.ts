@@ -1,4 +1,3 @@
-"use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
 
@@ -18,6 +17,22 @@ export const usePagination = () => {
 
     router.replace(`?${params.toString()}`,{ scroll: false });
   };
+
+  // hàm set phân trang số phần tử  MenuItemPage
+  const MenuItemPage = Number(searchParams.get("pageMenuItem") || 1);
+  const setMenuItemPage = (page: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("pageMenuItem", String(page));
+    router.replace(`?${params.toString()}`,{ scroll: false });
+  };
+  const pageRestaurant= Number(searchParams.get("pageRestaurant") || 1);
+  const setPageRestaurant = (page: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("pageRestaurant", String(page));
+    router.replace(`?${params.toString()}`,{ scroll: false });
+  };
+
+  //
 
   // hàm set lấy bao nhiêu phần tử.... có or ko
   const setLimit = (newLimit: number) => {
@@ -49,7 +64,7 @@ export const usePagination = () => {
 
     router.replace(`?${params.toString()}`);
   }
- type CleanKey = "all" | "search" | "city" | "page";
+ type CleanKey = "all" | "search" | "city" | "page"| "limit" | "pageMenuItem"| "pageRestaurant";
 
 const clean = (key: CleanKey) => {
   const params = new URLSearchParams(searchParams.toString());
@@ -70,6 +85,10 @@ const clean = (key: CleanKey) => {
     limit,
     searchKeyword,
     city,
+    MenuItemPage,
+    pageRestaurant,
+    setPageRestaurant,
+    setMenuItemPage,
     setPage,
     setLimit,
     setSearch,

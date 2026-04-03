@@ -29,7 +29,7 @@ const Brand_Card_Components = ({ dataBrand, index }: { dataBrand: BrandCardType,
                     <Div size='full' className=" justify-between">
                         <Div gap="g3_4">
                             <Div size="w8_h8" shape="circle"
-                                className={(!dataBrand.logo) ? `${colors[random]} text-white` : ""}
+                                className={(!dataBrand.logo) ? `${colors[random]} text-white overflow-hidden` : " overflow-hidden"}
 
                             >
                                 {
@@ -37,7 +37,7 @@ const Brand_Card_Components = ({ dataBrand, index }: { dataBrand: BrandCardType,
                                         <img
                                             src={`${dataBrand.logo}?auto=format&fit=crop&w=32&q=80`}
                                             alt={dataBrand.name}
-                                            className="w-full h-48 object-cover hover:scale-105 transition duration-500"
+                                            className=" object-cover hover:scale-105 transition duration-500 "
                                         />
                                         :
                                         Tag

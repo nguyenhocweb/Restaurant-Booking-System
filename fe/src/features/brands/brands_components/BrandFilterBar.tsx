@@ -116,7 +116,7 @@ const BrandFilterBar = () => {
                         ))
                     }
                 </Select>
-                <Input placeholder="tìm tên thương hiệu" className="text-black"
+                <Input placeholder="tìm thương hiệu" className="text-black"
                 onChange={(e)=>{setSearchTerm(e.target.value)}}
                 />
             </Div>

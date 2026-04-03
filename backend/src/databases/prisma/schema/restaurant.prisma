@@ -1,8 +1,8 @@
 model Restaurant {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   
-  brandId   String   @db.ObjectId
-  brand     Brand    @relation(fields: [brandId], references: [id], onDelete: Cascade)
+  brandId   String?   @db.ObjectId
+  brand     Brand?    @relation(fields: [brandId], references: [id], onDelete: Cascade)
   logo        String?
   isNew        Boolean @default(true)
   name      String?

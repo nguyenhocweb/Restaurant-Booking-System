@@ -1,4 +1,4 @@
-import restaurantData from '../constants/restaurant.data.js';
+import {restaurantData} from '../constants/restaurant.data.js';
 import { upsertVector } from "../../../modules/vector/service/vectorDB.service.js";
 import { embedText } from "../../../modules/vector/service/embedding.service.js";
 import { buildRestaurantVector } from "../../../modules/vector/builders/restaurant.builder.js";

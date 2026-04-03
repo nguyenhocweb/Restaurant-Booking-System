@@ -8,4 +8,4 @@ const pinecone = new Pinecone({
 
 export const index = pinecone.index(process.env.PINECONE_INDEX_NAME);
 // ⚠️ Thêm dòng này để kiểm tra
-console.log("index object:", typeof index, Object.keys(index));
+

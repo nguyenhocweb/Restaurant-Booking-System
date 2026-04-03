@@ -9,7 +9,7 @@ export const RestaurantCardService=async({page,limit,city,search,id}:RestaurantC
 
     if (search) params.append("search", search);
     if (city) params.append("city", city);
-    const endpoint =id?`/restaurant/${id}`: `/restaurant`;
-       const response=await axiosClient.get<RestaurantCardResponseType>(`${endpoint}?${params.toString()}`);
+    if(id) params.append("idBrand",id);
+       const response=await axiosClient.get<RestaurantCardResponseType>(`restaurant?${params.toString()}`);
        return response.data
     }

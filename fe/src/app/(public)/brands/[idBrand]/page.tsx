@@ -18,7 +18,7 @@ import { TbWorld } from "react-icons/tb";
 import { useBrand_hook } from "@/src/features/brands/brands_hook/useBrand_hook";
 import FeaturedDishComponent from "@/src/features/dish/dish_component/featured-dish-component";
 import Loading from "@/src/core/components/layout/public-loading";
-import Featured_Restaurant_Component from "@/src/features/restaurant/restaurant_components/featured-restaurant-component";
+import Featured_Restaurant_Component from "@/src/features/restaurant/restaurant_components/demo-card-restaurant/featured-restaurant-component";
 const BrandItem = (
     { params }: {
         params: Promise<{ idBrand: string }>

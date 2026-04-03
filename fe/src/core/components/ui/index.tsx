@@ -5,4 +5,5 @@ import { Button } from "./Button";
 import { A } from "./A";
 import { P } from "./P";
 import { Select } from "./Select";
-export {Input,Div,Label,Button,A,P,Select}
+import { H } from "./H";
+export {Input,Div,Label,Button,A,P,Select,H}

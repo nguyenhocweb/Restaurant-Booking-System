@@ -1,5 +1,5 @@
 import { Div, P, A } from "@/src/core/components/ui";
-import { RestaurantCardType } from "../restaurant_type/restaurant_card_type";
+import { RestaurantCardType } from "@/src/features/restaurant/restaurant_type/restaurant_card_type";
 import FadeIn from "@/src/core/components/animation/FadeIn";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
@@ -33,7 +33,7 @@ const Card_Restaurant_Component = ({ dataRestaurant, index }: { dataRestaurant: 
                         {dataRestaurant.time}
                     </P>
                     <Div className=" justify-between py-3" size="full">
-                        <A href={`/restaurant/${dataRestaurant.id}`} colors="green" className="text-xs">Xem chi tiết</A>
+                        <A href={`/restaurants/${dataRestaurant.id}`} colors="green" className="text-xs">Xem chi tiết</A>
                         <A href="#" variant="black" className="text-xs" sizea="p4_2">Đặt bàn ngay</A>
                     </Div>
                 </Div>

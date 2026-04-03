@@ -16,7 +16,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
             <PublicHeader />
             {/* 3. Phần ruột thay đổi theo từng trang (Trang chủ, Liên hệ, Giới thiệu...) */}
             {/* class "flex-1" cực kỳ quan trọng: Nó sẽ đẩy content giãn ra hết mức có thể, ép Footer chìm xuống đáy */}
-            <main className="w-full " key={pathname}>
+            <main className="w-full pb-16 bg-gray-100" key={pathname}>
                 {children}
             </main>
             {/* 4. Chân trang dùng chung */}

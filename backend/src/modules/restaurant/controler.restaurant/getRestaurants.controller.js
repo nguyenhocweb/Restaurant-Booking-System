@@ -8,7 +8,7 @@ export const getRestaurantsController = asyncHandler(
         const limit = parseInt(req.query.limit);
         const city = req.query.city;
         const search = req.query.search;
-        const id = req.params._id;
+        const id = req.query.idBrand;
         console.log("id",id);
         
         const where = []

@@ -7,12 +7,12 @@ import { useDishCard_hook } from "../dish_hook/useDishCard_hook";
 import Loading from "@/src/core/components/layout/public-loading";
 import { usePagination } from "@/src/core/hooks/usePagination";
 import Pagination from "@/src/core/components/layout/Pagination";
-import { da } from "zod/locales";
+
 
 const featuredDishComponent = ({ type, id, limit }: { type: "home" | "isBrand" | "isRestaurant", id?: string, limit?: number }) => {
-    const { currentPage, searchKeyword,setPage } = usePagination();
+    const { MenuItemPage, searchKeyword,setMenuItemPage } = usePagination();
     const limits = limit ?? (type === "home" ? 5 : 10); // nếu là trang home thì chỉ lấy 5 món ăn, còn nếu là trang brand hay restaurant thì lấy 10 món ăn
-    const { data, isLoading } = useDishCard_hook({ type, limit:  limits, page: currentPage, search: searchKeyword ?? undefined, id: id || undefined });
+    const { data, isLoading } = useDishCard_hook({ type, limit:  limits, page: MenuItemPage, search: searchKeyword ?? undefined, id: id || undefined });
     const dishList = data?.data??[];
     if (isLoading) return <Loading />
     return (
@@ -67,8 +67,8 @@ const featuredDishComponent = ({ type, id, limit }: { type: "home" | "isBrand" |
                         <Div className="mt-10 justify-between px-10" >
                             <Pagination
                                 totalPages={Math.ceil((data?.total ? data.total / limits : 0))}
-                                currentPage={currentPage??1}
-                                onPageChange={setPage}
+                                currentPage={MenuItemPage??1}
+                                onPageChange={setMenuItemPage}
                                 limit={limits}
                             />
                         </Div>
