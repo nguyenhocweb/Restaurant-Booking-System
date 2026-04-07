@@ -25968,7 +25968,7 @@ export namespace Prisma {
   export type Restaurant_AreasGroupByOutputType = {
     id: string
     restaurantId: string
-    name: string
+    name: string | null
     description: string | null
     smoking_allowed: boolean
     is_outdoor: boolean
@@ -26038,7 +26038,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       restaurantId: string
-      name: string
+      name: string | null
       description: string | null
       smoking_allowed: boolean
       is_outdoor: boolean
@@ -30086,6 +30086,7 @@ export namespace Prisma {
     id: string | null
     restaurantId: string | null
     areaId: string | null
+    is_vip: boolean | null
     table_number: string | null
     min_capacity: number | null
     max_capacity: number | null
@@ -30103,6 +30104,7 @@ export namespace Prisma {
     id: string | null
     restaurantId: string | null
     areaId: string | null
+    is_vip: boolean | null
     table_number: string | null
     min_capacity: number | null
     max_capacity: number | null
@@ -30120,6 +30122,7 @@ export namespace Prisma {
     id: number
     restaurantId: number
     areaId: number
+    is_vip: number
     table_number: number
     min_capacity: number
     max_capacity: number
@@ -30153,6 +30156,7 @@ export namespace Prisma {
     id?: true
     restaurantId?: true
     areaId?: true
+    is_vip?: true
     table_number?: true
     min_capacity?: true
     max_capacity?: true
@@ -30170,6 +30174,7 @@ export namespace Prisma {
     id?: true
     restaurantId?: true
     areaId?: true
+    is_vip?: true
     table_number?: true
     min_capacity?: true
     max_capacity?: true
@@ -30187,6 +30192,7 @@ export namespace Prisma {
     id?: true
     restaurantId?: true
     areaId?: true
+    is_vip?: true
     table_number?: true
     min_capacity?: true
     max_capacity?: true
@@ -30291,10 +30297,11 @@ export namespace Prisma {
     id: string
     restaurantId: string
     areaId: string
+    is_vip: boolean
     table_number: string
     min_capacity: number
     max_capacity: number
-    shape: $Enums.TableShape
+    shape: $Enums.TableShape | null
     is_combinable: boolean | null
     pos_x: number | null
     pos_y: number | null
@@ -30327,6 +30334,7 @@ export namespace Prisma {
     id?: boolean
     restaurantId?: boolean
     areaId?: boolean
+    is_vip?: boolean
     table_number?: boolean
     min_capacity?: boolean
     max_capacity?: boolean
@@ -30351,6 +30359,7 @@ export namespace Prisma {
     id?: boolean
     restaurantId?: boolean
     areaId?: boolean
+    is_vip?: boolean
     table_number?: boolean
     min_capacity?: boolean
     max_capacity?: boolean
@@ -30364,7 +30373,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type TablesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "restaurantId" | "areaId" | "table_number" | "min_capacity" | "max_capacity" | "shape" | "is_combinable" | "pos_x" | "pos_y" | "status" | "qr_code" | "createdAt" | "updatedAt", ExtArgs["result"]["tables"]>
+  export type TablesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "restaurantId" | "areaId" | "is_vip" | "table_number" | "min_capacity" | "max_capacity" | "shape" | "is_combinable" | "pos_x" | "pos_y" | "status" | "qr_code" | "createdAt" | "updatedAt", ExtArgs["result"]["tables"]>
   export type TablesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     restaurant?: boolean | RestaurantDefaultArgs<ExtArgs>
     area?: boolean | Restaurant_AreasDefaultArgs<ExtArgs>
@@ -30385,10 +30394,11 @@ export namespace Prisma {
       id: string
       restaurantId: string
       areaId: string
+      is_vip: boolean
       table_number: string
       min_capacity: number
       max_capacity: number
-      shape: $Enums.TableShape
+      shape: $Enums.TableShape | null
       is_combinable: boolean | null
       pos_x: number | null
       pos_y: number | null
@@ -30795,6 +30805,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Tables", 'String'>
     readonly restaurantId: FieldRef<"Tables", 'String'>
     readonly areaId: FieldRef<"Tables", 'String'>
+    readonly is_vip: FieldRef<"Tables", 'Boolean'>
     readonly table_number: FieldRef<"Tables", 'String'>
     readonly min_capacity: FieldRef<"Tables", 'Int'>
     readonly max_capacity: FieldRef<"Tables", 'Int'>
@@ -31667,6 +31678,7 @@ export namespace Prisma {
     id: 'id',
     restaurantId: 'restaurantId',
     areaId: 'areaId',
+    is_vip: 'is_vip',
     table_number: 'table_number',
     min_capacity: 'min_capacity',
     max_capacity: 'max_capacity',
@@ -34003,7 +34015,7 @@ export namespace Prisma {
     NOT?: Restaurant_AreasWhereInput | Restaurant_AreasWhereInput[]
     id?: StringFilter<"Restaurant_Areas"> | string
     restaurantId?: StringFilter<"Restaurant_Areas"> | string
-    name?: StringFilter<"Restaurant_Areas"> | string
+    name?: StringNullableFilter<"Restaurant_Areas"> | string | null
     description?: StringNullableFilter<"Restaurant_Areas"> | string | null
     smoking_allowed?: BoolFilter<"Restaurant_Areas"> | boolean
     is_outdoor?: BoolFilter<"Restaurant_Areas"> | boolean
@@ -34032,7 +34044,7 @@ export namespace Prisma {
     OR?: Restaurant_AreasWhereInput[]
     NOT?: Restaurant_AreasWhereInput | Restaurant_AreasWhereInput[]
     restaurantId?: StringFilter<"Restaurant_Areas"> | string
-    name?: StringFilter<"Restaurant_Areas"> | string
+    name?: StringNullableFilter<"Restaurant_Areas"> | string | null
     description?: StringNullableFilter<"Restaurant_Areas"> | string | null
     smoking_allowed?: BoolFilter<"Restaurant_Areas"> | boolean
     is_outdoor?: BoolFilter<"Restaurant_Areas"> | boolean
@@ -34064,7 +34076,7 @@ export namespace Prisma {
     NOT?: Restaurant_AreasScalarWhereWithAggregatesInput | Restaurant_AreasScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Restaurant_Areas"> | string
     restaurantId?: StringWithAggregatesFilter<"Restaurant_Areas"> | string
-    name?: StringWithAggregatesFilter<"Restaurant_Areas"> | string
+    name?: StringNullableWithAggregatesFilter<"Restaurant_Areas"> | string | null
     description?: StringNullableWithAggregatesFilter<"Restaurant_Areas"> | string | null
     smoking_allowed?: BoolWithAggregatesFilter<"Restaurant_Areas"> | boolean
     is_outdoor?: BoolWithAggregatesFilter<"Restaurant_Areas"> | boolean
@@ -34319,10 +34331,11 @@ export namespace Prisma {
     id?: StringFilter<"Tables"> | string
     restaurantId?: StringFilter<"Tables"> | string
     areaId?: StringFilter<"Tables"> | string
+    is_vip?: BoolFilter<"Tables"> | boolean
     table_number?: StringFilter<"Tables"> | string
     min_capacity?: IntFilter<"Tables"> | number
     max_capacity?: IntFilter<"Tables"> | number
-    shape?: EnumTableShapeFilter<"Tables"> | $Enums.TableShape
+    shape?: EnumTableShapeNullableFilter<"Tables"> | $Enums.TableShape | null
     is_combinable?: BoolNullableFilter<"Tables"> | boolean | null
     pos_x?: FloatNullableFilter<"Tables"> | number | null
     pos_y?: FloatNullableFilter<"Tables"> | number | null
@@ -34340,6 +34353,7 @@ export namespace Prisma {
     id?: SortOrder
     restaurantId?: SortOrder
     areaId?: SortOrder
+    is_vip?: SortOrder
     table_number?: SortOrder
     min_capacity?: SortOrder
     max_capacity?: SortOrder
@@ -34366,10 +34380,11 @@ export namespace Prisma {
     NOT?: TablesWhereInput | TablesWhereInput[]
     restaurantId?: StringFilter<"Tables"> | string
     areaId?: StringFilter<"Tables"> | string
+    is_vip?: BoolFilter<"Tables"> | boolean
     table_number?: StringFilter<"Tables"> | string
     min_capacity?: IntFilter<"Tables"> | number
     max_capacity?: IntFilter<"Tables"> | number
-    shape?: EnumTableShapeFilter<"Tables"> | $Enums.TableShape
+    shape?: EnumTableShapeNullableFilter<"Tables"> | $Enums.TableShape | null
     is_combinable?: BoolNullableFilter<"Tables"> | boolean | null
     pos_x?: FloatNullableFilter<"Tables"> | number | null
     pos_y?: FloatNullableFilter<"Tables"> | number | null
@@ -34386,6 +34401,7 @@ export namespace Prisma {
     id?: SortOrder
     restaurantId?: SortOrder
     areaId?: SortOrder
+    is_vip?: SortOrder
     table_number?: SortOrder
     min_capacity?: SortOrder
     max_capacity?: SortOrder
@@ -34411,10 +34427,11 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Tables"> | string
     restaurantId?: StringWithAggregatesFilter<"Tables"> | string
     areaId?: StringWithAggregatesFilter<"Tables"> | string
+    is_vip?: BoolWithAggregatesFilter<"Tables"> | boolean
     table_number?: StringWithAggregatesFilter<"Tables"> | string
     min_capacity?: IntWithAggregatesFilter<"Tables"> | number
     max_capacity?: IntWithAggregatesFilter<"Tables"> | number
-    shape?: EnumTableShapeWithAggregatesFilter<"Tables"> | $Enums.TableShape
+    shape?: EnumTableShapeNullableWithAggregatesFilter<"Tables"> | $Enums.TableShape | null
     is_combinable?: BoolNullableWithAggregatesFilter<"Tables"> | boolean | null
     pos_x?: FloatNullableWithAggregatesFilter<"Tables"> | number | null
     pos_y?: FloatNullableWithAggregatesFilter<"Tables"> | number | null
@@ -36099,7 +36116,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -36137,7 +36154,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -36240,7 +36257,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -36559,7 +36576,7 @@ export namespace Prisma {
 
   export type Restaurant_AreasCreateInput = {
     id?: string
-    name: string
+    name?: string | null
     description?: string | null
     smoking_allowed?: boolean
     is_outdoor: boolean
@@ -36572,7 +36589,7 @@ export namespace Prisma {
   export type Restaurant_AreasUncheckedCreateInput = {
     id?: string
     restaurantId: string
-    name: string
+    name?: string | null
     description?: string | null
     smoking_allowed?: boolean
     is_outdoor: boolean
@@ -36582,7 +36599,7 @@ export namespace Prisma {
   }
 
   export type Restaurant_AreasUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     smoking_allowed?: BoolFieldUpdateOperationsInput | boolean
     is_outdoor?: BoolFieldUpdateOperationsInput | boolean
@@ -36594,7 +36611,7 @@ export namespace Prisma {
 
   export type Restaurant_AreasUncheckedUpdateInput = {
     restaurantId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     smoking_allowed?: BoolFieldUpdateOperationsInput | boolean
     is_outdoor?: BoolFieldUpdateOperationsInput | boolean
@@ -36606,7 +36623,7 @@ export namespace Prisma {
   export type Restaurant_AreasCreateManyInput = {
     id?: string
     restaurantId: string
-    name: string
+    name?: string | null
     description?: string | null
     smoking_allowed?: boolean
     is_outdoor: boolean
@@ -36615,7 +36632,7 @@ export namespace Prisma {
   }
 
   export type Restaurant_AreasUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     smoking_allowed?: BoolFieldUpdateOperationsInput | boolean
     is_outdoor?: BoolFieldUpdateOperationsInput | boolean
@@ -36625,7 +36642,7 @@ export namespace Prisma {
 
   export type Restaurant_AreasUncheckedUpdateManyInput = {
     restaurantId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     smoking_allowed?: BoolFieldUpdateOperationsInput | boolean
     is_outdoor?: BoolFieldUpdateOperationsInput | boolean
@@ -36882,10 +36899,11 @@ export namespace Prisma {
 
   export type TablesCreateInput = {
     id?: string
+    is_vip?: boolean
     table_number: string
     min_capacity: number
     max_capacity: number
-    shape: $Enums.TableShape
+    shape?: $Enums.TableShape | null
     is_combinable?: boolean | null
     pos_x?: number | null
     pos_y?: number | null
@@ -36903,10 +36921,11 @@ export namespace Prisma {
     id?: string
     restaurantId: string
     areaId: string
+    is_vip?: boolean
     table_number: string
     min_capacity: number
     max_capacity: number
-    shape: $Enums.TableShape
+    shape?: $Enums.TableShape | null
     is_combinable?: boolean | null
     pos_x?: number | null
     pos_y?: number | null
@@ -36919,10 +36938,11 @@ export namespace Prisma {
   }
 
   export type TablesUpdateInput = {
+    is_vip?: BoolFieldUpdateOperationsInput | boolean
     table_number?: StringFieldUpdateOperationsInput | string
     min_capacity?: IntFieldUpdateOperationsInput | number
     max_capacity?: IntFieldUpdateOperationsInput | number
-    shape?: EnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape
+    shape?: NullableEnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape | null
     is_combinable?: NullableBoolFieldUpdateOperationsInput | boolean | null
     pos_x?: NullableFloatFieldUpdateOperationsInput | number | null
     pos_y?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -36939,10 +36959,11 @@ export namespace Prisma {
   export type TablesUncheckedUpdateInput = {
     restaurantId?: StringFieldUpdateOperationsInput | string
     areaId?: StringFieldUpdateOperationsInput | string
+    is_vip?: BoolFieldUpdateOperationsInput | boolean
     table_number?: StringFieldUpdateOperationsInput | string
     min_capacity?: IntFieldUpdateOperationsInput | number
     max_capacity?: IntFieldUpdateOperationsInput | number
-    shape?: EnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape
+    shape?: NullableEnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape | null
     is_combinable?: NullableBoolFieldUpdateOperationsInput | boolean | null
     pos_x?: NullableFloatFieldUpdateOperationsInput | number | null
     pos_y?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -36958,10 +36979,11 @@ export namespace Prisma {
     id?: string
     restaurantId: string
     areaId: string
+    is_vip?: boolean
     table_number: string
     min_capacity: number
     max_capacity: number
-    shape: $Enums.TableShape
+    shape?: $Enums.TableShape | null
     is_combinable?: boolean | null
     pos_x?: number | null
     pos_y?: number | null
@@ -36972,10 +36994,11 @@ export namespace Prisma {
   }
 
   export type TablesUpdateManyMutationInput = {
+    is_vip?: BoolFieldUpdateOperationsInput | boolean
     table_number?: StringFieldUpdateOperationsInput | string
     min_capacity?: IntFieldUpdateOperationsInput | number
     max_capacity?: IntFieldUpdateOperationsInput | number
-    shape?: EnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape
+    shape?: NullableEnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape | null
     is_combinable?: NullableBoolFieldUpdateOperationsInput | boolean | null
     pos_x?: NullableFloatFieldUpdateOperationsInput | number | null
     pos_y?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -36988,10 +37011,11 @@ export namespace Prisma {
   export type TablesUncheckedUpdateManyInput = {
     restaurantId?: StringFieldUpdateOperationsInput | string
     areaId?: StringFieldUpdateOperationsInput | string
+    is_vip?: BoolFieldUpdateOperationsInput | boolean
     table_number?: StringFieldUpdateOperationsInput | string
     min_capacity?: IntFieldUpdateOperationsInput | number
     max_capacity?: IntFieldUpdateOperationsInput | number
-    shape?: EnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape
+    shape?: NullableEnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape | null
     is_combinable?: NullableBoolFieldUpdateOperationsInput | boolean | null
     pos_x?: NullableFloatFieldUpdateOperationsInput | number | null
     pos_y?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -39144,11 +39168,12 @@ export namespace Prisma {
     _max?: NestedEnumScheduleTypeFilter<$PrismaModel>
   }
 
-  export type EnumTableShapeFilter<$PrismaModel = never> = {
-    equals?: $Enums.TableShape | EnumTableShapeFieldRefInput<$PrismaModel>
-    in?: $Enums.TableShape[] | ListEnumTableShapeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.TableShape[] | ListEnumTableShapeFieldRefInput<$PrismaModel>
-    not?: NestedEnumTableShapeFilter<$PrismaModel> | $Enums.TableShape
+  export type EnumTableShapeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.TableShape | EnumTableShapeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.TableShape[] | ListEnumTableShapeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.TableShape[] | ListEnumTableShapeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumTableShapeNullableFilter<$PrismaModel> | $Enums.TableShape | null
+    isSet?: boolean
   }
 
   export type BoolNullableFilter<$PrismaModel = never> = {
@@ -39178,6 +39203,7 @@ export namespace Prisma {
     id?: SortOrder
     restaurantId?: SortOrder
     areaId?: SortOrder
+    is_vip?: SortOrder
     table_number?: SortOrder
     min_capacity?: SortOrder
     max_capacity?: SortOrder
@@ -39202,6 +39228,7 @@ export namespace Prisma {
     id?: SortOrder
     restaurantId?: SortOrder
     areaId?: SortOrder
+    is_vip?: SortOrder
     table_number?: SortOrder
     min_capacity?: SortOrder
     max_capacity?: SortOrder
@@ -39219,6 +39246,7 @@ export namespace Prisma {
     id?: SortOrder
     restaurantId?: SortOrder
     areaId?: SortOrder
+    is_vip?: SortOrder
     table_number?: SortOrder
     min_capacity?: SortOrder
     max_capacity?: SortOrder
@@ -39239,14 +39267,15 @@ export namespace Prisma {
     pos_y?: SortOrder
   }
 
-  export type EnumTableShapeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.TableShape | EnumTableShapeFieldRefInput<$PrismaModel>
-    in?: $Enums.TableShape[] | ListEnumTableShapeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.TableShape[] | ListEnumTableShapeFieldRefInput<$PrismaModel>
-    not?: NestedEnumTableShapeWithAggregatesFilter<$PrismaModel> | $Enums.TableShape
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumTableShapeFilter<$PrismaModel>
-    _max?: NestedEnumTableShapeFilter<$PrismaModel>
+  export type EnumTableShapeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TableShape | EnumTableShapeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.TableShape[] | ListEnumTableShapeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.TableShape[] | ListEnumTableShapeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumTableShapeNullableWithAggregatesFilter<$PrismaModel> | $Enums.TableShape | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumTableShapeNullableFilter<$PrismaModel>
+    _max?: NestedEnumTableShapeNullableFilter<$PrismaModel>
+    isSet?: boolean
   }
 
   export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -41594,8 +41623,9 @@ export namespace Prisma {
     connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
   }
 
-  export type EnumTableShapeFieldUpdateOperationsInput = {
-    set?: $Enums.TableShape
+  export type NullableEnumTableShapeFieldUpdateOperationsInput = {
+    set?: $Enums.TableShape | null
+    unset?: boolean
   }
 
   export type NullableBoolFieldUpdateOperationsInput = {
@@ -42265,11 +42295,12 @@ export namespace Prisma {
     _max?: NestedEnumScheduleTypeFilter<$PrismaModel>
   }
 
-  export type NestedEnumTableShapeFilter<$PrismaModel = never> = {
-    equals?: $Enums.TableShape | EnumTableShapeFieldRefInput<$PrismaModel>
-    in?: $Enums.TableShape[] | ListEnumTableShapeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.TableShape[] | ListEnumTableShapeFieldRefInput<$PrismaModel>
-    not?: NestedEnumTableShapeFilter<$PrismaModel> | $Enums.TableShape
+  export type NestedEnumTableShapeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.TableShape | EnumTableShapeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.TableShape[] | ListEnumTableShapeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.TableShape[] | ListEnumTableShapeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumTableShapeNullableFilter<$PrismaModel> | $Enums.TableShape | null
+    isSet?: boolean
   }
 
   export type NestedBoolNullableFilter<$PrismaModel = never> = {
@@ -42285,14 +42316,15 @@ export namespace Prisma {
     not?: NestedEnumTableStatusFilter<$PrismaModel> | $Enums.TableStatus
   }
 
-  export type NestedEnumTableShapeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.TableShape | EnumTableShapeFieldRefInput<$PrismaModel>
-    in?: $Enums.TableShape[] | ListEnumTableShapeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.TableShape[] | ListEnumTableShapeFieldRefInput<$PrismaModel>
-    not?: NestedEnumTableShapeWithAggregatesFilter<$PrismaModel> | $Enums.TableShape
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumTableShapeFilter<$PrismaModel>
-    _max?: NestedEnumTableShapeFilter<$PrismaModel>
+  export type NestedEnumTableShapeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TableShape | EnumTableShapeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.TableShape[] | ListEnumTableShapeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.TableShape[] | ListEnumTableShapeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumTableShapeNullableWithAggregatesFilter<$PrismaModel> | $Enums.TableShape | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumTableShapeNullableFilter<$PrismaModel>
+    _max?: NestedEnumTableShapeNullableFilter<$PrismaModel>
+    isSet?: boolean
   }
 
   export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -42530,7 +42562,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -42566,7 +42598,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -43120,7 +43152,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -43157,7 +43189,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -43788,7 +43820,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -43824,7 +43856,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -45544,7 +45576,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -45581,7 +45613,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -45609,10 +45641,11 @@ export namespace Prisma {
 
   export type TablesCreateWithoutOrdersInput = {
     id?: string
+    is_vip?: boolean
     table_number: string
     min_capacity: number
     max_capacity: number
-    shape: $Enums.TableShape
+    shape?: $Enums.TableShape | null
     is_combinable?: boolean | null
     pos_x?: number | null
     pos_y?: number | null
@@ -45629,10 +45662,11 @@ export namespace Prisma {
     id?: string
     restaurantId: string
     areaId: string
+    is_vip?: boolean
     table_number: string
     min_capacity: number
     max_capacity: number
-    shape: $Enums.TableShape
+    shape?: $Enums.TableShape | null
     is_combinable?: boolean | null
     pos_x?: number | null
     pos_y?: number | null
@@ -45856,10 +45890,11 @@ export namespace Prisma {
   }
 
   export type TablesUpdateWithoutOrdersInput = {
+    is_vip?: BoolFieldUpdateOperationsInput | boolean
     table_number?: StringFieldUpdateOperationsInput | string
     min_capacity?: IntFieldUpdateOperationsInput | number
     max_capacity?: IntFieldUpdateOperationsInput | number
-    shape?: EnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape
+    shape?: NullableEnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape | null
     is_combinable?: NullableBoolFieldUpdateOperationsInput | boolean | null
     pos_x?: NullableFloatFieldUpdateOperationsInput | number | null
     pos_y?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -45875,10 +45910,11 @@ export namespace Prisma {
   export type TablesUncheckedUpdateWithoutOrdersInput = {
     restaurantId?: StringFieldUpdateOperationsInput | string
     areaId?: StringFieldUpdateOperationsInput | string
+    is_vip?: BoolFieldUpdateOperationsInput | boolean
     table_number?: StringFieldUpdateOperationsInput | string
     min_capacity?: IntFieldUpdateOperationsInput | number
     max_capacity?: IntFieldUpdateOperationsInput | number
-    shape?: EnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape
+    shape?: NullableEnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape | null
     is_combinable?: NullableBoolFieldUpdateOperationsInput | boolean | null
     pos_x?: NullableFloatFieldUpdateOperationsInput | number | null
     pos_y?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -46339,7 +46375,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -46376,7 +46412,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -46595,7 +46631,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -46632,7 +46668,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -46660,10 +46696,11 @@ export namespace Prisma {
 
   export type TablesCreateWithoutReservation_tablesInput = {
     id?: string
+    is_vip?: boolean
     table_number: string
     min_capacity: number
     max_capacity: number
-    shape: $Enums.TableShape
+    shape?: $Enums.TableShape | null
     is_combinable?: boolean | null
     pos_x?: number | null
     pos_y?: number | null
@@ -46680,10 +46717,11 @@ export namespace Prisma {
     id?: string
     restaurantId: string
     areaId: string
+    is_vip?: boolean
     table_number: string
     min_capacity: number
     max_capacity: number
-    shape: $Enums.TableShape
+    shape?: $Enums.TableShape | null
     is_combinable?: boolean | null
     pos_x?: number | null
     pos_y?: number | null
@@ -46817,10 +46855,11 @@ export namespace Prisma {
   }
 
   export type TablesUpdateWithoutReservation_tablesInput = {
+    is_vip?: BoolFieldUpdateOperationsInput | boolean
     table_number?: StringFieldUpdateOperationsInput | string
     min_capacity?: IntFieldUpdateOperationsInput | number
     max_capacity?: IntFieldUpdateOperationsInput | number
-    shape?: EnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape
+    shape?: NullableEnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape | null
     is_combinable?: NullableBoolFieldUpdateOperationsInput | boolean | null
     pos_x?: NullableFloatFieldUpdateOperationsInput | number | null
     pos_y?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -46836,10 +46875,11 @@ export namespace Prisma {
   export type TablesUncheckedUpdateWithoutReservation_tablesInput = {
     restaurantId?: StringFieldUpdateOperationsInput | string
     areaId?: StringFieldUpdateOperationsInput | string
+    is_vip?: BoolFieldUpdateOperationsInput | boolean
     table_number?: StringFieldUpdateOperationsInput | string
     min_capacity?: IntFieldUpdateOperationsInput | number
     max_capacity?: IntFieldUpdateOperationsInput | number
-    shape?: EnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape
+    shape?: NullableEnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape | null
     is_combinable?: NullableBoolFieldUpdateOperationsInput | boolean | null
     pos_x?: NullableFloatFieldUpdateOperationsInput | number | null
     pos_y?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -47595,7 +47635,7 @@ export namespace Prisma {
 
   export type Restaurant_AreasCreateWithoutRestaurantInput = {
     id?: string
-    name: string
+    name?: string | null
     description?: string | null
     smoking_allowed?: boolean
     is_outdoor: boolean
@@ -47606,7 +47646,7 @@ export namespace Prisma {
 
   export type Restaurant_AreasUncheckedCreateWithoutRestaurantInput = {
     id?: string
-    name: string
+    name?: string | null
     description?: string | null
     smoking_allowed?: boolean
     is_outdoor: boolean
@@ -47626,10 +47666,11 @@ export namespace Prisma {
 
   export type TablesCreateWithoutRestaurantInput = {
     id?: string
+    is_vip?: boolean
     table_number: string
     min_capacity: number
     max_capacity: number
-    shape: $Enums.TableShape
+    shape?: $Enums.TableShape | null
     is_combinable?: boolean | null
     pos_x?: number | null
     pos_y?: number | null
@@ -47645,10 +47686,11 @@ export namespace Prisma {
   export type TablesUncheckedCreateWithoutRestaurantInput = {
     id?: string
     areaId: string
+    is_vip?: boolean
     table_number: string
     min_capacity: number
     max_capacity: number
-    shape: $Enums.TableShape
+    shape?: $Enums.TableShape | null
     is_combinable?: boolean | null
     pos_x?: number | null
     pos_y?: number | null
@@ -47790,7 +47832,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -47826,7 +47868,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -48081,7 +48123,7 @@ export namespace Prisma {
     NOT?: Restaurant_AreasScalarWhereInput | Restaurant_AreasScalarWhereInput[]
     id?: StringFilter<"Restaurant_Areas"> | string
     restaurantId?: StringFilter<"Restaurant_Areas"> | string
-    name?: StringFilter<"Restaurant_Areas"> | string
+    name?: StringNullableFilter<"Restaurant_Areas"> | string | null
     description?: StringNullableFilter<"Restaurant_Areas"> | string | null
     smoking_allowed?: BoolFilter<"Restaurant_Areas"> | boolean
     is_outdoor?: BoolFilter<"Restaurant_Areas"> | boolean
@@ -48112,10 +48154,11 @@ export namespace Prisma {
     id?: StringFilter<"Tables"> | string
     restaurantId?: StringFilter<"Tables"> | string
     areaId?: StringFilter<"Tables"> | string
+    is_vip?: BoolFilter<"Tables"> | boolean
     table_number?: StringFilter<"Tables"> | string
     min_capacity?: IntFilter<"Tables"> | number
     max_capacity?: IntFilter<"Tables"> | number
-    shape?: EnumTableShapeFilter<"Tables"> | $Enums.TableShape
+    shape?: EnumTableShapeNullableFilter<"Tables"> | $Enums.TableShape | null
     is_combinable?: BoolNullableFilter<"Tables"> | boolean | null
     pos_x?: FloatNullableFilter<"Tables"> | number | null
     pos_y?: FloatNullableFilter<"Tables"> | number | null
@@ -48356,10 +48399,11 @@ export namespace Prisma {
 
   export type TablesCreateWithoutAreaInput = {
     id?: string
+    is_vip?: boolean
     table_number: string
     min_capacity: number
     max_capacity: number
-    shape: $Enums.TableShape
+    shape?: $Enums.TableShape | null
     is_combinable?: boolean | null
     pos_x?: number | null
     pos_y?: number | null
@@ -48375,10 +48419,11 @@ export namespace Prisma {
   export type TablesUncheckedCreateWithoutAreaInput = {
     id?: string
     restaurantId: string
+    is_vip?: boolean
     table_number: string
     min_capacity: number
     max_capacity: number
-    shape: $Enums.TableShape
+    shape?: $Enums.TableShape | null
     is_combinable?: boolean | null
     pos_x?: number | null
     pos_y?: number | null
@@ -48512,7 +48557,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -48549,7 +48594,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -49275,7 +49320,7 @@ export namespace Prisma {
 
   export type Restaurant_AreasCreateWithoutTabelsInput = {
     id?: string
-    name: string
+    name?: string | null
     description?: string | null
     smoking_allowed?: boolean
     is_outdoor: boolean
@@ -49287,7 +49332,7 @@ export namespace Prisma {
   export type Restaurant_AreasUncheckedCreateWithoutTabelsInput = {
     id?: string
     restaurantId: string
-    name: string
+    name?: string | null
     description?: string | null
     smoking_allowed?: boolean
     is_outdoor: boolean
@@ -49469,7 +49514,7 @@ export namespace Prisma {
   }
 
   export type Restaurant_AreasUpdateWithoutTabelsInput = {
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     smoking_allowed?: BoolFieldUpdateOperationsInput | boolean
     is_outdoor?: BoolFieldUpdateOperationsInput | boolean
@@ -49480,7 +49525,7 @@ export namespace Prisma {
 
   export type Restaurant_AreasUncheckedUpdateWithoutTabelsInput = {
     restaurantId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     smoking_allowed?: BoolFieldUpdateOperationsInput | boolean
     is_outdoor?: BoolFieldUpdateOperationsInput | boolean
@@ -49537,7 +49582,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -49813,7 +49858,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -50975,7 +51020,7 @@ export namespace Prisma {
 
   export type Restaurant_AreasCreateManyRestaurantInput = {
     id?: string
-    name: string
+    name?: string | null
     description?: string | null
     smoking_allowed?: boolean
     is_outdoor: boolean
@@ -50986,10 +51031,11 @@ export namespace Prisma {
   export type TablesCreateManyRestaurantInput = {
     id?: string
     areaId: string
+    is_vip?: boolean
     table_number: string
     min_capacity: number
     max_capacity: number
-    shape: $Enums.TableShape
+    shape?: $Enums.TableShape | null
     is_combinable?: boolean | null
     pos_x?: number | null
     pos_y?: number | null
@@ -51052,7 +51098,7 @@ export namespace Prisma {
     start_time: string
     end_time: string
     party_size: number
-    status: $Enums.ReservationStatus
+    status?: $Enums.ReservationStatus
     source?: $Enums.ReservationSource | null
     special_requests?: string | null
     dietary_restrictions?: InputJsonValue | null
@@ -51150,7 +51196,7 @@ export namespace Prisma {
   }
 
   export type Restaurant_AreasUpdateWithoutRestaurantInput = {
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     smoking_allowed?: BoolFieldUpdateOperationsInput | boolean
     is_outdoor?: BoolFieldUpdateOperationsInput | boolean
@@ -51160,7 +51206,7 @@ export namespace Prisma {
   }
 
   export type Restaurant_AreasUncheckedUpdateWithoutRestaurantInput = {
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     smoking_allowed?: BoolFieldUpdateOperationsInput | boolean
     is_outdoor?: BoolFieldUpdateOperationsInput | boolean
@@ -51170,7 +51216,7 @@ export namespace Prisma {
   }
 
   export type Restaurant_AreasUncheckedUpdateManyWithoutRestaurantInput = {
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     smoking_allowed?: BoolFieldUpdateOperationsInput | boolean
     is_outdoor?: BoolFieldUpdateOperationsInput | boolean
@@ -51179,10 +51225,11 @@ export namespace Prisma {
   }
 
   export type TablesUpdateWithoutRestaurantInput = {
+    is_vip?: BoolFieldUpdateOperationsInput | boolean
     table_number?: StringFieldUpdateOperationsInput | string
     min_capacity?: IntFieldUpdateOperationsInput | number
     max_capacity?: IntFieldUpdateOperationsInput | number
-    shape?: EnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape
+    shape?: NullableEnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape | null
     is_combinable?: NullableBoolFieldUpdateOperationsInput | boolean | null
     pos_x?: NullableFloatFieldUpdateOperationsInput | number | null
     pos_y?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -51197,10 +51244,11 @@ export namespace Prisma {
 
   export type TablesUncheckedUpdateWithoutRestaurantInput = {
     areaId?: StringFieldUpdateOperationsInput | string
+    is_vip?: BoolFieldUpdateOperationsInput | boolean
     table_number?: StringFieldUpdateOperationsInput | string
     min_capacity?: IntFieldUpdateOperationsInput | number
     max_capacity?: IntFieldUpdateOperationsInput | number
-    shape?: EnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape
+    shape?: NullableEnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape | null
     is_combinable?: NullableBoolFieldUpdateOperationsInput | boolean | null
     pos_x?: NullableFloatFieldUpdateOperationsInput | number | null
     pos_y?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -51214,10 +51262,11 @@ export namespace Prisma {
 
   export type TablesUncheckedUpdateManyWithoutRestaurantInput = {
     areaId?: StringFieldUpdateOperationsInput | string
+    is_vip?: BoolFieldUpdateOperationsInput | boolean
     table_number?: StringFieldUpdateOperationsInput | string
     min_capacity?: IntFieldUpdateOperationsInput | number
     max_capacity?: IntFieldUpdateOperationsInput | number
-    shape?: EnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape
+    shape?: NullableEnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape | null
     is_combinable?: NullableBoolFieldUpdateOperationsInput | boolean | null
     pos_x?: NullableFloatFieldUpdateOperationsInput | number | null
     pos_y?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -51583,10 +51632,11 @@ export namespace Prisma {
   export type TablesCreateManyAreaInput = {
     id?: string
     restaurantId: string
+    is_vip?: boolean
     table_number: string
     min_capacity: number
     max_capacity: number
-    shape: $Enums.TableShape
+    shape?: $Enums.TableShape | null
     is_combinable?: boolean | null
     pos_x?: number | null
     pos_y?: number | null
@@ -51597,10 +51647,11 @@ export namespace Prisma {
   }
 
   export type TablesUpdateWithoutAreaInput = {
+    is_vip?: BoolFieldUpdateOperationsInput | boolean
     table_number?: StringFieldUpdateOperationsInput | string
     min_capacity?: IntFieldUpdateOperationsInput | number
     max_capacity?: IntFieldUpdateOperationsInput | number
-    shape?: EnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape
+    shape?: NullableEnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape | null
     is_combinable?: NullableBoolFieldUpdateOperationsInput | boolean | null
     pos_x?: NullableFloatFieldUpdateOperationsInput | number | null
     pos_y?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -51615,10 +51666,11 @@ export namespace Prisma {
 
   export type TablesUncheckedUpdateWithoutAreaInput = {
     restaurantId?: StringFieldUpdateOperationsInput | string
+    is_vip?: BoolFieldUpdateOperationsInput | boolean
     table_number?: StringFieldUpdateOperationsInput | string
     min_capacity?: IntFieldUpdateOperationsInput | number
     max_capacity?: IntFieldUpdateOperationsInput | number
-    shape?: EnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape
+    shape?: NullableEnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape | null
     is_combinable?: NullableBoolFieldUpdateOperationsInput | boolean | null
     pos_x?: NullableFloatFieldUpdateOperationsInput | number | null
     pos_y?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -51632,10 +51684,11 @@ export namespace Prisma {
 
   export type TablesUncheckedUpdateManyWithoutAreaInput = {
     restaurantId?: StringFieldUpdateOperationsInput | string
+    is_vip?: BoolFieldUpdateOperationsInput | boolean
     table_number?: StringFieldUpdateOperationsInput | string
     min_capacity?: IntFieldUpdateOperationsInput | number
     max_capacity?: IntFieldUpdateOperationsInput | number
-    shape?: EnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape
+    shape?: NullableEnumTableShapeFieldUpdateOperationsInput | $Enums.TableShape | null
     is_combinable?: NullableBoolFieldUpdateOperationsInput | boolean | null
     pos_x?: NullableFloatFieldUpdateOperationsInput | number | null
     pos_y?: NullableFloatFieldUpdateOperationsInput | number | null

@@ -46,8 +46,15 @@ const ButtonVariantProps = cva(
                     "before:opacity-70 before:blur-md ",
                     "before:transition-opacity before:duration-500 ",
                     "hover:before:opacity-100"
-                ]
+                ],
+                tabel_gray:" bg-gray-200 text-gray-700",
+                tabel_green:"  bg-green-500 text-white ",
+                tabel_red:" bg-red-500 text-white",
 
+            },
+            bordera:{
+                default:"",
+                yellow:" border border-yellow-400 shadow-[0_0_6px_rgba(250,204,21,0.6)]"
             },
             shape: {
                 circle: "rounded-full",
@@ -74,12 +81,12 @@ const ButtonVariantProps = cva(
 )
 interface ButtonProps extends React.ComponentPropsWithoutRef<"button">, VariantProps<typeof ButtonVariantProps> { }
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, variant, shape, type, sizea, ...props }, ref) => {
+    ({ className, variant, shape, type, bordera,sizea, ...props }, ref) => {
         return (
             <button
 
                 type={type ?? "button"}
-                className={cn(ButtonVariantProps({ variant, shape, sizea, className }))}
+                className={cn(ButtonVariantProps({ variant, bordera,shape, sizea, className }))}
                 ref={ref}
                 {...props}
             />

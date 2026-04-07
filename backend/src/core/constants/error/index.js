@@ -65,7 +65,7 @@ export class ForbiddenError extends ApiError {
  */
 export class ConflictError extends ApiError {
   constructor(message = ReasonPhrases.CONFLICT) {
-    super(message, StatusCodes.CONFLICT);
+    super(message, 409);
   }
 }
 // lỗi 409

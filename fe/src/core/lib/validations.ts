@@ -1,9 +1,9 @@
 import { z } from "zod";
 export const validator = {
-    string: (name: string, max: number = 255,min?:number) =>
+    string: (name: string, max: number = 255, min?: number) =>
         z.string({ error: `${name} phải là chuổi` })
             .trim()
-            .min(min??1, `${name} ${min?`phải lón hơn ${min} ký tự `:"không được để trống"}`)
+            .min(min ?? 1, `${name} ${min ? `phải lón hơn ${min} ký tự ` : "không được để trống"}`)
             .max(max, `${name} không được vượt quá ${max} ký tự`),
     email: () =>
         z.string({ error: "Vui lòng nhập Email" })
@@ -26,7 +26,7 @@ export const validator = {
         let schema = z.coerce
             .number({
                 error: `Vui lòng nhập ${name.toLowerCase()}`,
-                
+
             });
 
         if (min !== undefined) {
@@ -41,15 +41,15 @@ export const validator = {
         z.coerce
             .number({
                 error: `Vui lòng nhập ${name.toLowerCase()}`,
-               
+
             })
             .positive(`${name} phải lớn hơn 0`)
             .max(max, `${name} không được vượt quá ${max.toLocaleString('vi-VN')}đ`),
     boolean: (name: string) =>
         z.coerce.boolean({
-            error: (issue) => issue.input === undefined 
-            ? `Vui lòng chọn ${name.toLowerCase()}` 
-            : `${name} chỉ nhận giá trị Đúng/Sai`,
+            error: (issue) => issue.input === undefined
+                ? `Vui lòng chọn ${name.toLowerCase()}`
+                : `${name} chỉ nhận giá trị Đúng/Sai`,
         }),
     // 8. FILE (Upload 1 file đơn lẻ)
     file: (
@@ -79,7 +79,7 @@ export const validator = {
     date: (name: string = "Ngày", options?: { minDate?: Date; maxDate?: Date }) => {
         let schema = z.coerce.date({
             error: `Vui lòng chọn ${name.toLowerCase()}`,
-            
+
         });
 
         if (options?.minDate) {
@@ -96,7 +96,7 @@ export const validator = {
     dob: (name: string = "Ngày sinh", options?: { minAge?: number; maxAge?: number }) => {
         return z.coerce.date({
             error: `Vui lòng chọn ${name.toLowerCase()}`,
-            
+
         })
             .max(new Date(), `${name} không được lớn hơn ngày hiện tại`) // Chắc chắn ngày sinh phải trong quá khứ
             .superRefine((date, ctx) => {
@@ -123,12 +123,41 @@ export const validator = {
                 }
             });
     },
-   
-   enum: <T extends [string, ...string[]]>(
-    name: string,
-    allowedValues: T
-  ) =>
-    z.enum(allowedValues, {
-      error: `${name} lựa chọn không hợp lệ`
-    })
+
+    enum: <T extends [string, ...string[]]>(
+        name: string,
+        allowedValues: T
+    ) =>
+        z.enum(allowedValues, {
+            error: `${name} lựa chọn không hợp lệ`
+        }),
+    array: <T extends z.ZodTypeAny>(
+        name: string,
+        itemSchema: T,
+        options?: { min?: number; max?: number }
+    ) => {
+        let schema = z.array(itemSchema, {
+            error: `Vui lòng cung cấp danh sách ${name.toLowerCase()}`,
+            
+        });
+
+        if (options?.min !== undefined) {
+            schema = schema.min(options.min, `${name} phải có ít nhất ${options.min} phần tử`);
+        }
+        if (options?.max !== undefined) {
+            schema = schema.max(options.max, `${name} không được vượt quá ${options.max} phần tử`);
+        }
+        return schema;
+    },
+
+    // 14. ĐỐI TƯỢNG (Object) - Cần truyền vào cấu trúc của object
+    object: <T extends z.ZodRawShape>(
+        name: string,
+        shape: T
+    ) => {
+        return z.object(shape, {
+            error: `Vui lòng cung cấp thông tin ${name.toLowerCase()}`,
+        
+        });
+    }
 }

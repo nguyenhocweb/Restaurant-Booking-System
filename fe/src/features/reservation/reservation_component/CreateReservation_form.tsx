@@ -6,9 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateReservation } from "../reservation_hook/useCreateReservation_hook";
 import { ReservationForm, ReservationShema } from "../reservation_schemas/createReservation_schemas";
 
+import { useAuthStore } from "../../auth/auth_store/use-auth-store";
+import { useRouter } from "next/navigation";
 
 import { Div, H, Button, Input, Label, Select, P } from "@/src/core/components/ui"
-
+import TableComponent from "../../table/table_component/table_component";
 const purposeOptions = [
     { value: "NORMAL", label: "Dùng bữa bình thường" },
     { value: "BIRTHDAY", label: "Sinh nhật" },
@@ -19,7 +21,12 @@ const purposeOptions = [
 ];
 const CreateReservation_form = ({ idRestaurant }: { idRestaurant: string }) => {
     
+    const User=useAuthStore((state)=>state.user);
+    
+    const router=useRouter();
+
      const [isSelectTable,setIsSelectTable]=useState(false);
+     
     const { mutate: CreateReservationMutation, isPending } = useCreateReservation();
     const {
         register,
@@ -34,15 +41,26 @@ const CreateReservation_form = ({ idRestaurant }: { idRestaurant: string }) => {
         defaultValues: {
             autoTable:true,
             idRestaurant,
-
+            userId:User.id,
+            guest_email:User.email,
+            guest_phone:User.phone,
+            guest_name:User.name,
+            reservation_date:new Date().toISOString().split("T")[0],
+            party_size:1
         }
     })
+   
+    
     const Handlesubmit = (data: ReservationForm) => {
-        
+        if(!User) return router.push("/login");
         if (data.autoTable) {
             CreateReservationMutation(data)
+        }else{
+            setIsSelectTable(true)
         }
     }
+    
+    if(isSelectTable) return <TableComponent data1={watch() as ReservationForm} onclick={()=>{setIsSelectTable(false)}}/>
     
     return (
         <Div vitri="col_none" size='full' variant="bg_white" className="sticky top-16">

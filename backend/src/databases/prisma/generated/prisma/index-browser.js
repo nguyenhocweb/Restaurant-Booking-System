@@ -466,6 +466,7 @@ exports.Prisma.TablesScalarFieldEnum = {
   id: 'id',
   restaurantId: 'restaurantId',
   areaId: 'areaId',
+  is_vip: 'is_vip',
   table_number: 'table_number',
   min_capacity: 'min_capacity',
   max_capacity: 'max_capacity',

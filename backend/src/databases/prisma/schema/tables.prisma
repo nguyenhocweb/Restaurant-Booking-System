@@ -8,13 +8,13 @@ model Tables {
 
     areaId        String   @db.ObjectId
     area          Restaurant_Areas @relation(fields: [areaId], references: [id])
-
+    is_vip Boolean @default(false)
     table_number  String
 
     min_capacity  Int        // số lượng khách ít nhất
     max_capacity  Int         // số lượng khách nhiều nhất
-
-    shape         TableShape
+ 
+    shape         TableShape?
     is_combinable Boolean? @default(false)   // cho phép ghép table vs người khác hay không
 
     pos_x         Float?        //  sơ đồ 

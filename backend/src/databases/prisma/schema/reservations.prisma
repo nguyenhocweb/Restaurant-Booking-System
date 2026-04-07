@@ -23,7 +23,7 @@ model Reservations {
 
   party_size         Int          // số lượng ngừoi
 
-  status             ReservationStatus
+  status             ReservationStatus   @default(PENDING)
   source             ReservationSource?
 
   // Special requests
@@ -50,7 +50,7 @@ model Reservations {
   review_restaurant  Review_Restaurant?
   reservation_audit_log Reservation_Audit_Log[]
   notifications      Notifications[]
-  createdAt          DateTime @default(now())   
+  createdAt          DateTime @default(now())    
   updatedAt          DateTime @updatedAt
   order          Order[]
   @@index([restaurantId])

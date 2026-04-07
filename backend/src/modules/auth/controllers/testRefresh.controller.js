@@ -9,8 +9,11 @@ export const testRefresh=asyncHandler(
        console.log("textRefresh:",refreshToken);
        
        if(refreshToken) {
-          const verify=verifyTokenRefresh(refreshToken);
+          let verify=verifyTokenRefresh(refreshToken);
+          console.log("verify",verify);
           if(verify){ 
+            delete verify.iat;
+            delete verify.exp
             const access=createTokenAccess(verify);
             const refresh=createTokenRefresh(verify);
             setCookieAccess(res,access)
