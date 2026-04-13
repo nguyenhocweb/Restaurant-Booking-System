@@ -1,7 +1,7 @@
 import { getDishsService } from "../service/getDishs.service.js";
 import asyncHandler from "../../../core/utils/asyncHandler.js";
 import { NotFoundError } from "../../../core/constants/error/index.js";
-import { id } from "zod/v4/locales";
+
 export const getDishsController = asyncHandler(
     async (req, res) => {
 
@@ -21,6 +21,7 @@ export const getDishsController = asyncHandler(
             }
         });
         const result = await getDishsService(page, limit, where,type);
+        
         switch (result.code) {
             case 404: throw new NotFoundError(result.mes);
             case 200: res.status(200).json(result.data); break;

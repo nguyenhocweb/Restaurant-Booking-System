@@ -8,12 +8,20 @@ import { usePagination } from "@/src/core/hooks/usePagination";
 import Pagination from "@/src/core/components/layout/Pagination";
 const Featured_Restaurant_Component = ({ type, id, limit }: { type: "home" | "page", id?: string, limit?: number }) => {
     const limits = limit ?? (type === "page" ? 10 : 5);
-    const { pageRestaurant, city, searchKeyword,setPageRestaurant} = usePagination()
-    const { data, isLoading, isFetched } = useRestaurandCard({ page: pageRestaurant || 1, limit: limits, city: city ?? undefined, search: searchKeyword ?? undefined, id: id });
+    const { pageRestaurant, city, searchKeyword,setPageRestaurant,categoryRestaurant,review} = usePagination()
+    const { data, isLoading, isFetched } = useRestaurandCard({
+         page: pageRestaurant || 1, 
+         limit: limits, 
+         city: city ?? undefined,
+          search: searchKeyword ?? undefined,
+           id: id,
+            categoryRestaurant: categoryRestaurant??[],
+             review: review??undefined 
+            });
     console.log(data);
     if (isLoading) return <Loading />
     return (
-        <Div id="restaurantHome" vitri="col_none" size="full" >
+        <Div id="restaurant" vitri="col_none" size="full" >
             {type === "home" &&
                 <Div className="justify-between mb-8 " size="full" >
                     <div>
@@ -40,7 +48,7 @@ const Featured_Restaurant_Component = ({ type, id, limit }: { type: "home" | "pa
             {type === "home" && !!data?.total &&
                 <Div size="full" className="mt-3">
                     <FadeIn delay={0.6}>
-                        <A href="#" sizea="p4_3" variant="gray">
+                        <A href="/restaurants" sizea="p4_3" variant="gray">
                             Xem toàn bộ {(data?.total ?? 0) > 99 ? "99+" : (data?.total ?? 0)} nhà hàng
                         </A>
                     </FadeIn>

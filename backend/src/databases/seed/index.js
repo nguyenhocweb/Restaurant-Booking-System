@@ -20,6 +20,7 @@ import {reviewRestaurantExtension} from "./extensions/review_restaurant.extensio
 import {reservationAuditLogsExtension} from "./extensions/reservation_audit_log.extension.js"
 import {menusExtension} from "./extensions/menu.extension.js";
 import {categoriesAndItemsExtension}from "./extensions/menuCategory-items.extension.js"
+import {category_restaurant_extension} from "./extensions/category_restaurant.extension.js"
 
 import {deleteAllVector} from "../../modules/vector/service/vectorDB.service.js"
 const runSeed = async () => {
@@ -46,6 +47,7 @@ const runSeed = async () => {
         await prisma.menuCategory.deleteMany();
         await prisma.menu.deleteMany();
         await prisma.restaurant.deleteMany();
+        await prisma.category_Restaurant.deleteMany();
         await prisma.brand.deleteMany();
         await prisma.user.deleteMany();
         await prisma.role.deleteMany({})
@@ -57,6 +59,8 @@ const runSeed = async () => {
        await users_Extension(prisma);
         // tạo dữ liệu thương hiệu
         await Brand_Extension(prisma);
+        // tạo dữ liệu category restaurant
+        await category_restaurant_extension(prisma);
         // tạo dữ liệu nhà hàng
         await restaurant_Extension(prisma);
         // tạo nhân viên thương hiệu or nhà hàng

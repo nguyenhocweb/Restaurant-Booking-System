@@ -6,16 +6,16 @@ export const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 // 3. CẤU HÌNH CÁC MODEL SẴN SÀNG SỬ DỤNG
 const defaultModelFlash = {
     // Nếu trong .env không có AI_MODEL_FLASH, nó sẽ tự dùng gemini-2.5-flash
-    model: process.env.AI_MODEL_FLASH || "gemini-2.5-flash",
+    model: process.env.AI_MODEL_FLASH ,
     generationConfig: {
-        temperature: parseFloat(process.env.AI_TEMPERATURE) || 0.1, 
+        temperature: parseFloat(process.env.AI_TEMPERATURE), 
     }
 };
 
 const defaultModelPro = {
-    model: process.env.AI_MODEL_PRO || "gemini-2.5-pro",
+    model: process.env.AI_MODEL_PRO ,
     generationConfig: {
-        temperature: 0.2, 
+        temperature: parseFloat(process.env.AI_TEMPERATURE), 
     }
 };
 

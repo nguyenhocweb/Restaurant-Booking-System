@@ -1,9 +1,13 @@
 import { Div, H } from "@/src/core/components/ui"
-const MenuPage = () => {
-    return(
-    <Div id="menu" vitri="col_none" variant="bg_white" size="full">
-        <H variant="text_black" className="text-2xl font-bold mb-4">Menu</H>
-    </Div>
+import FeaturedDishComponent from "@/src/features/dish/dish_component/featured-dish-component"
+const MenuPage = ({ idRestaurant }: { idRestaurant: string }) => {
+    return (
+        <Div id="menu" vitri="col_none" variant="bg_white" size="full">
+            <H variant="text_black" className="text-2xl font-bold mb-4">Menu</H>
+          
+                <FeaturedDishComponent id={idRestaurant} type="isRestaurant" grid={3} limit={6} />
+          
+        </Div>
     )
-}
+} 
 export default MenuPage

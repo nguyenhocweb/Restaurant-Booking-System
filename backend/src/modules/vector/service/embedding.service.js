@@ -6,9 +6,7 @@ export const embedText = async (text) => {
     });
 
     const result = await embeddingModel.embedContent(text);
-
     const values = result?.embedding?.values;
-
     if (!values || !Array.isArray(values) || values.length === 0) {
       throw new Error("Embedding failed or empty");
     }

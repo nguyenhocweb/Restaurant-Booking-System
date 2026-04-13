@@ -9,17 +9,26 @@ export const getRestaurantsController = asyncHandler(
         const city = req.query.city;
         const search = req.query.search;
         const id = req.query.idBrand;
-        console.log("id",id);
-        
-        const where = []
-        if (id) where.push({ brandId: id })
-        if (city) where.push({ city: city })
-        if (search) where.push({
-            name: {
-                contains: search,// Tìm chuỗi con bên trong tên
-                mode: 'insensitive',// Không phân biệt Hoa/Thường
-            }
-        });
+        const categoryRestaurant = req.query.category;
+        const review = req.query.review ? parseInt(req.query.review) : undefined;
+        console.log("id", id);
+
+        const where = {}
+        if (id) where.brandId = id;
+        if (city) where.city = city;
+        if (search) where.name = {
+            contains: search,
+            mode: 'insensitive'
+        };
+        if (categoryRestaurant) {
+            where.categoryIds = { hasSome: categoryRestaurant.split(",") };
+        }
+        if (review !== undefined) {
+            where.review = {
+                gte: Number(review)
+            };
+        }
+
         const result = await getRestaurantsService(page, limit, where);
         switch (result.code) {
             case 404:

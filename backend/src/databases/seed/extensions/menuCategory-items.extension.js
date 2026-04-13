@@ -2,7 +2,7 @@
 import { menuCategoriesData, menuItemsData } from "../constants/menucategory-items.data.js";
 import { upsertVector } from "../../../modules/vector/service/vectorDB.service.js";
 import { embedText } from "../../../modules/vector/service/embedding.service.js";
-
+  import { tableVector } from '../../../config/tableVector.js';
 import { buildMenuItemVector } from "../../../modules/vector/builders/menuItem.builder.js";
 export const categoriesAndItemsExtension = async (prisma) => {
   console.log("Creating Menu Categories & Items...");
@@ -30,36 +30,48 @@ export const categoriesAndItemsExtension = async (prisma) => {
 
   // Xử lý và map dữ liệu Items
 
-  
+
 
   const itemResult = await prisma.menuItem.createMany({
-    data: menuItemsData
+    data: menuItemsData.map(({brandName,restaurantName,menuName,categoryName,...e})=>e)
   });
  
   // Tạo vector cho từng item
   for (const item of menuItemsData) {
     const text = [
-      item.name,
-      item.description,
-      item.dietary_tags?.join(" "),
-      item.allergens?.join(" "),
-      item.restaurantName,
-      item.categoryName,
-      item.base_price ? `Price: ${item.base_price}` : ""
-    ].filter(Boolean).join(" ");
+        `Món ăn: ${item.name || "Món ăn ẩn danh"} là 1 món ăn.`,
+        ` ${item.restaurantName? `món ăn này thuộc nhà hàng: ${item.restaurantName}`:""}. `,
+        `${item.brandName?`món ăn này thuộc thương hiệu: ${item.brandName}`:""}.`,
+        
+        ` Giá cơ bản: ${item.base_price || 0}.`,
+        ` Phần trăm giảm giá: ${item.discount_percent??0}%`,
+        ` hạn ngày hết giảm giá: ${item.discount_until??"Không có thông tin"}`,
+         item.is_featured?"là món hot":"",
+        ` Menu: ${item.menuName|| "chưa cập nhật danh mục"}.`,
+        ` Danh mục: ${item.categoryName || "chưa cập nhật danh mục"}.`,
+       
+        ` Mô tả: ${item.description || "chưa cập nhật mô tả"}.`,
+        ` thành phần món ăn gồm: ${item.allergens ? item.allergens.join(", ") : "Không có thông tin"}. `,
+      
+    ].join(" ");
     const embedding = await embedText(text);
     const MenuItemVector = buildMenuItemVector({
-      id: `menuItem_${itemResult.id}`,
+      id: `menuItem_${item.id}`,
       name: item.name,
       description: item.description,
-      dietary_tags: item.dietary_tags,
       allergens: item.allergens,
       embedding: embedding,
+
       base_price: item.base_price,
+      brandName:item.brandName,
+      menuName:item.menuName,
       restaurantName: item.restaurantName,
       categoryName: item.categoryName
     });
-    await upsertVector(MenuItemVector);
+     await upsertVector(MenuItemVector, tableVector.menu);
+  
+    
+    
   }
   console.log(`✅ Created ${itemResult.count} menu items`);
 };

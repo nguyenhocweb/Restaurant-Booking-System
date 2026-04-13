@@ -1,7 +1,7 @@
 import { index } from "../../../config/pinecone.config.js";
 // upsert
 // src/modules/vector/service/vectorDB.service.js
-export const upsertVector = async (payload) => {
+export const upsertVector = async (payload, namespace = "") => {
   const rawRecords = (Array.isArray(payload) ? payload : [payload]).flat();
 
   // DEBUG: Log thử record đầu tiên xem cấu trúc đúng chưa
@@ -14,15 +14,17 @@ export const upsertVector = async (payload) => {
 
   try {
     // Đảm bảo dùng mảng sạch
-    await index.namespace("").upsert({ records: rawRecords });
+     await index.namespace(namespace).upsert({ records: rawRecords });
+  
+   
   } catch (error) {
     console.error("❌ Pinecone Upsert Error:", error.message);
     throw error;
   }
 };
 // search
-export const queryVector = async ({ vector, topK = 5, filter = {} }) => {
-  const result = await index.namespace("").query({
+export const queryVector = async ({ vector, topK = 5, filter = {}, namespace = "" }) => {
+  const result = await index.namespace(namespace).query({
     vector, // Vector truy vấn (embedding của câu hỏi)
     topK, // Số lượng kết quả trả về
     includeMetadata: true, // Bao gồm metadata trong kết quả
@@ -35,9 +37,15 @@ export const queryVector = async ({ vector, topK = 5, filter = {} }) => {
 };
 
 // delete
-export const deleteVector = async (id) => {
-  await index.namespace("").deleteOne(id);
+export const deleteVector = async (id, namespace = "") => {
+  await index.namespace(namespace).deleteOne(id);
 };
-export const deleteAllVector=async ()=>{
-  await index.namespace("").deleteAll();
-}
+export const deleteAllVector = async (namespace = "") => {
+  try {
+    console.log("⏳ Bắt đầu xóa toàn bộ vector trên Pinecone...");
+    await index.namespace(namespace).deleteAll();
+    console.log("✅ Xóa vector thành công!");
+  } catch (error) {
+    console.error("❌ Lỗi khi xóa vector trên Pinecone:", error);
+  }
+};

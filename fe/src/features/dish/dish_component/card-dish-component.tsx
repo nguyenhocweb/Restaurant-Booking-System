@@ -3,7 +3,7 @@ import { Div, P, A } from "@/src/core/components/ui";
 import FadeIn from "@/src/core/components/animation/FadeIn";
 const Card_Dish_Components = ({ dataDish, index }: { dataDish: Card_Dish_Type, index: number }) => {
     return (
-        <FadeIn delay={(index + 1) / 10}>
+        <FadeIn delay={(index + 1) / 10} >
             
                 <Div className="flex-col w-70">
                     <div className="overflow-hidden rounded-xl relative">

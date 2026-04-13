@@ -40,7 +40,7 @@ const PublicHome = () => {
                 <Div gap="g4_5">
                     <FadeIn delay={0.4}>
                         <Button variant="green" sizea="p4_3"
-                            onClick={() => { handleScroll("restaurantHome") }}
+                            onClick={() => { handleScroll("restaurant") }}
                         >Khám phá nhà hàng </Button>
                     </FadeIn>
                     <FadeIn delay={0.5}>

@@ -19,3 +19,6 @@ export const searchAIService=async({query, topK , filter})=>{
         });
     
 }
+export const chatBoxAiService=async(mes)=>{
+            
+}

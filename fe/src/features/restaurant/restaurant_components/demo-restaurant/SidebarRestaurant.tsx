@@ -41,7 +41,6 @@ const SidebarRestaurant = [
         name: "Đánh giá",
         idHtml: "reviews"
     },
-
 ]
 import { useScrollSpy } from '@/src/core/hooks/useScrollSpy';
 import { useScrollTo } from '@/src/core/hooks/useScrollTo';
@@ -50,7 +49,7 @@ const SidebarPage = () => {
     const activeId=useScrollSpy(sectionIds)
      const scrollTo = useScrollTo(150);
     return (
-        <Div variant="bg_white" size="full" className=' justify-between z-0 sticky top-15'>
+        <Div variant="bg_white" size="full" className=' justify-between z-1 sticky top-15'>
            {
             SidebarRestaurant.map(
                 e=>

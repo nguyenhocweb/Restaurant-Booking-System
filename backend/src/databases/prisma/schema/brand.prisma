@@ -5,15 +5,15 @@ model Brand {
   email_contact  String?
   phone_contact  String?
   description  String?
-  tax_code    String?
+  tax_code    String? 
   link        String?
   imageMain   String
   images      String[]
   isActive    isActive     @default(ACTIVE)
-  address     String?
+  address     String? 
   city        String?
   isFeatured  Boolean @default(false) // 👈 tiêu biểu
-  new        Boolean @default(true)
+  isNew        Boolean @default(true)
   restaurants Restaurant[] // 1 Brand có nhiều Nhà hàng
   employments Employment[] // Nhân sự cấp Brand
   menu        Menu[]

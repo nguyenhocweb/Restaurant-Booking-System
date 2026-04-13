@@ -114,6 +114,13 @@ Prisma.NullTypes = {
  * Enums
  */
 
+exports.Prisma.Category_RestaurantScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  isActive: 'isActive',
+  restaurantIds: 'restaurantIds'
+};
+
 exports.Prisma.EmploymentScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -129,7 +136,6 @@ exports.Prisma.MenuCategoryScalarFieldEnum = {
   menuId: 'menuId',
   name: 'name',
   description: 'description',
-  image_url: 'image_url',
   sort_order: 'sort_order',
   is_active: 'is_active'
 };
@@ -227,7 +233,7 @@ exports.Prisma.BrandScalarFieldEnum = {
   address: 'address',
   city: 'city',
   isFeatured: 'isFeatured',
-  new: 'new',
+  isNew: 'isNew',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -237,13 +243,7 @@ exports.Prisma.MenuScalarFieldEnum = {
   brandId: 'brandId',
   restaurantId: 'restaurantId',
   name: 'name',
-  type: 'type',
   description: 'description',
-  available_days: 'available_days',
-  available_from: 'available_from',
-  available_until: 'available_until',
-  valid_from: 'valid_from',
-  valid_until: 'valid_until',
   is_active: 'is_active',
   sort_order: 'sort_order'
 };
@@ -254,7 +254,6 @@ exports.Prisma.MenuItemScalarFieldEnum = {
   brandId: 'brandId',
   restaurantId: 'restaurantId',
   name: 'name',
-  slug: 'slug',
   description: 'description',
   image: 'image',
   images: 'images',
@@ -262,11 +261,9 @@ exports.Prisma.MenuItemScalarFieldEnum = {
   discount_percent: 'discount_percent',
   discount_until: 'discount_until',
   item_type: 'item_type',
-  dietary_tags: 'dietary_tags',
   allergens: 'allergens',
   spice_level: 'spice_level',
   prep_time: 'prep_time',
-  calories: 'calories',
   is_available: 'is_available',
   is_featured: 'is_featured',
   sort_order: 'sort_order',
@@ -411,7 +408,8 @@ exports.Prisma.RestaurantScalarFieldEnum = {
   averageRating: 'averageRating',
   average_food_rating: 'average_food_rating',
   average_service_rating: 'average_service_rating',
-  average_ambiance_rating: 'average_ambiance_rating'
+  average_ambiance_rating: 'average_ambiance_rating',
+  categoryIds: 'categoryIds'
 };
 
 exports.Prisma.Restaurant_AreasScalarFieldEnum = {
@@ -557,6 +555,18 @@ exports.isActive = exports.$Enums.isActive = {
   TERMINATED: 'TERMINATED'
 };
 
+exports.ItemType = exports.$Enums.ItemType = {
+  FOOD: 'FOOD',
+  DRINK: 'DRINK',
+  ALCOHOL: 'ALCOHOL',
+  DESSERT: 'DESSERT',
+  SIDE_DISH: 'SIDE_DISH',
+  TOPPING: 'TOPPING',
+  COMBO: 'COMBO',
+  SERVICE: 'SERVICE',
+  OTHER: 'OTHER'
+};
+
 exports.OrderStatus = exports.$Enums.OrderStatus = {
   OPEN: 'OPEN',
   SENT_TO_KITCHEN: 'SENT_TO_KITCHEN',
@@ -628,6 +638,7 @@ exports.TableStatus = exports.$Enums.TableStatus = {
 };
 
 exports.Prisma.ModelName = {
+  Category_Restaurant: 'Category_Restaurant',
   Employment: 'Employment',
   MenuCategory: 'MenuCategory',
   Notifications: 'Notifications',

@@ -15,7 +15,7 @@ enum isActive {
     TERMINATED // nghĩ vĩnh viễn
 }
 enum role_enum {
-    BRAND
+    BRAND 
     RESTAURANT
     SYSTEM
 }
@@ -126,6 +126,18 @@ enum PaymentStatus {
 enum TransactionStatus {
   PENDING
   SUCCESS
-  FAILED
+  FAILED 
   VOIDED
+}
+
+enum ItemType {
+  FOOD         // Món ăn chế biến
+  DRINK        // Đồ uống (Cà phê, nước ngọt)
+  ALCOHOL      // Đồ uống có cồn (Bia, rượu) - Cần check tuổi hoặc giấy phép
+  DESSERT      // Món tráng miệng
+  SIDE_DISH    // Món ăn kèm (Kim chi, khoai tây chiên)
+  TOPPING      // Topping thêm vào (Trân châu, trứng ốp la)
+  COMBO        // Gói combo nhiều món
+  SERVICE      // Phí dịch vụ (Phí phòng VIP, phí mang đồ uống ngoài vào)
+  OTHER        // Các loại khác
 }

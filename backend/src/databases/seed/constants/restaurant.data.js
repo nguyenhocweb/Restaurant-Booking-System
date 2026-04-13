@@ -5,6 +5,7 @@ export const restaurantData = [
   {
     id: "65b2a1c0d4f3e2a1b0c9d999",
     brandId: "65b2a1c0d4f3e2a1b0c9d8e7",
+    brandName: "Hương Việt",
     name: "Hương Việt Quận 1",
     slug: "huong-viet-quan-1",
     logo: "https://ui-avatars.com/api/?name=Huong+Viet&background=random",
@@ -28,11 +29,13 @@ export const restaurantData = [
     average_food_rating: 4.9,
     average_service_rating: 4.7,
     average_ambiance_rating: 4.8,
-    createdAt: new Date("2025-05-15T00:00:00Z")
+    createdAt: new Date("2025-05-15T00:00:00Z"),
+    categoryIds: ["65a000000000000000000007"] // Món Việt
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d99a",
     brandId: "65b2a1c0d4f3e2a1b0c9d8e7",
+    brandName: "Hương Việt",
     name: "Hương Việt Quận 3",
     slug: "huong-viet-quan-3",
     logo: "https://ui-avatars.com/api/?name=Huong+Viet&background=random",
@@ -56,7 +59,8 @@ export const restaurantData = [
     average_food_rating: 4.5,
     average_service_rating: 4.3,
     average_ambiance_rating: 4.6,
-    createdAt: new Date("2025-08-20T00:00:00Z")
+    createdAt: new Date("2025-08-20T00:00:00Z"),
+    categoryIds: ["65a000000000000000000007"] // Món Việt
   },
 
   // ==========================================
@@ -65,6 +69,7 @@ export const restaurantData = [
   {
     id: "65b2a1c0d4f3e2a1b0c9d99c",
     brandId: "65b2a1c0d4f3e2a1b0c9d8e8",
+    brandName: "Tokyo Sushi Chain",
     name: "Tokyo Sushi Lê Lợi",
     slug: "tokyo-sushi-le-loi",
     logo: "https://ui-avatars.com/api/?name=Tokyo+Sushi&background=random",
@@ -88,7 +93,8 @@ export const restaurantData = [
     average_food_rating: 5.0,
     average_service_rating: 4.8,
     average_ambiance_rating: 4.9,
-    createdAt: new Date("2026-03-20T00:00:00Z")
+    createdAt: new Date("2026-03-20T00:00:00Z"),
+    categoryIds: ["65a000000000000000000009", "65a000000000000000000020", "65a000000000000000000005"] // Món Nhật Bản, Sushi & Sashimi, Fine Dining
   },
 
   // ==========================================
@@ -97,6 +103,7 @@ export const restaurantData = [
   {
     id: "65b2a1c0d4f3e2a1b0c9d99e",
     brandId: "65b2a1c0d4f3e2a1b0c9d8e9",
+    brandName: "BBQ Master Vietnam",
     name: "BBQ Master Gò Vấp",
     slug: "bbq-master-go-vap",
     logo: "https://ui-avatars.com/api/?name=BBQ+Master&background=random",
@@ -120,7 +127,8 @@ export const restaurantData = [
     average_food_rating: 4.4,
     average_service_rating: 4.1,
     average_ambiance_rating: 4.4,
-    createdAt: new Date("2024-12-01T00:00:00Z")
+    createdAt: new Date("2024-12-01T00:00:00Z"),
+    categoryIds: ["65a000000000000000000002", "65a000000000000000000006"] // Nướng BBQ, Quán Nhậu
   },
 
   // ==========================================
@@ -129,6 +137,7 @@ export const restaurantData = [
   {
     id: "65b2a1c0d4f3e2a1b0c9d9b2",
     brandId: "65b2a1c0d4f3e2a1b0c9d8ec",
+    brandName: "Golden Steakhouse",
     name: "Golden Steak Landmark 81",
     slug: "golden-steak-landmark",
     logo: "https://ui-avatars.com/api/?name=Golden+Steak&background=random",
@@ -151,7 +160,8 @@ export const restaurantData = [
     average_food_rating: 4.9,
     average_service_rating: 4.8,
     average_ambiance_rating: 5.0,
-    createdAt: new Date("2024-05-10T00:00:00Z")
+    createdAt: new Date("2024-05-10T00:00:00Z"),
+    categoryIds: ["65a000000000000000000021", "65a000000000000000000012", "65a000000000000000000005"] // Steak, Món Âu, Fine Dining
   },
 
   // ==========================================
@@ -160,6 +170,7 @@ export const restaurantData = [
   {
     id: "65b2a1c0d4f3e2a1b0c9d9b5",
     brandId: "65b2a1c0d4f3e2a1b0c9d8fb",
+    brandName: "Indochine Palace",
     name: "Indochine Palace Quận 2",
     slug: "indochine-palace-q2",
     logo: "https://ui-avatars.com/api/?name=Indochine&background=random",
@@ -182,7 +193,8 @@ export const restaurantData = [
     average_food_rating: 4.7,
     average_service_rating: 4.8,
     average_ambiance_rating: 4.9,
-    createdAt: new Date("2026-01-05T00:00:00Z")
+    createdAt: new Date("2026-01-05T00:00:00Z"),
+    categoryIds: ["65a000000000000000000007", "65a000000000000000000005"] // Món Việt, Fine Dining
   },
 
   // ==========================================
@@ -191,6 +203,7 @@ export const restaurantData = [
   {
     id: "65b2a1c0d4f3e2a1b0c9d9b7",
     brandId: "65b2a1c0d4f3e2a1b0c9d8fd",
+    brandName: "Pasta & Co",
     name: "Pasta & Co Tú Xương",
     slug: "pasta-co-tu-xuong",
     logo: "https://ui-avatars.com/api/?name=Pasta&background=random",
@@ -213,7 +226,8 @@ export const restaurantData = [
     average_food_rating: 4.8,
     average_service_rating: 4.6,
     average_ambiance_rating: 4.7,
-    createdAt: new Date("2025-11-12T00:00:00Z")
+    createdAt: new Date("2025-11-12T00:00:00Z"),
+    categoryIds: ["65a000000000000000000013", "65a000000000000000000022"] // Món Ý, Pizza & Pasta
   },
 
   // ==========================================
@@ -224,6 +238,7 @@ export const restaurantData = [
   ...["Hà Nội", "Đà Nẵng", "Nha Trang", "Cần Thơ", "Vũng Tàu"].map((city, index) => ({
     id: `65b2a1c0d4f3e2a1b0c9da${index + 10}`,
     brandId: "65b2a1c0d4f3e2a1b0c9d8e7",
+    brandName: "Hương Việt",
     name: `Hương Việt ${city}`,
     slug: `huong-viet-${city.toLowerCase().replace(" ", "-")}`,
     logo: "https://ui-avatars.com/api/?name=Huong+Viet&background=random",
@@ -245,13 +260,15 @@ export const restaurantData = [
     average_food_rating: 4.5,
     average_service_rating: 4.5,
     average_ambiance_rating: 4.5,
-    createdAt: new Date()
+    createdAt: new Date(),
+    categoryIds: ["65a000000000000000000007"] // Món Việt
   })),
 
   // 6-10: Chuỗi Tokyo Sushi Mở Rộng
   ...["Quận 7", "Bình Thạnh", "Quận 2", "Hải Châu", "Hoàn Kiếm"].map((area, index) => ({
     id: `65b2a1c0d4f3e2a1b0c9db${index + 10}`,
     brandId: "65b2a1c0d4f3e2a1b0c9d8e8",
+    brandName: "Tokyo Sushi Chain",
     name: `Tokyo Sushi ${area}`,
     slug: `tokyo-sushi-${area.toLowerCase().replace(" ", "-")}`,
     logo: "https://ui-avatars.com/api/?name=Tokyo+Sushi&background=random",
@@ -272,13 +289,15 @@ export const restaurantData = [
     average_food_rating: 4.9,
     average_service_rating: 4.7,
     average_ambiance_rating: 4.8,
-    createdAt: new Date()
+    createdAt: new Date(),
+    categoryIds: ["65a000000000000000000009", "65a000000000000000000020"] // Món Nhật Bản, Sushi & Sashimi
   })),
 
   // 11-15: Chuỗi BBQ Master Mở Rộng
   ...["Quận 10", "Tân Phú", "Thủ Đức", "Ba Đình", "Sơn Trà"].map((area, index) => ({
     id: `65b2a1c0d4f3e2a1b0c9dc${index + 10}`,
     brandId: "65b2a1c0d4f3e2a1b0c9d8e9",
+    brandName: "BBQ Master Vietnam",
     name: `BBQ Master ${area}`,
     slug: `bbq-master-${area.toLowerCase().replace(" ", "-")}`,
     logo: "https://ui-avatars.com/api/?name=BBQ+Master&background=random",
@@ -298,13 +317,15 @@ export const restaurantData = [
     average_food_rating: 4.5,
     average_service_rating: 4.2,
     average_ambiance_rating: 4.5,
-    createdAt: new Date()
+    createdAt: new Date(),
+    categoryIds: ["65a000000000000000000002", "65a000000000000000000006"] // Nướng BBQ, Quán Nhậu
   })),
 
   // 16-20: Các Brand Specialty (Hải Sản, Mì Quảng, Meatball)
   {
     id: "65b2a1c0d4f3e2a1b0c9dd01",
     brandId: "65b2a1c0d4f3e2a1b0c9d8fe",
+    brandName: "Hải Sản Phố",
     name: "Hải Sản Phố Liễu Giai",
     slug: "hai-san-pho-lieu-giai",
     logo: "https://ui-avatars.com/api/?name=HS+Pho&background=random",
@@ -325,11 +346,13 @@ export const restaurantData = [
     average_food_rating: 4.7,
     average_service_rating: 4.5,
     average_ambiance_rating: 4.6,
-    createdAt: new Date()
+    createdAt: new Date(),
+    categoryIds: ["65a000000000000000000016"] // Hải sản
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9dd02",
     brandId: "65b2a1c0d4f3e2a1b0c9d904",
+    brandName: "Mì Quảng Ếch Đà Thành",
     name: "Mì Quảng Ếch Pasteur",
     slug: "mi-quang-ech-pasteur",
     logo: "https://ui-avatars.com/api/?name=Mi+Quang&background=random",
@@ -349,11 +372,13 @@ export const restaurantData = [
     average_food_rating: 4.8,
     average_service_rating: 4.5,
     average_ambiance_rating: 4.8,
-    createdAt: new Date()
+    createdAt: new Date(),
+    categoryIds: ["65a000000000000000000007", "65a000000000000000000024"] // Món Việt, Bún - Phở - Mì
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9dd03",
     brandId: "65b2a1c0d4f3e2a1b0c9d902",
+    brandName: "The Meatball Co.",
     name: "The Meatball Co. Phan Xích Long",
     slug: "meatball-co-pxl",
     logo: "https://ui-avatars.com/api/?name=Meatball&background=random",
@@ -373,11 +398,13 @@ export const restaurantData = [
     average_food_rating: 4.5,
     average_service_rating: 4.3,
     average_ambiance_rating: 4.4,
-    createdAt: new Date()
+    createdAt: new Date(),
+    categoryIds: ["65a000000000000000000012", "65a000000000000000000022"] // Món Âu, Pizza & Pasta
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9dd04",
     brandId: "65b2a1c0d4f3e2a1b0c9d8fb",
+    brandName: "Indochine Palace",
     name: "Indochine Palace Hội An",
     slug: "indochine-palace-hoian",
     logo: "https://ui-avatars.com/api/?name=Indochine&background=random",
@@ -398,11 +425,13 @@ export const restaurantData = [
     average_food_rating: 5.0,
     average_service_rating: 4.8,
     average_ambiance_rating: 5.0,
-    createdAt: new Date()
+    createdAt: new Date(),
+    categoryIds: ["65a000000000000000000007", "65a000000000000000000005"] // Món Việt, Fine Dining
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9dd05",
     brandId: "65b2a1c0d4f3e2a1b0c9d8ea",
+    brandName: "Coffee & Chill",
     name: "Coffee & Chill Đà Lạt",
     slug: "coffee-chill-dalat",
     logo: "https://ui-avatars.com/api/?name=CC&background=random",
@@ -422,6 +451,241 @@ export const restaurantData = [
     average_food_rating: 4.7,
     average_service_rating: 4.9,
     average_ambiance_rating: 5.0,
-    createdAt: new Date()
-  }
+    createdAt: new Date(),
+    categoryIds: ["65a000000000000000000025"] // Cafe & Dessert
+  },
+  ...["Quận 1", "Quận 2", "Quận 3"].map((area, index) => ({
+    id: `65b2a1c0d4f3e2a1b0c9de${10 + index}`,
+    brandId: "65b2a1c0d4f3e2a1b0c9d8eb",
+    brandName: "Luna Asian Fusion",
+    name: `Luna Asian Fusion ${area}`,
+    slug: `luna-asian-fusion-${area.toLowerCase().replace(" ", "-")}`,
+    logo: "https://ui-avatars.com/api/?name=Luna+Fusion&background=random",
+    isNew: index === 1,
+    address: `Đường sầm uất ${area}`,
+    city: "Hồ Chí Minh",
+    email_contact: `contact.${index}@luna.vn`,
+    phone_contact: `098811100${index}`,
+    description: "Nhà hàng fusion kết hợp ẩm thực Á - Âu với không gian cực kỳ lãng mạn.",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c",
+    images: ["https://images.unsplash.com/photo-1569058242253-1d02c6109dc0"],
+    max_party_size: 45,
+    booking_window_days: 14,
+    cancellation_hours: 6,
+    deposit_required: true,
+    deposit_amount: 500000,
+    weightedScore: 4.6,
+    totalRating: 85,
+    averageRating: 4.7,
+    average_food_rating: 4.8,
+    average_service_rating: 4.6,
+    average_ambiance_rating: 4.9,
+    createdAt: new Date(`2025-0${index + 1}-10T00:00:00Z`),
+    categoryIds: ["65a000000000000000000012", "65a000000000000000000009"] // Món Âu, Món Nhật Bản (Fusion)
+  })),
+
+  // ==========================================
+  // BRAND: SAIGON VEGAN KITCHEN (65b2a1c0d4f3e2a1b0c9d8ed)
+  // ==========================================
+  ...["Bình Thạnh", "Gò Vấp", "Phú Nhuận"].map((area, index) => ({
+    id: `65b2a1c0d4f3e2a1b0c9de${20 + index}`,
+    brandId: "65b2a1c0d4f3e2a1b0c9d8ed",
+    brandName: "Saigon Vegan Kitchen",
+    name: `Saigon Vegan ${area}`,
+    slug: `saigon-vegan-${area.toLowerCase().replace(" ", "-")}`,
+    logo: "https://ui-avatars.com/api/?name=Vegan+Kitchen&background=random",
+    isNew: true,
+    address: `Khu phố yên tĩnh ${area}`,
+    city: "Hồ Chí Minh",
+    email_contact: `${area.toLowerCase().replace(" ", "")}@vegan.vn`,
+    phone_contact: `093322200${index}`,
+    description: "Không gian thuần chay an tịnh, nguyên liệu hữu cơ 100%.",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe",
+    images: [],
+    max_party_size: 30,
+    booking_window_days: 7,
+    cancellation_hours: 2,
+    deposit_required: false,
+    deposit_amount: null,
+    weightedScore: 4.8,
+    totalRating: 112,
+    averageRating: 4.9,
+    average_food_rating: 4.9,
+    average_service_rating: 4.8,
+    average_ambiance_rating: 5.0,
+    createdAt: new Date(),
+    categoryIds: ["65a000000000000000000017", "65a000000000000000000018"] // Món Chay, Healthy & Eat Clean
+  })),
+
+  // ==========================================
+  // BRAND: PIZZA ROMA (65b2a1c0d4f3e2a1b0c9d8ee)
+  // ==========================================
+  ...["Quận 7", "Tân Bình", "Thủ Đức"].map((area, index) => ({
+    id: `65b2a1c0d4f3e2a1b0c9de${30 + index}`,
+    brandId: "65b2a1c0d4f3e2a1b0c9d8ee",
+    brandName: "Pizza Roma",
+    name: `Pizza Roma ${area}`,
+    slug: `pizza-roma-${area.toLowerCase().replace(" ", "-")}`,
+    logo: "https://ui-avatars.com/api/?name=Pizza+Roma&background=random",
+    isNew: false,
+    address: `Trung tâm thương mại ${area}`,
+    city: "Hồ Chí Minh",
+    email_contact: `booking@pizzaroma-${area.toLowerCase().replace(" ", "")}.vn`,
+    phone_contact: `090133300${index}`,
+    description: "Pizza đế mỏng nướng củi phong cách Ý chuẩn vị.",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1594007654729-407eedc4be65",
+    images: ["https://images.unsplash.com/photo-1513104890138-7c749659a591"],
+    max_party_size: 60,
+    booking_window_days: 14,
+    cancellation_hours: 4,
+    deposit_required: false,
+    deposit_amount: null,
+    weightedScore: 4.3,
+    totalRating: 320,
+    averageRating: 4.4,
+    average_food_rating: 4.5,
+    average_service_rating: 4.2,
+    average_ambiance_rating: 4.4,
+    createdAt: new Date(`2024-11-${10 + index}T00:00:00Z`),
+    categoryIds: ["65a000000000000000000013", "65a000000000000000000022"] // Món Ý, Pizza & Pasta
+  })),
+
+  // ==========================================
+  // BRAND: KOREAN GRILL HOUSE (65b2a1c0d4f3e2a1b0c9d8ef)
+  // ==========================================
+  ...["Cầu Giấy", "Đống Đa", "Hai Bà Trưng"].map((area, index) => ({
+    id: `65b2a1c0d4f3e2a1b0c9de${40 + index}`,
+    brandId: "65b2a1c0d4f3e2a1b0c9d8ef",
+    brandName: "Korean Grill House",
+    name: `Korean Grill ${area}`,
+    slug: `korean-grill-${area.toLowerCase().replace(" ", "-")}`,
+    logo: "https://ui-avatars.com/api/?name=Korean+Grill&background=random",
+    isNew: false,
+    address: `Khu phố ẩm thực ${area}`,
+    city: "Hà Nội",
+    email_contact: `${area.toLowerCase().replace(" ", "")}@kgrill.vn`,
+    phone_contact: `098844400${index}`,
+    description: "Thịt nướng tảng chuẩn Hàn, panchan phục vụ không giới hạn.",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d",
+    images: ["https://images.unsplash.com/photo-1544928147-79a2dbc1f389"],
+    max_party_size: 100,
+    booking_window_days: 10,
+    cancellation_hours: 12,
+    deposit_required: true,
+    deposit_amount: 500000,
+    weightedScore: 4.5,
+    totalRating: 450,
+    averageRating: 4.6,
+    average_food_rating: 4.7,
+    average_service_rating: 4.5,
+    average_ambiance_rating: 4.5,
+    createdAt: new Date(`2023-08-${15 + index}T00:00:00Z`),
+    categoryIds: ["65a000000000000000000008", "65a000000000000000000002"] // Món Hàn Quốc, Nướng BBQ
+  })),
+
+  // ==========================================
+  // BRAND: BÚN BÒ HUẾ 1986 (65b2a1c0d4f3e2a1b0c9d8f0)
+  // ==========================================
+  ...["Đà Nẵng", "Huế", "Hội An"].map((area, index) => ({
+    id: `65b2a1c0d4f3e2a1b0c9de${50 + index}`,
+    brandId: "65b2a1c0d4f3e2a1b0c9d8f0",
+    brandName: "Bún Bò Huế 1986",
+    name: `Bún Bò Huế 1986 ${area}`,
+    slug: `bun-bo-hue-1986-${area.toLowerCase().replace(" ", "-")}`,
+    logo: "https://ui-avatars.com/api/?name=Bun+Bo+Hue&background=random",
+    isNew: index === 2,
+    address: `Đường trung tâm ${area}`,
+    city: area,
+    email_contact: `contact@bunbo1986-${area.toLowerCase().replace(" ", "")}.vn`,
+    phone_contact: `097755500${index}`,
+    description: "Tô bún bò đầy đặn, nước dùng thanh ngọt vị xương ống và mắm ruốc chuẩn Huế.",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1604908812839-4b9e4e8152ef",
+    images: [],
+    max_party_size: 40,
+    booking_window_days: 3,
+    cancellation_hours: 1,
+    deposit_required: false,
+    deposit_amount: null,
+    weightedScore: 4.7,
+    totalRating: 890,
+    averageRating: 4.8,
+    average_food_rating: 4.9,
+    average_service_rating: 4.6,
+    average_ambiance_rating: 4.5,
+    createdAt: new Date(`2022-01-${10 + index}T00:00:00Z`),
+    categoryIds: ["65a000000000000000000007", "65a000000000000000000024"] // Món Việt, Bún - Phở - Mì
+  })),
+
+  // ==========================================
+  // BRAND: DIMSUM GARDEN (65b2a1c0d4f3e2a1b0c9d8f1)
+  // ==========================================
+  ...["Quận 5", "Quận 10", "Quận 11"].map((area, index) => ({
+    id: `65b2a1c0d4f3e2a1b0c9de${60 + index}`,
+    brandId: "65b2a1c0d4f3e2a1b0c9d8f1",
+    brandName: "Dimsum Garden",
+    name: `Dimsum Garden ${area}`,
+    slug: `dimsum-garden-${area.toLowerCase().replace(" ", "-")}`,
+    logo: "https://ui-avatars.com/api/?name=Dimsum+Garden&background=random",
+    isNew: index === 0,
+    address: `Khu Chợ Lớn ${area}`,
+    city: "Hồ Chí Minh",
+    email_contact: `hello@dimsum-${area.toLowerCase().replace(" ", "")}.vn`,
+    phone_contact: `090866600${index}`,
+    description: "Nhà hàng dimsum gia truyền với nghệ nhân làm bánh hơn 20 năm kinh nghiệm.",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1585032226651-759b368d7246",
+    images: ["https://images.unsplash.com/photo-1496116218417-1a781b1c416c"],
+    max_party_size: 80,
+    booking_window_days: 7,
+    cancellation_hours: 6,
+    deposit_required: false,
+    deposit_amount: null,
+    weightedScore: 4.4,
+    totalRating: 210,
+    averageRating: 4.5,
+    average_food_rating: 4.7,
+    average_service_rating: 4.3,
+    average_ambiance_rating: 4.4,
+    createdAt: new Date(`2025-09-${10 + index}T00:00:00Z`),
+    categoryIds: ["65a000000000000000000010", "65a000000000000000000019"] // Món Trung Hoa, Dimsum
+  })),
+
+  // ==========================================
+  // BRAND: BURGER STATION (65b2a1c0d4f3e2a1b0c9d8f5)
+  // ==========================================
+  ...["Quận 1", "Quận 3"].map((area, index) => ({
+    id: `65b2a1c0d4f3e2a1b0c9de${70 + index}`,
+    brandId: "65b2a1c0d4f3e2a1b0c9d8f5",
+    brandName: "Burger Station",
+    name: `Burger Station ${area}`,
+    slug: `burger-station-${area.toLowerCase().replace(" ", "-")}`,
+    logo: "https://ui-avatars.com/api/?name=Burger+Station&background=random",
+    isNew: true,
+    address: `Góc đường sầm uất ${area}`,
+    city: "Hồ Chí Minh",
+    email_contact: `store${index + 1}@burger.vn`,
+    phone_contact: `091577700${index}`,
+    description: "Mô hình fast-food hiện đại với vỏ bánh brioche nướng bơ tỏi thơm lừng.",
+    isActive: "ACTIVE",
+    imageMain: "https://images.unsplash.com/photo-1550547660-d9450f859349",
+    images: ["https://images.unsplash.com/photo-1568901346375-23c9450c58cd"],
+    max_party_size: 20,
+    booking_window_days: 2,
+    cancellation_hours: 1,
+    deposit_required: false,
+    deposit_amount: null,
+    weightedScore: 4.2,
+    totalRating: 45,
+    averageRating: 4.3,
+    average_food_rating: 4.5,
+    average_service_rating: 4.1,
+    average_ambiance_rating: 4.2,
+    createdAt: new Date(),
+    categoryIds: ["65a000000000000000000004"] // Thức ăn nhanh
+  }))
 ];

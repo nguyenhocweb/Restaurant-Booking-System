@@ -9,11 +9,11 @@ model Restaurant {
   address   String?
   city      String?
   email_contact  String?
-  phone_contact  String?
+  phone_contact  String? 
   description  String?
   isActive  isActive  @default(ACTIVE)
   imageMain   String
-  images      String[]
+  images      String[] 
   slug             String?
   employments Employment[]  // nhẫn viên cấp nhà hàng
   
@@ -31,14 +31,16 @@ model Restaurant {
   special_schedules     Special_Schedules[]   // giờ mở cửa or đóng đặc biệt
   reservations          Reservations[]
   review_restaurant     Review_Restaurant[]
-   items                MenuItem[]
+  items                MenuItem[]
   weightedScore         Float
   totalRating           Int   // tổng luyowtj đánh giá
   averageRating         Float    @default(0.0)  // trung bình đánh giá
   average_food_rating     Float    @default(0.0) // trung bình đánh giá đồ ăn
   average_service_rating   Float    @default(0.0)  // trung bình đnahs giá phục vụ
   average_ambiance_rating  Float    @default(0.0)  // trung bình đánh giá không gian quán
- paymentConfigs RestaurantPaymentConfig[]
+  paymentConfigs RestaurantPaymentConfig[]
+  categoryIds String[]   @db.ObjectId
+  categories  Category_Restaurant[] @relation(fields: [categoryIds], references: [id])
   @@index([brandId, isActive])        // theo brand
   @@index([isActive, createdAt])     // list + pagination
   @@index([city, isActive])          // filter location

@@ -8,7 +8,7 @@ const axiosClient = axios.create({
         "Content-Type": "application/json"
     },
     withCredentials: true, // Quan trọng: Để gửi cookie đi kèm
-    timeout: 10000
+    timeout: 60000
 });
 
 // 2. Instance phụ (CHỈ DÙNG ĐỂ REFRESH TOKEN)

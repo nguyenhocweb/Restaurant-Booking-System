@@ -1,3 +1,14 @@
+model Category_Restaurant {
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  name          String       @unique // VD: Lẩu, Nướng, Chay, Hàn Quốc...
+  isActive      Boolean      @default(true)
+  // Quan hệ ngược lại với Restaurant
+  restaurantIds String[]     @db.ObjectId
+  restaurants   Restaurant[] @relation(fields: [restaurantIds], references: [id])
+
+  @@map("category_restaurant")
+}
+
 // 7. BẢNG PHÂN CÔNG CÔNG VIỆC (Mảnh ghép quan trọng nhất)
 // Trả lời câu hỏi: Ai? Làm chức vụ gì? Ở đâu?
 model Employment {
@@ -39,7 +50,6 @@ model MenuCategory {
 
   name        String
   description String?
-  image_url   String?
 
   sort_order Int     @default(0)
   is_active  Boolean @default(true)
@@ -223,7 +233,7 @@ model Brand {
   address        String?
   city           String?
   isFeatured     Boolean                   @default(false) // 👈 tiêu biểu
-  new            Boolean                   @default(true)
+  isNew          Boolean                   @default(true)
   restaurants    Restaurant[] // 1 Brand có nhiều Nhà hàng
   employments    Employment[] // Nhân sự cấp Brand
   menu           Menu[]
@@ -384,26 +394,28 @@ enum TransactionStatus {
   VOIDED
 }
 
+enum ItemType {
+  FOOD // Món ăn chế biến
+  DRINK // Đồ uống (Cà phê, nước ngọt)
+  ALCOHOL // Đồ uống có cồn (Bia, rượu) - Cần check tuổi hoặc giấy phép
+  DESSERT // Món tráng miệng
+  SIDE_DISH // Món ăn kèm (Kim chi, khoai tây chiên)
+  TOPPING // Topping thêm vào (Trân châu, trứng ốp la)
+  COMBO // Gói combo nhiều món
+  SERVICE // Phí dịch vụ (Phí phòng VIP, phí mang đồ uống ngoài vào)
+  OTHER // Các loại khác
+}
+
 model Menu {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 
   brandId String? @db.ObjectId
   brand   Brand?  @relation(fields: [brandId], references: [id])
 
-  restaurantId String?     @db.ObjectId
-  restaurant   Restaurant? @relation(fields: [restaurantId], references: [id])
+  restaurantId String?        @db.ObjectId
+  restaurant   Restaurant?    @relation(fields: [restaurantId], references: [id])
   name         String // tên menu đó Main Menu
-  type         String // loại menu
   description  String?
-
-  available_days Int[] // menu mở ngày nào trong tuần
-
-  available_from  String? // thời gian phục vụ trong ngày bắt đầu mấy h null thì cả ngày
-  available_until String? //thời gian phục vụ trong ngày kết thúc mấy h
-
-  valid_from  DateTime? // menu hiệu lực bbawts đầu từ ngày nào  nếu null thì quanh năm
-  valid_until DateTime? // menu hiệu lực kết thúc từ ngày nào
-
   is_active    Boolean        @default(true) // còn sử dụng không hay tạm hết 
   sort_order   Int            @default(0) // thứ tự nằm trong bảng menu 0 đứng trước ...
   menucategory MenuCategory[]
@@ -426,23 +438,20 @@ model MenuItem {
   restaurant   Restaurant? @relation(fields: [restaurantId], references: [id])
 
   name        String
-  slug        String
   description String?
   image       String
   images      String[]
 
-  base_price Int
+  base_price Int // giá gốc
 
-  discount_percent Float?
-  discount_until   DateTime?
+  discount_percent Float? // phần trăm giảm giá
+  discount_until   DateTime? // ngày kết thúc giảm giá
 
-  item_type    String?
-  dietary_tags String[]
-  allergens    String[]
+  item_type ItemType?
+  allergens String[] // thành phần món ăn để biết khách có bị dị ứng hay không
 
-  spice_level  Int?
-  prep_time    Int?
-  calories     Int?
+  spice_level  Int? // độ cay
+  prep_time    Int? // thời gian chuẩn bị dự kiến 
   is_available Boolean @default(true) // còn bán hay không
   is_featured  Boolean @default(false) // món có hot không
 
@@ -716,6 +725,8 @@ model Restaurant {
   average_service_rating  Float                     @default(0.0) // trung bình đnahs giá phục vụ
   average_ambiance_rating Float                     @default(0.0) // trung bình đánh giá không gian quán
   paymentConfigs          RestaurantPaymentConfig[]
+  categoryIds             String[]                  @db.ObjectId
+  categories              Category_Restaurant[]     @relation(fields: [categoryIds], references: [id])
 
   @@index([brandId, isActive]) // theo brand
   @@index([isActive, createdAt]) // list + pagination

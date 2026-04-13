@@ -17,7 +17,7 @@ export default [
     ],
     description: "Chuỗi nhà hàng ẩm thực Việt truyền thống với hương vị đậm đà và không gian sang trọng.",
     isFeatured: true,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8e8",
@@ -37,7 +37,7 @@ export default [
     ],
     description: "Chuỗi sushi chuẩn Nhật với nguyên liệu tươi sống nhập khẩu và đầu bếp chuyên nghiệp.",
     isFeatured: true,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8e9",
@@ -57,7 +57,7 @@ export default [
     ],
     description: "Thiên đường BBQ với đa dạng món nướng từ Hàn Quốc đến Mỹ, phù hợp mọi buổi tụ họp.",
     isFeatured: false,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8ea",
@@ -76,7 +76,7 @@ export default [
     ],
     description: "Không gian cà phê thư giãn, phù hợp làm việc và gặp gỡ bạn bè với phong cách hiện đại.",
     isFeatured: false,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8eb",
@@ -95,7 +95,7 @@ export default [
     ],
     description: "Nhà hàng fusion kết hợp ẩm thực Á - Âu với phong cách sáng tạo và không gian sang trọng.",
     isFeatured: true,
-    new: true
+    isNew: true
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8ec",
@@ -115,7 +115,7 @@ export default [
     ],
     description: "Chuỗi steakhouse cao cấp chuyên phục vụ bò Mỹ và Úc với quy trình chế biến chuẩn quốc tế.",
     isFeatured: true,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8ed",
@@ -134,7 +134,7 @@ export default [
     ],
     description: "Nhà hàng thuần chay với thực đơn sáng tạo, tốt cho sức khỏe và thân thiện môi trường.",
     isFeatured: false,
-    new: true
+    isNew: true
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8ee",
@@ -154,7 +154,7 @@ export default [
     ],
     description: "Pizza phong cách Ý truyền thống với lò nướng củi và nguyên liệu nhập khẩu.",
     isFeatured: true,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8ef",
@@ -173,7 +173,7 @@ export default [
     ],
     description: "Nhà hàng nướng Hàn Quốc chuẩn vị với hệ thống hút khói hiện đại.",
     isFeatured: false,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8f0",
@@ -190,7 +190,7 @@ export default [
     images: [],
     description: "Chuỗi bún bò Huế gia truyền với hương vị đậm chất miền Trung.",
     isFeatured: true,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8f1",
@@ -209,7 +209,7 @@ export default [
     ],
     description: "Thiên đường dimsum với hàng trăm món hấp dẫn chuẩn vị Trung Hoa.",
     isFeatured: false,
-    new: true
+    isNew: true
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8f2",
@@ -229,7 +229,7 @@ export default [
     ],
     description: "Quán cà phê specialty với hạt rang xay tại chỗ và không gian hiện đại.",
     isFeatured: true,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8f3",
@@ -246,7 +246,7 @@ export default [
     images: [],
     description: "Ẩm thực đường phố Thái Lan với hương vị cay nồng đặc trưng.",
     isFeatured: false,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8f4",
@@ -265,7 +265,7 @@ export default [
     ],
     description: "Nhà hàng hải sản cao cấp với nguồn nguyên liệu tươi sống mỗi ngày.",
     isFeatured: true,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8f5",
@@ -284,7 +284,7 @@ export default [
     ],
     description: "Burger phong cách Mỹ với combo nhanh gọn, phù hợp giới trẻ.",
     isFeatured: false,
-    new: true
+    isNew: true
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8f6",
@@ -304,7 +304,7 @@ export default [
     ],
     description: "Nhà hàng fine dining đẳng cấp với trải nghiệm ẩm thực sang trọng.",
     isFeatured: true,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8f7",
@@ -323,7 +323,7 @@ export default [
     ],
     description: "Phở bò gia truyền mang đậm nét văn hóa ẩm thực thủ đô Hà Nội.",
     isFeatured: true,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8f8",
@@ -342,7 +342,7 @@ export default [
     ],
     description: "Thưởng thức hải sản tươi sống bên bờ biển Mỹ Khê tuyệt đẹp.",
     isFeatured: true,
-    new: true
+    isNew: true
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8f9",
@@ -362,7 +362,7 @@ export default [
     ],
     description: "Trải nghiệm cà phê nguyên bản được rang mộc ngay tại thành phố sương mù.",
     isFeatured: false,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8fa",
@@ -381,7 +381,7 @@ export default [
     ],
     description: "Món ngon miệt vườn với các nguyên liệu đồng quê sạch từ trang trại.",
     isFeatured: false,
-    new: true
+    isNew: true
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8fb",
@@ -401,7 +401,7 @@ export default [
     ],
     description: "Nhà hàng phong cách Đông Dương với sự kết hợp tinh tế giữa kiến trúc Pháp và hương vị Việt cổ điển.",
     isFeatured: true,
-    new: true
+    isNew: true
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8fc",
@@ -420,7 +420,7 @@ export default [
     ],
     description: "Trải nghiệm nướng trên ngói độc đáo trong không gian se lạnh đặc trưng của phố núi.",
     isFeatured: false,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8fd",
@@ -440,7 +440,7 @@ export default [
     ],
     description: "Mì Ý tươi được làm thủ công mỗi ngày với các loại sốt nhập khẩu trực tiếp từ vùng Tuscany.",
     isFeatured: true,
-    new: true
+    isNew: true
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8fe",
@@ -459,7 +459,7 @@ export default [
     ],
     description: "Siêu thị hải sản quy mô lớn tại Hà Nội với các bể chứa tôm hùm, cua hoàng đế tươi sống.",
     isFeatured: true,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d8ff",
@@ -478,7 +478,7 @@ export default [
     ],
     description: "Ẩm thực Tây Ban Nha sôi động với những đĩa Tapas nhỏ xinh và rượu Sangria nồng nàn.",
     isFeatured: false,
-    new: true
+    isNew: true
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d900",
@@ -495,7 +495,7 @@ export default [
     images: [],
     description: "Trà đạo Nhật Bản trong không gian tĩnh mịch, giúp bạn tìm lại sự cân bằng giữa lòng thành phố.",
     isFeatured: false,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d901",
@@ -514,7 +514,7 @@ export default [
     ],
     description: "Đặc sản lẩu mắm và lẩu cá linh bông điên điển chuẩn vị vùng sông nước Cửu Long.",
     isFeatured: false,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d902",
@@ -533,7 +533,7 @@ export default [
     ],
     description: "Chuyên các món thịt viên phong cách Châu Âu kết hợp với các loại sốt kem đặc trưng.",
     isFeatured: false,
-    new: true
+    isNew: true
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d903",
@@ -550,7 +550,7 @@ export default [
     images: [],
     description: "Kebab Trung Đông với gia vị tẩm ướp độc đáo và bánh mì pita nướng nóng hổi.",
     isFeatured: false,
-    new: false
+    isNew: false
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d904",
@@ -567,6 +567,6 @@ export default [
     images: [],
     description: "Mì Quảng ếch trứ danh Đà Nẵng, phục vụ trong niêu đất giữ nhiệt cực tốt.",
     isFeatured: true,
-    new: false
+    isNew: false
   }
 ];

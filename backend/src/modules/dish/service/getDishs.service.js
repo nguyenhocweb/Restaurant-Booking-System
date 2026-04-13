@@ -14,6 +14,8 @@ export const getDishsService=async(page,limit,where,type)=>{
         }),
         countDishs( baseWhere )
     ])
+    console.log(Dishs);
+    
      return Dishs?{code:200,data:{data:Dishs,total:totalDishs}}:{code:404,mes:"không tìm thấy tài nguyên"}
    
 }

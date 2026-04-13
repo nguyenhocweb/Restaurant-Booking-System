@@ -77,7 +77,7 @@ const RestaurantTemplate1 = ({ id }: { id: string }) => {
                         <PolicyPage />
                     </FadeIn>
                     <FadeIn delay={0.2} className="w-full">
-                        <MenuPage />
+                        <MenuPage idRestaurant={id}/>
                     </FadeIn>
                     <FadeIn delay={0.2} className="w-full">
                         <AmenityPage />

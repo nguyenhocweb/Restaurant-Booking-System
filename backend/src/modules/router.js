@@ -7,14 +7,14 @@ import dishRouter from "./dish/route.dish.js"
 import aiRouter from "./ai/ai.router.js";
 import tableRouter from "./table/router.table/index.js"
 import reservationRouter from "./reservation/reservation.router/index.js";
-import {authenticateToken} from "../core/middlewares/authenticateToken.js";
+import { authenticateToken } from "../core/middlewares/authenticateToken.js";
 const route = Router();
-route.use("/auth",authRouter);
-route.use("/user",authenticateToken,userRouter);
-route.use("/brand",brandRouter);
-route.use("/ai",aiRouter);
-route.use("/restaurant",restaurantRouter);
-route.use("/dish",dishRouter);
-route.use("/restaurant/:idRestaurant/table",tableRouter);
-route.use("/restaurant/reservation",reservationRouter);
+route.use("/auth", authRouter);
+route.use("/user", authenticateToken, userRouter);
+route.use("/brand", brandRouter);
+route.use("/ai", aiRouter);
+route.use("/restaurant", restaurantRouter);
+route.use("/dish", dishRouter);
+route.use("/restaurant/:idRestaurant/table", tableRouter);
+route.use("/restaurant/reservation", reservationRouter);
 export default route;

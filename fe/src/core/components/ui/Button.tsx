@@ -50,6 +50,7 @@ const ButtonVariantProps = cva(
                 tabel_gray:" bg-gray-200 text-gray-700",
                 tabel_green:"  bg-green-500 text-white ",
                 tabel_red:" bg-red-500 text-white",
+                outline:"flex items-center justify-center bg-transparent border border-gray-500  hover:bg-gray-100"
 
             },
             bordera:{

@@ -37,6 +37,7 @@ const DivVariantProps = cva(
                 w8_h8: "w-8 h-8"
             },
             gap: {
+                
                 g1_2: "gap-x-1 gap-y-2",
                 g2_3: "gap-x-2 gap-y-3",
                 g3_4: "gap-x-3 gap-y-4",
@@ -47,6 +48,7 @@ const DivVariantProps = cva(
                 col_none: "flex-col items-start justify-start"
             },
             grids:{
+                default:"",
                 col_1:"grid grid-cols-1",
                 col_2:"grid grid-cols-2",
                 col_3:"grid grid-cols-3",

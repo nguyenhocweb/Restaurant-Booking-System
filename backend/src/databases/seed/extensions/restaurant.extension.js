@@ -2,6 +2,7 @@ import {restaurantData} from '../constants/restaurant.data.js';
 import { upsertVector } from "../../../modules/vector/service/vectorDB.service.js";
 import { embedText } from "../../../modules/vector/service/embedding.service.js";
 import { buildRestaurantVector } from "../../../modules/vector/builders/restaurant.builder.js";
+import { tableVector } from '../../../config/tableVector.js';
 export const restaurant_Extension = async(prisma)=>{
     // nơi lưu id của thương hiệu để gán cho nhà hàng
    
@@ -15,17 +16,20 @@ export const restaurant_Extension = async(prisma)=>{
    
         
     const result = await prisma.Restaurant.createMany({
-        data: restaurantData  // Mảng dữ liệu
+        data: restaurantData.map(({brandName,...e})=>e)
     });
     for (const restaurantDataItem of restaurantData) {
         const text = [
-            restaurantDataItem.name,
-            restaurantDataItem.description,
-            restaurantDataItem.city,
-            restaurantDataItem.address,
-            restaurantDataItem.slug,
-            restaurantDataItem.averageRating,
-        ].filter(Boolean).join(" ");
+        `nhà hàng: ${restaurantDataItem.name || "Nhà hàng ẩn danh"} là 1 nhà hàng.`,
+        `${restaurantDataItem.brandName ? `nhà hàng này thuộc thương hiệu: ${restaurantDataItem.brandName}` : ""} .`,
+        ` Địa chỉ: ${restaurantDataItem.address || "Chưa cập nhật địa chỉ"},`,
+        restaurantDataItem.isActive === "INACTIVE" ? "tạm thời nghĩ" : restaurantDataItem.isActive === "TERMINATED" ? "nghĩ vĩnh viễn" : " đang hoạt động",
+        restaurantDataItem.isNew === false ? "" : "Nhà hàng mới",
+        ` ${restaurantDataItem.city || "chưa cập nhật thành phố"}. `,
+        `Đánh giá trung bình: ${restaurantDataItem.averageRating || "chưa có đánh giá"}.`,
+        `${restaurantDataItem.description || "chưa cập nhật mô tả"}. `,
+        ` Slug: ${restaurantDataItem.slug || "chưa có slug"}.`,
+    ].join(" "); 
         const embedding = await embedText(text);
         const RestaurantVector = buildRestaurantVector({
             id: `restaurant_${restaurantDataItem.id}`,
@@ -34,10 +38,11 @@ export const restaurant_Extension = async(prisma)=>{
             city: restaurantDataItem.city,
             address: restaurantDataItem.address,
             slug: restaurantDataItem.slug,
+            brandName:restaurantDataItem.brandName,
             averageRating: restaurantDataItem.averageRating,
             embedding: embedding
         });
-        await upsertVector( [RestaurantVector] );
+        await upsertVector( [RestaurantVector], tableVector.restaurant );
     }
     console.log(`✅ Đã tạo thành công ${result.count} Restaurants!`);
 }
