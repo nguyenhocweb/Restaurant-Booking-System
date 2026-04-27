@@ -1,6 +1,6 @@
 import cloudinary from "../../config/cloudinary.config.js";
 export const uploadMultipleImages = async (files,folder) => {
-  try {
+  
     const uploadPromises = files.map((file) => {
       return cloudinary.uploader.upload(file, {
         folder: `quan_ly_nha_hang/${folder}`,
@@ -18,27 +18,30 @@ export const uploadMultipleImages = async (files,folder) => {
       url: result.secure_url,
       public_id: result.public_id
     }));
-  } catch (error) {
-    return null
-  }
+  
 };
-export const uploadSingleImage = async (fileToUpload,folder) => {
-  try {
-    const result = await cloudinary.uploader.upload(fileToUpload, {
-      folder: `quan_ly_nha_hang/${folder}`, // Lưu vào thư mục 'products'
-      use_filename: true,
-      unique_filename: true,
-      // Tối ưu ảnh: Tự động căn giữa, cắt theo tỉ lệ 1:1 cho product
-      transformation: [
-        { width: 800, height: 800, crop: "fill", gravity: "auto" },
-        { quality: "auto", fetch_format: "auto" }
-      ]
-    });
-    return {
-      url: result.secure_url,
-      public_id: result.public_id
-    };
-  } catch (error) {
-    return null
+
+export const uploadSingleImage = async (fileToUpload, folder,publicId) => {
+  // KIỂM TRA: Nếu fileToUpload bị undefined, báo lỗi ngay tại đây để dễ debug
+  if (!fileToUpload) {
+    throw new Error("lỗi không có file để tải lên");
   }
+  const b64 = Buffer.from(fileToUpload.buffer).toString("base64");
+    const dataURI = `data:${fileToUpload.mimetype};base64,${b64}`;
+
+  const result = await cloudinary.uploader.upload(dataURI, {
+    folder: `quan_ly_nha_hang/${folder}`,
+    public_id: publicId, // Sử dụng public_id nếu được cung cấp
+    use_filename: true,
+    unique_filename: true,
+    transformation: [
+      { width: 800, height: 800, crop: "limit",},
+      { quality: "auto", fetch_format: "auto" }
+    ]
+  });
+
+  return {
+    url: result.secure_url,
+    public_id: result.public_id
+  };
 };

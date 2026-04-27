@@ -2,7 +2,8 @@
 
 /**
  * Class cha xử lý lỗi API chung
- * @extends Error
+ * @extends Error 
+ *
  */
 export class ApiError extends Error {
   /**
@@ -34,7 +35,7 @@ export class BadRequestError extends ApiError {
 } 
 
 /**
- * Lỗi 401 - Chưa đăng nhập hoặc Token sai
+ * Lỗi 401 - Chưa đăng nhập hoặc Token sai mô tả danh tính sai
  */
 export class AuthFailureError extends ApiError {
   constructor(message = 'Invalid Credentials') {

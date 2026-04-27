@@ -124,7 +124,7 @@ export const validator = {
             });
     },
 
-    enum: <T extends [string, ...string[]]>(
+    enum: <T extends readonly [string, ...string[]]>(
         name: string,
         allowedValues: T
     ) =>

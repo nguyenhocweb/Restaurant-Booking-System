@@ -8,6 +8,7 @@ interface AuthState {
     isAuthenticated: boolean;
     login: (user: User) => void;
     logout: () => void;
+    updateUser: (updatedUser: Partial<User>) => void;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -29,6 +30,14 @@ export const useAuthStore = create<AuthState>()(
             // 3. Action Logout
             logout: () => {
                 set({ user: null, isAuthenticated: false });
+            },
+            updateUser: (updatedUser) => {
+                set(state => {
+                    if (state.user) {
+                        return { user: { ...state.user, ...updatedUser } };
+                    }
+                    return state; // Nếu không có user, giữ nguyên state
+                });
             }
         }),
         {

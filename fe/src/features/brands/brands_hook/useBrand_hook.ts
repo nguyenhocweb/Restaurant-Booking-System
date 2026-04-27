@@ -10,6 +10,6 @@ export const useBrand_hook = (id:string) => {
         enabled: !!cleanId, // Chỉ chạy query khi cleanId có giá trị hợp lệ
         placeholderData: (prev) => prev, // 🔥 giữ data cũ khi đổi page or đổi trang
         staleTime: 1000 * 60,   // cache 1 phút hết 1 phút gọi lại lệnh mới gọi lại api
-        refetchOnWindowFocus: false, // đổi tab thì có gọi api lại không true có
+        refetchOnWindowFocus: false, // đổi tab thì có gọi api lại không . true có gọi lại
     })
 }

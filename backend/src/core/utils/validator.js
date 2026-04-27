@@ -2,7 +2,7 @@ import { BadRequestError } from "../constants/error/index.js";
 import { Gender, AccountStatus } from "../../databases/prisma/generated/prisma/client.js";
 import { gender_to_db } from "../../config/locales.js";
 import { z, ZodError } from "zod"
-import e from "express";
+
 const today = new Date();
 
 const minDate = (min) => new Date(
@@ -118,13 +118,40 @@ export const demoValidator = {
                         ? `${name} phải cách hôm nay ít nhất ${minDays} ngày`
                         : `${name} không được vượt quá ${maxDays} ngày`
         }),
-        enum: (name, values) => z.enum(values, {
-            errorMap: (issue, ctx) => {
-                return {
-                    message: `${name} phải là một trong các giá trị sau: ${values.join(", ")}`
-                }
+    enum: (name, values) => z.enum(values, {
+        errorMap: (issue, ctx) => {
+            return {
+                message: `${name} phải là một trong các giá trị sau: ${values.join(", ")}`
             }
-        }),
+        }
+    }),
+    file: (name, options) => {
+        const MAX_SIZE_BYTES = (options?.maxSizeMB || 5) * 1024 * 1024;
+
+        return z.any()
+            // KIỂM TRA QUAN TRỌNG: Node.js nhận file là một Object từ Multer
+            .refine((file) => file && typeof file === 'object', `Vui lòng chọn ${name}`)
+            .refine((file) => file?.size <= MAX_SIZE_BYTES, `${name} vượt quá ${options?.maxSizeMB || 5}MB`)
+            .refine((file) => {
+                if (!options?.acceptedTypes) return true;
+                return options.acceptedTypes.includes(file?.mimetype);
+            }, `Định dạng ${name} không hợp lệ`);
+    },
+    array: (name, itemSchema, minLength, maxLength) => {
+        let arraySchema = z.array(itemSchema, {
+            required_error: `${name} là bắt buộc`,
+            invalid_type_error: `${name} phải là một mảng`
+        });
+
+        if (minLength !== undefined) {
+            arraySchema = arraySchema.min(minLength, `${name} phải có ít nhất ${minLength} phần tử`);
+        }
+        if (maxLength !== undefined) {
+            arraySchema = arraySchema.max(maxLength, `${name} không được vượt quá ${maxLength} phần tử`);
+        }
+
+        return arraySchema;
+    },
 
 
 }

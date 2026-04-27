@@ -25,6 +25,14 @@ const AVariantProps = cva(
                     "hover:shadow-lg hover:scale-[1.03]",
                     "active:scale-95"
                 ],
+                gray_hover: [" flex items-center justify-center  rounded-xl text-black text-sm font-medium ",
+                    "bg-gradient-to-r ",
+                    "  transition-all duration-300",
+                    " hover:from-gray-300 hover:to-gray-400",
+                    "hover:shadow-lg hover:scale-[1.03]",
+                    "active:scale-95"
+                ],
+
                 black: [" flex items-center justify-center  rounded-xl text-white text-sm font-medium ",
                     "bg-gradient-to-r from-gray-500 to-gray-600",
                     "  shadow-md",
@@ -32,6 +40,15 @@ const AVariantProps = cva(
                     " hover:from-gray-600 hover:to-gray-700",
                     "hover:shadow-lg hover:scale-[1.03]",
                     "active:scale-95"
+                ],
+                green_shadow: [
+                    "flex items-center justify-center bg-white text-black   relative",
+                    "before:content-[''] ",
+                    "before:absolute before:-inset-1 before:-z-1  ",
+                    "before:bg-gradient-to-r before:from-green-400 before:to-[#462f82] ",
+                    "before:opacity-70 before:blur-md ",
+                    "before:transition-opacity before:duration-500 ",
+                    "hover:before:opacity-100"
                 ],
             },
             shape: {

@@ -16,7 +16,12 @@ const PVariantProps = cva(
                 truncate_1line: "line-clamp-1 h-7",
                 truncate_2line: "line-clamp-2 h-14",
                 text_black: "font-semibold text-gray-900 text-lg",
-                text_green: "text-green-600 font-semibold tracking-wide"
+                text_green: "text-green-600 font-semibold tracking-wide",
+                 tabel_gray:" bg-gray-200 text-gray-700",
+                tabel_green:"  text-green-700  bg-green-200",
+                tabel_red:" text-red-700 bg-red-200 ",
+                tabel_orange: "text-orange-700 bg-orange-200"
+                
             },
             line: {
                 truncate_1line: "line-clamp-1 h-7",

@@ -10,9 +10,22 @@ const NAV_LINKS = [
 ] as const;
 import { Div, A, Button, P } from "../ui";
 import { useAuthStore } from "@/src/features/auth/auth_store/use-auth-store";
+
 const PublicHeader = () => {
     const pathname = usePathname();
     const getUser = useAuthStore((state) => state.user);
+    console.log(getUser);
+
+    const linkClick = {
+        "Khách Hàng": "/user/profile",
+        "Admin": "/system/dashboard",
+        "login": "/login"
+    };
+
+    const userRole = getUser?.role || "login"; // Giả sử đây là một biến any từ đâu đó
+
+    // Ép kiểu trực tiếp lúc truy xuất
+    const redirectUrl = linkClick[userRole as keyof typeof linkClick]
     return (
         <header
             className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md "
@@ -43,7 +56,7 @@ const PublicHeader = () => {
                 {
                     getUser ?
                         <Div>
-                            <A href="/user/profile" className="flex items-center">
+                            <A href={redirectUrl} className="flex items-center">
                                 {
                                     getUser.avatar &&
                                     <Div style={{ backgroundImage: `url(${getUser.avatar})` }}
@@ -59,7 +72,7 @@ const PublicHeader = () => {
                             <A href="/login" sizea="p3_2">Đăng nhập</A>
                             <A href="/register" variant="green" sizea="p4_2">Đăng ký</A>
                         </Div>
-                
+
                 }
             </Div>
         </header>

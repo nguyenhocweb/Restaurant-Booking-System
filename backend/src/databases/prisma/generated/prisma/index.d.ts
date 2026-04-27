@@ -49,6 +49,11 @@ export type RestaurantPaymentConfig = $Result.DefaultSelection<Prisma.$Restauran
  */
 export type Transaction = $Result.DefaultSelection<Prisma.$TransactionPayload>
 /**
+ * Model UpgradeRequest
+ * 
+ */
+export type UpgradeRequest = $Result.DefaultSelection<Prisma.$UpgradeRequestPayload>
+/**
  * Model User
  * 
  */
@@ -163,12 +168,22 @@ export type AccountStatus = (typeof AccountStatus)[keyof typeof AccountStatus]
 
 
 export const isActive: {
+  PENDING: 'PENDING',
   ACTIVE: 'ACTIVE',
   INACTIVE: 'INACTIVE',
   TERMINATED: 'TERMINATED'
 };
 
 export type isActive = (typeof isActive)[keyof typeof isActive]
+
+
+export const RequestStatus: {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
+export type RequestStatus = (typeof RequestStatus)[keyof typeof RequestStatus]
 
 
 export const role_enum: {
@@ -376,6 +391,10 @@ export const AccountStatus: typeof $Enums.AccountStatus
 export type isActive = $Enums.isActive
 
 export const isActive: typeof $Enums.isActive
+
+export type RequestStatus = $Enums.RequestStatus
+
+export const RequestStatus: typeof $Enums.RequestStatus
 
 export type role_enum = $Enums.role_enum
 
@@ -603,6 +622,16 @@ export class PrismaClient<
     * ```
     */
   get transaction(): Prisma.TransactionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.upgradeRequest`: Exposes CRUD operations for the **UpgradeRequest** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UpgradeRequests
+    * const upgradeRequests = await prisma.upgradeRequest.findMany()
+    * ```
+    */
+  get upgradeRequest(): Prisma.UpgradeRequestDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
@@ -1231,6 +1260,7 @@ export namespace Prisma {
     Promotion: 'Promotion',
     RestaurantPaymentConfig: 'RestaurantPaymentConfig',
     Transaction: 'Transaction',
+    UpgradeRequest: 'UpgradeRequest',
     User: 'User',
     Brand: 'Brand',
     Menu: 'Menu',
@@ -1267,7 +1297,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "category_Restaurant" | "employment" | "menuCategory" | "notifications" | "promotion" | "restaurantPaymentConfig" | "transaction" | "user" | "brand" | "menu" | "menuItem" | "operating_Hours" | "order" | "orderItem" | "permission" | "permission_vs_Employment" | "reservation_Audit_Log" | "reservation_Tables" | "reservations" | "restaurant" | "restaurant_Areas" | "review_Restaurant" | "role" | "special_Schedules" | "tables"
+      modelProps: "category_Restaurant" | "employment" | "menuCategory" | "notifications" | "promotion" | "restaurantPaymentConfig" | "transaction" | "upgradeRequest" | "user" | "brand" | "menu" | "menuItem" | "operating_Hours" | "order" | "orderItem" | "permission" | "permission_vs_Employment" | "reservation_Audit_Log" | "reservation_Tables" | "reservations" | "restaurant" | "restaurant_Areas" | "review_Restaurant" | "role" | "special_Schedules" | "tables"
       txIsolationLevel: never
     }
     model: {
@@ -1786,6 +1816,80 @@ export namespace Prisma {
           count: {
             args: Prisma.TransactionCountArgs<ExtArgs>
             result: $Utils.Optional<TransactionCountAggregateOutputType> | number
+          }
+        }
+      }
+      UpgradeRequest: {
+        payload: Prisma.$UpgradeRequestPayload<ExtArgs>
+        fields: Prisma.UpgradeRequestFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UpgradeRequestFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpgradeRequestPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UpgradeRequestFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpgradeRequestPayload>
+          }
+          findFirst: {
+            args: Prisma.UpgradeRequestFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpgradeRequestPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UpgradeRequestFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpgradeRequestPayload>
+          }
+          findMany: {
+            args: Prisma.UpgradeRequestFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpgradeRequestPayload>[]
+          }
+          create: {
+            args: Prisma.UpgradeRequestCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpgradeRequestPayload>
+          }
+          createMany: {
+            args: Prisma.UpgradeRequestCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.UpgradeRequestDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpgradeRequestPayload>
+          }
+          update: {
+            args: Prisma.UpgradeRequestUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpgradeRequestPayload>
+          }
+          deleteMany: {
+            args: Prisma.UpgradeRequestDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UpgradeRequestUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.UpgradeRequestUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpgradeRequestPayload>
+          }
+          aggregate: {
+            args: Prisma.UpgradeRequestAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUpgradeRequest>
+          }
+          groupBy: {
+            args: Prisma.UpgradeRequestGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UpgradeRequestGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.UpgradeRequestFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.UpgradeRequestAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.UpgradeRequestCountArgs<ExtArgs>
+            result: $Utils.Optional<UpgradeRequestCountAggregateOutputType> | number
           }
         }
       }
@@ -3207,6 +3311,7 @@ export namespace Prisma {
     promotion?: PromotionOmit
     restaurantPaymentConfig?: RestaurantPaymentConfigOmit
     transaction?: TransactionOmit
+    upgradeRequest?: UpgradeRequestOmit
     user?: UserOmit
     brand?: BrandOmit
     menu?: MenuOmit
@@ -11449,6 +11554,1018 @@ export namespace Prisma {
 
 
   /**
+   * Model UpgradeRequest
+   */
+
+  export type AggregateUpgradeRequest = {
+    _count: UpgradeRequestCountAggregateOutputType | null
+    _min: UpgradeRequestMinAggregateOutputType | null
+    _max: UpgradeRequestMaxAggregateOutputType | null
+  }
+
+  export type UpgradeRequestMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    brandName: string | null
+    tax_code: string | null
+    businessLicense: string | null
+    status: $Enums.RequestStatus | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UpgradeRequestMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    brandName: string | null
+    tax_code: string | null
+    businessLicense: string | null
+    status: $Enums.RequestStatus | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UpgradeRequestCountAggregateOutputType = {
+    id: number
+    userId: number
+    brandName: number
+    tax_code: number
+    businessLicense: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UpgradeRequestMinAggregateInputType = {
+    id?: true
+    userId?: true
+    brandName?: true
+    tax_code?: true
+    businessLicense?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UpgradeRequestMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    brandName?: true
+    tax_code?: true
+    businessLicense?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UpgradeRequestCountAggregateInputType = {
+    id?: true
+    userId?: true
+    brandName?: true
+    tax_code?: true
+    businessLicense?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UpgradeRequestAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UpgradeRequest to aggregate.
+     */
+    where?: UpgradeRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UpgradeRequests to fetch.
+     */
+    orderBy?: UpgradeRequestOrderByWithRelationInput | UpgradeRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UpgradeRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UpgradeRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UpgradeRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UpgradeRequests
+    **/
+    _count?: true | UpgradeRequestCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UpgradeRequestMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UpgradeRequestMaxAggregateInputType
+  }
+
+  export type GetUpgradeRequestAggregateType<T extends UpgradeRequestAggregateArgs> = {
+        [P in keyof T & keyof AggregateUpgradeRequest]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUpgradeRequest[P]>
+      : GetScalarType<T[P], AggregateUpgradeRequest[P]>
+  }
+
+
+
+
+  export type UpgradeRequestGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UpgradeRequestWhereInput
+    orderBy?: UpgradeRequestOrderByWithAggregationInput | UpgradeRequestOrderByWithAggregationInput[]
+    by: UpgradeRequestScalarFieldEnum[] | UpgradeRequestScalarFieldEnum
+    having?: UpgradeRequestScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UpgradeRequestCountAggregateInputType | true
+    _min?: UpgradeRequestMinAggregateInputType
+    _max?: UpgradeRequestMaxAggregateInputType
+  }
+
+  export type UpgradeRequestGroupByOutputType = {
+    id: string
+    userId: string
+    brandName: string
+    tax_code: string | null
+    businessLicense: string | null
+    status: $Enums.RequestStatus
+    createdAt: Date
+    updatedAt: Date
+    _count: UpgradeRequestCountAggregateOutputType | null
+    _min: UpgradeRequestMinAggregateOutputType | null
+    _max: UpgradeRequestMaxAggregateOutputType | null
+  }
+
+  type GetUpgradeRequestGroupByPayload<T extends UpgradeRequestGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UpgradeRequestGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UpgradeRequestGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UpgradeRequestGroupByOutputType[P]>
+            : GetScalarType<T[P], UpgradeRequestGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UpgradeRequestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    brandName?: boolean
+    tax_code?: boolean
+    businessLicense?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["upgradeRequest"]>
+
+
+
+  export type UpgradeRequestSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    brandName?: boolean
+    tax_code?: boolean
+    businessLicense?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type UpgradeRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "brandName" | "tax_code" | "businessLicense" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["upgradeRequest"]>
+  export type UpgradeRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $UpgradeRequestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UpgradeRequest"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      brandName: string
+      tax_code: string | null
+      businessLicense: string | null
+      status: $Enums.RequestStatus
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["upgradeRequest"]>
+    composites: {}
+  }
+
+  type UpgradeRequestGetPayload<S extends boolean | null | undefined | UpgradeRequestDefaultArgs> = $Result.GetResult<Prisma.$UpgradeRequestPayload, S>
+
+  type UpgradeRequestCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UpgradeRequestFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UpgradeRequestCountAggregateInputType | true
+    }
+
+  export interface UpgradeRequestDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UpgradeRequest'], meta: { name: 'UpgradeRequest' } }
+    /**
+     * Find zero or one UpgradeRequest that matches the filter.
+     * @param {UpgradeRequestFindUniqueArgs} args - Arguments to find a UpgradeRequest
+     * @example
+     * // Get one UpgradeRequest
+     * const upgradeRequest = await prisma.upgradeRequest.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UpgradeRequestFindUniqueArgs>(args: SelectSubset<T, UpgradeRequestFindUniqueArgs<ExtArgs>>): Prisma__UpgradeRequestClient<$Result.GetResult<Prisma.$UpgradeRequestPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UpgradeRequest that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UpgradeRequestFindUniqueOrThrowArgs} args - Arguments to find a UpgradeRequest
+     * @example
+     * // Get one UpgradeRequest
+     * const upgradeRequest = await prisma.upgradeRequest.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UpgradeRequestFindUniqueOrThrowArgs>(args: SelectSubset<T, UpgradeRequestFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UpgradeRequestClient<$Result.GetResult<Prisma.$UpgradeRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UpgradeRequest that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UpgradeRequestFindFirstArgs} args - Arguments to find a UpgradeRequest
+     * @example
+     * // Get one UpgradeRequest
+     * const upgradeRequest = await prisma.upgradeRequest.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UpgradeRequestFindFirstArgs>(args?: SelectSubset<T, UpgradeRequestFindFirstArgs<ExtArgs>>): Prisma__UpgradeRequestClient<$Result.GetResult<Prisma.$UpgradeRequestPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UpgradeRequest that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UpgradeRequestFindFirstOrThrowArgs} args - Arguments to find a UpgradeRequest
+     * @example
+     * // Get one UpgradeRequest
+     * const upgradeRequest = await prisma.upgradeRequest.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UpgradeRequestFindFirstOrThrowArgs>(args?: SelectSubset<T, UpgradeRequestFindFirstOrThrowArgs<ExtArgs>>): Prisma__UpgradeRequestClient<$Result.GetResult<Prisma.$UpgradeRequestPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UpgradeRequests that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UpgradeRequestFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UpgradeRequests
+     * const upgradeRequests = await prisma.upgradeRequest.findMany()
+     * 
+     * // Get first 10 UpgradeRequests
+     * const upgradeRequests = await prisma.upgradeRequest.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const upgradeRequestWithIdOnly = await prisma.upgradeRequest.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UpgradeRequestFindManyArgs>(args?: SelectSubset<T, UpgradeRequestFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UpgradeRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UpgradeRequest.
+     * @param {UpgradeRequestCreateArgs} args - Arguments to create a UpgradeRequest.
+     * @example
+     * // Create one UpgradeRequest
+     * const UpgradeRequest = await prisma.upgradeRequest.create({
+     *   data: {
+     *     // ... data to create a UpgradeRequest
+     *   }
+     * })
+     * 
+     */
+    create<T extends UpgradeRequestCreateArgs>(args: SelectSubset<T, UpgradeRequestCreateArgs<ExtArgs>>): Prisma__UpgradeRequestClient<$Result.GetResult<Prisma.$UpgradeRequestPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UpgradeRequests.
+     * @param {UpgradeRequestCreateManyArgs} args - Arguments to create many UpgradeRequests.
+     * @example
+     * // Create many UpgradeRequests
+     * const upgradeRequest = await prisma.upgradeRequest.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UpgradeRequestCreateManyArgs>(args?: SelectSubset<T, UpgradeRequestCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a UpgradeRequest.
+     * @param {UpgradeRequestDeleteArgs} args - Arguments to delete one UpgradeRequest.
+     * @example
+     * // Delete one UpgradeRequest
+     * const UpgradeRequest = await prisma.upgradeRequest.delete({
+     *   where: {
+     *     // ... filter to delete one UpgradeRequest
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UpgradeRequestDeleteArgs>(args: SelectSubset<T, UpgradeRequestDeleteArgs<ExtArgs>>): Prisma__UpgradeRequestClient<$Result.GetResult<Prisma.$UpgradeRequestPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UpgradeRequest.
+     * @param {UpgradeRequestUpdateArgs} args - Arguments to update one UpgradeRequest.
+     * @example
+     * // Update one UpgradeRequest
+     * const upgradeRequest = await prisma.upgradeRequest.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UpgradeRequestUpdateArgs>(args: SelectSubset<T, UpgradeRequestUpdateArgs<ExtArgs>>): Prisma__UpgradeRequestClient<$Result.GetResult<Prisma.$UpgradeRequestPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UpgradeRequests.
+     * @param {UpgradeRequestDeleteManyArgs} args - Arguments to filter UpgradeRequests to delete.
+     * @example
+     * // Delete a few UpgradeRequests
+     * const { count } = await prisma.upgradeRequest.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UpgradeRequestDeleteManyArgs>(args?: SelectSubset<T, UpgradeRequestDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UpgradeRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UpgradeRequestUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UpgradeRequests
+     * const upgradeRequest = await prisma.upgradeRequest.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UpgradeRequestUpdateManyArgs>(args: SelectSubset<T, UpgradeRequestUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one UpgradeRequest.
+     * @param {UpgradeRequestUpsertArgs} args - Arguments to update or create a UpgradeRequest.
+     * @example
+     * // Update or create a UpgradeRequest
+     * const upgradeRequest = await prisma.upgradeRequest.upsert({
+     *   create: {
+     *     // ... data to create a UpgradeRequest
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UpgradeRequest we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UpgradeRequestUpsertArgs>(args: SelectSubset<T, UpgradeRequestUpsertArgs<ExtArgs>>): Prisma__UpgradeRequestClient<$Result.GetResult<Prisma.$UpgradeRequestPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UpgradeRequests that matches the filter.
+     * @param {UpgradeRequestFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const upgradeRequest = await prisma.upgradeRequest.findRaw({
+     *   filter: { age: { $gt: 25 } }
+     * })
+     */
+    findRaw(args?: UpgradeRequestFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a UpgradeRequest.
+     * @param {UpgradeRequestAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const upgradeRequest = await prisma.upgradeRequest.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: UpgradeRequestAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of UpgradeRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UpgradeRequestCountArgs} args - Arguments to filter UpgradeRequests to count.
+     * @example
+     * // Count the number of UpgradeRequests
+     * const count = await prisma.upgradeRequest.count({
+     *   where: {
+     *     // ... the filter for the UpgradeRequests we want to count
+     *   }
+     * })
+    **/
+    count<T extends UpgradeRequestCountArgs>(
+      args?: Subset<T, UpgradeRequestCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UpgradeRequestCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UpgradeRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UpgradeRequestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UpgradeRequestAggregateArgs>(args: Subset<T, UpgradeRequestAggregateArgs>): Prisma.PrismaPromise<GetUpgradeRequestAggregateType<T>>
+
+    /**
+     * Group by UpgradeRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UpgradeRequestGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UpgradeRequestGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UpgradeRequestGroupByArgs['orderBy'] }
+        : { orderBy?: UpgradeRequestGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UpgradeRequestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUpgradeRequestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UpgradeRequest model
+   */
+  readonly fields: UpgradeRequestFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UpgradeRequest.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UpgradeRequestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UpgradeRequest model
+   */
+  interface UpgradeRequestFieldRefs {
+    readonly id: FieldRef<"UpgradeRequest", 'String'>
+    readonly userId: FieldRef<"UpgradeRequest", 'String'>
+    readonly brandName: FieldRef<"UpgradeRequest", 'String'>
+    readonly tax_code: FieldRef<"UpgradeRequest", 'String'>
+    readonly businessLicense: FieldRef<"UpgradeRequest", 'String'>
+    readonly status: FieldRef<"UpgradeRequest", 'RequestStatus'>
+    readonly createdAt: FieldRef<"UpgradeRequest", 'DateTime'>
+    readonly updatedAt: FieldRef<"UpgradeRequest", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UpgradeRequest findUnique
+   */
+  export type UpgradeRequestFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UpgradeRequest
+     */
+    select?: UpgradeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UpgradeRequest
+     */
+    omit?: UpgradeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpgradeRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which UpgradeRequest to fetch.
+     */
+    where: UpgradeRequestWhereUniqueInput
+  }
+
+  /**
+   * UpgradeRequest findUniqueOrThrow
+   */
+  export type UpgradeRequestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UpgradeRequest
+     */
+    select?: UpgradeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UpgradeRequest
+     */
+    omit?: UpgradeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpgradeRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which UpgradeRequest to fetch.
+     */
+    where: UpgradeRequestWhereUniqueInput
+  }
+
+  /**
+   * UpgradeRequest findFirst
+   */
+  export type UpgradeRequestFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UpgradeRequest
+     */
+    select?: UpgradeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UpgradeRequest
+     */
+    omit?: UpgradeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpgradeRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which UpgradeRequest to fetch.
+     */
+    where?: UpgradeRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UpgradeRequests to fetch.
+     */
+    orderBy?: UpgradeRequestOrderByWithRelationInput | UpgradeRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UpgradeRequests.
+     */
+    cursor?: UpgradeRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UpgradeRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UpgradeRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UpgradeRequests.
+     */
+    distinct?: UpgradeRequestScalarFieldEnum | UpgradeRequestScalarFieldEnum[]
+  }
+
+  /**
+   * UpgradeRequest findFirstOrThrow
+   */
+  export type UpgradeRequestFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UpgradeRequest
+     */
+    select?: UpgradeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UpgradeRequest
+     */
+    omit?: UpgradeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpgradeRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which UpgradeRequest to fetch.
+     */
+    where?: UpgradeRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UpgradeRequests to fetch.
+     */
+    orderBy?: UpgradeRequestOrderByWithRelationInput | UpgradeRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UpgradeRequests.
+     */
+    cursor?: UpgradeRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UpgradeRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UpgradeRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UpgradeRequests.
+     */
+    distinct?: UpgradeRequestScalarFieldEnum | UpgradeRequestScalarFieldEnum[]
+  }
+
+  /**
+   * UpgradeRequest findMany
+   */
+  export type UpgradeRequestFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UpgradeRequest
+     */
+    select?: UpgradeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UpgradeRequest
+     */
+    omit?: UpgradeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpgradeRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which UpgradeRequests to fetch.
+     */
+    where?: UpgradeRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UpgradeRequests to fetch.
+     */
+    orderBy?: UpgradeRequestOrderByWithRelationInput | UpgradeRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UpgradeRequests.
+     */
+    cursor?: UpgradeRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UpgradeRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UpgradeRequests.
+     */
+    skip?: number
+    distinct?: UpgradeRequestScalarFieldEnum | UpgradeRequestScalarFieldEnum[]
+  }
+
+  /**
+   * UpgradeRequest create
+   */
+  export type UpgradeRequestCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UpgradeRequest
+     */
+    select?: UpgradeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UpgradeRequest
+     */
+    omit?: UpgradeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpgradeRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UpgradeRequest.
+     */
+    data: XOR<UpgradeRequestCreateInput, UpgradeRequestUncheckedCreateInput>
+  }
+
+  /**
+   * UpgradeRequest createMany
+   */
+  export type UpgradeRequestCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UpgradeRequests.
+     */
+    data: UpgradeRequestCreateManyInput | UpgradeRequestCreateManyInput[]
+  }
+
+  /**
+   * UpgradeRequest update
+   */
+  export type UpgradeRequestUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UpgradeRequest
+     */
+    select?: UpgradeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UpgradeRequest
+     */
+    omit?: UpgradeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpgradeRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UpgradeRequest.
+     */
+    data: XOR<UpgradeRequestUpdateInput, UpgradeRequestUncheckedUpdateInput>
+    /**
+     * Choose, which UpgradeRequest to update.
+     */
+    where: UpgradeRequestWhereUniqueInput
+  }
+
+  /**
+   * UpgradeRequest updateMany
+   */
+  export type UpgradeRequestUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UpgradeRequests.
+     */
+    data: XOR<UpgradeRequestUpdateManyMutationInput, UpgradeRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which UpgradeRequests to update
+     */
+    where?: UpgradeRequestWhereInput
+    /**
+     * Limit how many UpgradeRequests to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UpgradeRequest upsert
+   */
+  export type UpgradeRequestUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UpgradeRequest
+     */
+    select?: UpgradeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UpgradeRequest
+     */
+    omit?: UpgradeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpgradeRequestInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UpgradeRequest to update in case it exists.
+     */
+    where: UpgradeRequestWhereUniqueInput
+    /**
+     * In case the UpgradeRequest found by the `where` argument doesn't exist, create a new UpgradeRequest with this data.
+     */
+    create: XOR<UpgradeRequestCreateInput, UpgradeRequestUncheckedCreateInput>
+    /**
+     * In case the UpgradeRequest was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UpgradeRequestUpdateInput, UpgradeRequestUncheckedUpdateInput>
+  }
+
+  /**
+   * UpgradeRequest delete
+   */
+  export type UpgradeRequestDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UpgradeRequest
+     */
+    select?: UpgradeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UpgradeRequest
+     */
+    omit?: UpgradeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpgradeRequestInclude<ExtArgs> | null
+    /**
+     * Filter which UpgradeRequest to delete.
+     */
+    where: UpgradeRequestWhereUniqueInput
+  }
+
+  /**
+   * UpgradeRequest deleteMany
+   */
+  export type UpgradeRequestDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UpgradeRequests to delete
+     */
+    where?: UpgradeRequestWhereInput
+    /**
+     * Limit how many UpgradeRequests to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UpgradeRequest findRaw
+   */
+  export type UpgradeRequestFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * UpgradeRequest aggregateRaw
+   */
+  export type UpgradeRequestAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * UpgradeRequest without action
+   */
+  export type UpgradeRequestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UpgradeRequest
+     */
+    select?: UpgradeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UpgradeRequest
+     */
+    omit?: UpgradeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpgradeRequestInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model User
    */
 
@@ -11656,7 +12773,7 @@ export namespace Prisma {
     is_active: $Enums.AccountStatus
     createdAt: Date
     updatedAt: Date
-    roleId: string | null
+    roleId: string
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -11693,12 +12810,13 @@ export namespace Prisma {
     updatedAt?: boolean
     roleId?: boolean
     employments?: boolean | User$employmentsArgs<ExtArgs>
-    role?: boolean | User$roleArgs<ExtArgs>
+    role?: boolean | RoleDefaultArgs<ExtArgs>
     reservations?: boolean | User$reservationsArgs<ExtArgs>
     review_restaurant?: boolean | User$review_restaurantArgs<ExtArgs>
     reservation_audit_log?: boolean | User$reservation_audit_logArgs<ExtArgs>
     notifications?: boolean | User$notificationsArgs<ExtArgs>
     ordersTaken?: boolean | User$ordersTakenArgs<ExtArgs>
+    upgradeRequest?: boolean | User$upgradeRequestArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -11725,12 +12843,13 @@ export namespace Prisma {
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_name" | "email" | "sdt" | "password" | "providerId" | "providerType" | "name" | "avatar" | "gender" | "date_of_birth" | "is_active" | "createdAt" | "updatedAt" | "roleId", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employments?: boolean | User$employmentsArgs<ExtArgs>
-    role?: boolean | User$roleArgs<ExtArgs>
+    role?: boolean | RoleDefaultArgs<ExtArgs>
     reservations?: boolean | User$reservationsArgs<ExtArgs>
     review_restaurant?: boolean | User$review_restaurantArgs<ExtArgs>
     reservation_audit_log?: boolean | User$reservation_audit_logArgs<ExtArgs>
     notifications?: boolean | User$notificationsArgs<ExtArgs>
     ordersTaken?: boolean | User$ordersTakenArgs<ExtArgs>
+    upgradeRequest?: boolean | User$upgradeRequestArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -11738,12 +12857,13 @@ export namespace Prisma {
     name: "User"
     objects: {
       employments: Prisma.$EmploymentPayload<ExtArgs>[]
-      role: Prisma.$RolePayload<ExtArgs> | null
+      role: Prisma.$RolePayload<ExtArgs>
       reservations: Prisma.$ReservationsPayload<ExtArgs>[]
       review_restaurant: Prisma.$Review_RestaurantPayload<ExtArgs>[]
       reservation_audit_log: Prisma.$Reservation_Audit_LogPayload<ExtArgs>[]
       notifications: Prisma.$NotificationsPayload<ExtArgs>[]
       ordersTaken: Prisma.$OrderPayload<ExtArgs>[]
+      upgradeRequest: Prisma.$UpgradeRequestPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -11760,7 +12880,7 @@ export namespace Prisma {
       is_active: $Enums.AccountStatus
       createdAt: Date
       updatedAt: Date
-      roleId: string | null
+      roleId: string
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -12125,12 +13245,13 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     employments<T extends User$employmentsArgs<ExtArgs> = {}>(args?: Subset<T, User$employmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    role<T extends User$roleArgs<ExtArgs> = {}>(args?: Subset<T, User$roleArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    role<T extends RoleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RoleDefaultArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     reservations<T extends User$reservationsArgs<ExtArgs> = {}>(args?: Subset<T, User$reservationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     review_restaurant<T extends User$review_restaurantArgs<ExtArgs> = {}>(args?: Subset<T, User$review_restaurantArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Review_RestaurantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     reservation_audit_log<T extends User$reservation_audit_logArgs<ExtArgs> = {}>(args?: Subset<T, User$reservation_audit_logArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Reservation_Audit_LogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     notifications<T extends User$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ordersTaken<T extends User$ordersTakenArgs<ExtArgs> = {}>(args?: Subset<T, User$ordersTakenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    upgradeRequest<T extends User$upgradeRequestArgs<ExtArgs> = {}>(args?: Subset<T, User$upgradeRequestArgs<ExtArgs>>): Prisma__UpgradeRequestClient<$Result.GetResult<Prisma.$UpgradeRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12569,25 +13690,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.role
-   */
-  export type User$roleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Role
-     */
-    select?: RoleSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Role
-     */
-    omit?: RoleOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RoleInclude<ExtArgs> | null
-    where?: RoleWhereInput
-  }
-
-  /**
    * User.reservations
    */
   export type User$reservationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12705,6 +13807,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
+  }
+
+  /**
+   * User.upgradeRequest
+   */
+  export type User$upgradeRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UpgradeRequest
+     */
+    select?: UpgradeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UpgradeRequest
+     */
+    omit?: UpgradeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpgradeRequestInclude<ExtArgs> | null
+    where?: UpgradeRequestWhereInput
   }
 
   /**
@@ -32429,6 +33550,20 @@ export namespace Prisma {
   export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
 
 
+  export const UpgradeRequestScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    brandName: 'brandName',
+    tax_code: 'tax_code',
+    businessLicense: 'businessLicense',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UpgradeRequestScalarFieldEnum = (typeof UpgradeRequestScalarFieldEnum)[keyof typeof UpgradeRequestScalarFieldEnum]
+
+
   export const UserScalarFieldEnum: {
     id: 'id',
     user_name: 'user_name',
@@ -32933,6 +34068,20 @@ export namespace Prisma {
    * Reference to a field of type 'TransactionStatus[]'
    */
   export type ListEnumTransactionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransactionStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'RequestStatus'
+   */
+  export type EnumRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RequestStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'RequestStatus[]'
+   */
+  export type ListEnumRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RequestStatus[]'>
     
 
 
@@ -33700,6 +34849,76 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Transaction"> | Date | string
   }
 
+  export type UpgradeRequestWhereInput = {
+    AND?: UpgradeRequestWhereInput | UpgradeRequestWhereInput[]
+    OR?: UpgradeRequestWhereInput[]
+    NOT?: UpgradeRequestWhereInput | UpgradeRequestWhereInput[]
+    id?: StringFilter<"UpgradeRequest"> | string
+    userId?: StringFilter<"UpgradeRequest"> | string
+    brandName?: StringFilter<"UpgradeRequest"> | string
+    tax_code?: StringNullableFilter<"UpgradeRequest"> | string | null
+    businessLicense?: StringNullableFilter<"UpgradeRequest"> | string | null
+    status?: EnumRequestStatusFilter<"UpgradeRequest"> | $Enums.RequestStatus
+    createdAt?: DateTimeFilter<"UpgradeRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"UpgradeRequest"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type UpgradeRequestOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    brandName?: SortOrder
+    tax_code?: SortOrder
+    businessLicense?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type UpgradeRequestWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: UpgradeRequestWhereInput | UpgradeRequestWhereInput[]
+    OR?: UpgradeRequestWhereInput[]
+    NOT?: UpgradeRequestWhereInput | UpgradeRequestWhereInput[]
+    brandName?: StringFilter<"UpgradeRequest"> | string
+    tax_code?: StringNullableFilter<"UpgradeRequest"> | string | null
+    businessLicense?: StringNullableFilter<"UpgradeRequest"> | string | null
+    status?: EnumRequestStatusFilter<"UpgradeRequest"> | $Enums.RequestStatus
+    createdAt?: DateTimeFilter<"UpgradeRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"UpgradeRequest"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type UpgradeRequestOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    brandName?: SortOrder
+    tax_code?: SortOrder
+    businessLicense?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UpgradeRequestCountOrderByAggregateInput
+    _max?: UpgradeRequestMaxOrderByAggregateInput
+    _min?: UpgradeRequestMinOrderByAggregateInput
+  }
+
+  export type UpgradeRequestScalarWhereWithAggregatesInput = {
+    AND?: UpgradeRequestScalarWhereWithAggregatesInput | UpgradeRequestScalarWhereWithAggregatesInput[]
+    OR?: UpgradeRequestScalarWhereWithAggregatesInput[]
+    NOT?: UpgradeRequestScalarWhereWithAggregatesInput | UpgradeRequestScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UpgradeRequest"> | string
+    userId?: StringWithAggregatesFilter<"UpgradeRequest"> | string
+    brandName?: StringWithAggregatesFilter<"UpgradeRequest"> | string
+    tax_code?: StringNullableWithAggregatesFilter<"UpgradeRequest"> | string | null
+    businessLicense?: StringNullableWithAggregatesFilter<"UpgradeRequest"> | string | null
+    status?: EnumRequestStatusWithAggregatesFilter<"UpgradeRequest"> | $Enums.RequestStatus
+    createdAt?: DateTimeWithAggregatesFilter<"UpgradeRequest"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"UpgradeRequest"> | Date | string
+  }
+
   export type UserWhereInput = {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
@@ -33718,14 +34937,15 @@ export namespace Prisma {
     is_active?: EnumAccountStatusFilter<"User"> | $Enums.AccountStatus
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    roleId?: StringNullableFilter<"User"> | string | null
+    roleId?: StringFilter<"User"> | string
     employments?: EmploymentListRelationFilter
-    role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
+    role?: XOR<RoleScalarRelationFilter, RoleWhereInput>
     reservations?: ReservationsListRelationFilter
     review_restaurant?: Review_RestaurantListRelationFilter
     reservation_audit_log?: Reservation_Audit_LogListRelationFilter
     notifications?: NotificationsListRelationFilter
     ordersTaken?: OrderListRelationFilter
+    upgradeRequest?: XOR<UpgradeRequestNullableScalarRelationFilter, UpgradeRequestWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -33751,6 +34971,7 @@ export namespace Prisma {
     reservation_audit_log?: Reservation_Audit_LogOrderByRelationAggregateInput
     notifications?: NotificationsOrderByRelationAggregateInput
     ordersTaken?: OrderOrderByRelationAggregateInput
+    upgradeRequest?: UpgradeRequestOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -33771,14 +34992,15 @@ export namespace Prisma {
     is_active?: EnumAccountStatusFilter<"User"> | $Enums.AccountStatus
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    roleId?: StringNullableFilter<"User"> | string | null
+    roleId?: StringFilter<"User"> | string
     employments?: EmploymentListRelationFilter
-    role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
+    role?: XOR<RoleScalarRelationFilter, RoleWhereInput>
     reservations?: ReservationsListRelationFilter
     review_restaurant?: Review_RestaurantListRelationFilter
     reservation_audit_log?: Reservation_Audit_LogListRelationFilter
     notifications?: NotificationsListRelationFilter
     ordersTaken?: OrderListRelationFilter
+    upgradeRequest?: XOR<UpgradeRequestNullableScalarRelationFilter, UpgradeRequestWhereInput> | null
   }, "id" | "user_name" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -33820,7 +35042,7 @@ export namespace Prisma {
     is_active?: EnumAccountStatusWithAggregatesFilter<"User"> | $Enums.AccountStatus
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
-    roleId?: StringNullableWithAggregatesFilter<"User"> | string | null
+    roleId?: StringWithAggregatesFilter<"User"> | string
   }
 
   export type BrandWhereInput = {
@@ -36111,6 +37333,78 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type UpgradeRequestCreateInput = {
+    id?: string
+    brandName: string
+    tax_code?: string | null
+    businessLicense?: string | null
+    status?: $Enums.RequestStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutUpgradeRequestInput
+  }
+
+  export type UpgradeRequestUncheckedCreateInput = {
+    id?: string
+    userId: string
+    brandName: string
+    tax_code?: string | null
+    businessLicense?: string | null
+    status?: $Enums.RequestStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UpgradeRequestUpdateInput = {
+    brandName?: StringFieldUpdateOperationsInput | string
+    tax_code?: NullableStringFieldUpdateOperationsInput | string | null
+    businessLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutUpgradeRequestNestedInput
+  }
+
+  export type UpgradeRequestUncheckedUpdateInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    brandName?: StringFieldUpdateOperationsInput | string
+    tax_code?: NullableStringFieldUpdateOperationsInput | string | null
+    businessLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UpgradeRequestCreateManyInput = {
+    id?: string
+    userId: string
+    brandName: string
+    tax_code?: string | null
+    businessLicense?: string | null
+    status?: $Enums.RequestStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UpgradeRequestUpdateManyMutationInput = {
+    brandName?: StringFieldUpdateOperationsInput | string
+    tax_code?: NullableStringFieldUpdateOperationsInput | string | null
+    businessLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UpgradeRequestUncheckedUpdateManyInput = {
+    userId?: StringFieldUpdateOperationsInput | string
+    brandName?: StringFieldUpdateOperationsInput | string
+    tax_code?: NullableStringFieldUpdateOperationsInput | string | null
+    businessLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     user_name: string
@@ -36127,12 +37421,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     employments?: EmploymentCreateNestedManyWithoutUserInput
-    role?: RoleCreateNestedOneWithoutUserInput
+    role: RoleCreateNestedOneWithoutUserInput
     reservations?: ReservationsCreateNestedManyWithoutUserInput
     review_restaurant?: Review_RestaurantCreateNestedManyWithoutUserInput
     reservation_audit_log?: Reservation_Audit_LogCreateNestedManyWithoutChangedByUserInput
     notifications?: NotificationsCreateNestedManyWithoutUserInput
     ordersTaken?: OrderCreateNestedManyWithoutTakenByEmpInput
+    upgradeRequest?: UpgradeRequestCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -36150,13 +37445,14 @@ export namespace Prisma {
     is_active?: $Enums.AccountStatus
     createdAt?: Date | string
     updatedAt?: Date | string
-    roleId?: string | null
+    roleId: string
     employments?: EmploymentUncheckedCreateNestedManyWithoutUserInput
     reservations?: ReservationsUncheckedCreateNestedManyWithoutUserInput
     review_restaurant?: Review_RestaurantUncheckedCreateNestedManyWithoutUserInput
     reservation_audit_log?: Reservation_Audit_LogUncheckedCreateNestedManyWithoutChangedByUserInput
     notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
     ordersTaken?: OrderUncheckedCreateNestedManyWithoutTakenByEmpInput
+    upgradeRequest?: UpgradeRequestUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -36174,12 +37470,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employments?: EmploymentUpdateManyWithoutUserNestedInput
-    role?: RoleUpdateOneWithoutUserNestedInput
+    role?: RoleUpdateOneRequiredWithoutUserNestedInput
     reservations?: ReservationsUpdateManyWithoutUserNestedInput
     review_restaurant?: Review_RestaurantUpdateManyWithoutUserNestedInput
     reservation_audit_log?: Reservation_Audit_LogUpdateManyWithoutChangedByUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
     ordersTaken?: OrderUpdateManyWithoutTakenByEmpNestedInput
+    upgradeRequest?: UpgradeRequestUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -36196,13 +37493,14 @@ export namespace Prisma {
     is_active?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: StringFieldUpdateOperationsInput | string
     employments?: EmploymentUncheckedUpdateManyWithoutUserNestedInput
     reservations?: ReservationsUncheckedUpdateManyWithoutUserNestedInput
     review_restaurant?: Review_RestaurantUncheckedUpdateManyWithoutUserNestedInput
     reservation_audit_log?: Reservation_Audit_LogUncheckedUpdateManyWithoutChangedByUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
     ordersTaken?: OrderUncheckedUpdateManyWithoutTakenByEmpNestedInput
+    upgradeRequest?: UpgradeRequestUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -36220,7 +37518,7 @@ export namespace Prisma {
     is_active?: $Enums.AccountStatus
     createdAt?: Date | string
     updatedAt?: Date | string
-    roleId?: string | null
+    roleId: string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -36253,7 +37551,7 @@ export namespace Prisma {
     is_active?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: StringFieldUpdateOperationsInput | string
   }
 
   export type BrandCreateInput = {
@@ -38904,6 +40202,56 @@ export namespace Prisma {
     isSet?: boolean
   }
 
+  export type EnumRequestStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.RequestStatus | EnumRequestStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RequestStatus[] | ListEnumRequestStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RequestStatus[] | ListEnumRequestStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRequestStatusFilter<$PrismaModel> | $Enums.RequestStatus
+  }
+
+  export type UpgradeRequestCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    brandName?: SortOrder
+    tax_code?: SortOrder
+    businessLicense?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UpgradeRequestMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    brandName?: SortOrder
+    tax_code?: SortOrder
+    businessLicense?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UpgradeRequestMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    brandName?: SortOrder
+    tax_code?: SortOrder
+    businessLicense?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumRequestStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RequestStatus | EnumRequestStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RequestStatus[] | ListEnumRequestStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RequestStatus[] | ListEnumRequestStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRequestStatusWithAggregatesFilter<$PrismaModel> | $Enums.RequestStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRequestStatusFilter<$PrismaModel>
+    _max?: NestedEnumRequestStatusFilter<$PrismaModel>
+  }
+
   export type EnumproviderTypeNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.providerType | EnumproviderTypeFieldRefInput<$PrismaModel> | null
     in?: $Enums.providerType[] | ListEnumproviderTypeFieldRefInput<$PrismaModel> | null
@@ -38933,9 +40281,9 @@ export namespace Prisma {
     none?: EmploymentWhereInput
   }
 
-  export type RoleNullableScalarRelationFilter = {
-    is?: RoleWhereInput | null
-    isNot?: RoleWhereInput | null
+  export type RoleScalarRelationFilter = {
+    is?: RoleWhereInput
+    isNot?: RoleWhereInput
   }
 
   export type Review_RestaurantListRelationFilter = {
@@ -38960,6 +40308,11 @@ export namespace Prisma {
     every?: OrderWhereInput
     some?: OrderWhereInput
     none?: OrderWhereInput
+  }
+
+  export type UpgradeRequestNullableScalarRelationFilter = {
+    is?: UpgradeRequestWhereInput | null
+    isNot?: UpgradeRequestWhereInput | null
   }
 
   export type EmploymentOrderByRelationAggregateInput = {
@@ -40812,6 +42165,24 @@ export namespace Prisma {
     update?: XOR<XOR<OrderUpdateToOneWithWhereWithoutTransactionsInput, OrderUpdateWithoutTransactionsInput>, OrderUncheckedUpdateWithoutTransactionsInput>
   }
 
+  export type UserCreateNestedOneWithoutUpgradeRequestInput = {
+    create?: XOR<UserCreateWithoutUpgradeRequestInput, UserUncheckedCreateWithoutUpgradeRequestInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUpgradeRequestInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumRequestStatusFieldUpdateOperationsInput = {
+    set?: $Enums.RequestStatus
+  }
+
+  export type UserUpdateOneRequiredWithoutUpgradeRequestNestedInput = {
+    create?: XOR<UserCreateWithoutUpgradeRequestInput, UserUncheckedCreateWithoutUpgradeRequestInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUpgradeRequestInput
+    upsert?: UserUpsertWithoutUpgradeRequestInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUpgradeRequestInput, UserUpdateWithoutUpgradeRequestInput>, UserUncheckedUpdateWithoutUpgradeRequestInput>
+  }
+
   export type EmploymentCreateNestedManyWithoutUserInput = {
     create?: XOR<EmploymentCreateWithoutUserInput, EmploymentUncheckedCreateWithoutUserInput> | EmploymentCreateWithoutUserInput[] | EmploymentUncheckedCreateWithoutUserInput[]
     connectOrCreate?: EmploymentCreateOrConnectWithoutUserInput | EmploymentCreateOrConnectWithoutUserInput[]
@@ -40860,6 +42231,12 @@ export namespace Prisma {
     connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
   }
 
+  export type UpgradeRequestCreateNestedOneWithoutUserInput = {
+    create?: XOR<UpgradeRequestCreateWithoutUserInput, UpgradeRequestUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UpgradeRequestCreateOrConnectWithoutUserInput
+    connect?: UpgradeRequestWhereUniqueInput
+  }
+
   export type EmploymentUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<EmploymentCreateWithoutUserInput, EmploymentUncheckedCreateWithoutUserInput> | EmploymentCreateWithoutUserInput[] | EmploymentUncheckedCreateWithoutUserInput[]
     connectOrCreate?: EmploymentCreateOrConnectWithoutUserInput | EmploymentCreateOrConnectWithoutUserInput[]
@@ -40902,6 +42279,12 @@ export namespace Prisma {
     connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
   }
 
+  export type UpgradeRequestUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<UpgradeRequestCreateWithoutUserInput, UpgradeRequestUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UpgradeRequestCreateOrConnectWithoutUserInput
+    connect?: UpgradeRequestWhereUniqueInput
+  }
+
   export type NullableEnumproviderTypeFieldUpdateOperationsInput = {
     set?: $Enums.providerType | null
     unset?: boolean
@@ -40930,12 +42313,10 @@ export namespace Prisma {
     deleteMany?: EmploymentScalarWhereInput | EmploymentScalarWhereInput[]
   }
 
-  export type RoleUpdateOneWithoutUserNestedInput = {
+  export type RoleUpdateOneRequiredWithoutUserNestedInput = {
     create?: XOR<RoleCreateWithoutUserInput, RoleUncheckedCreateWithoutUserInput>
     connectOrCreate?: RoleCreateOrConnectWithoutUserInput
     upsert?: RoleUpsertWithoutUserInput
-    disconnect?: boolean
-    delete?: RoleWhereInput | boolean
     connect?: RoleWhereUniqueInput
     update?: XOR<XOR<RoleUpdateToOneWithWhereWithoutUserInput, RoleUpdateWithoutUserInput>, RoleUncheckedUpdateWithoutUserInput>
   }
@@ -41008,6 +42389,16 @@ export namespace Prisma {
     update?: OrderUpdateWithWhereUniqueWithoutTakenByEmpInput | OrderUpdateWithWhereUniqueWithoutTakenByEmpInput[]
     updateMany?: OrderUpdateManyWithWhereWithoutTakenByEmpInput | OrderUpdateManyWithWhereWithoutTakenByEmpInput[]
     deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  }
+
+  export type UpgradeRequestUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UpgradeRequestCreateWithoutUserInput, UpgradeRequestUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UpgradeRequestCreateOrConnectWithoutUserInput
+    upsert?: UpgradeRequestUpsertWithoutUserInput
+    disconnect?: UpgradeRequestWhereInput | boolean
+    delete?: UpgradeRequestWhereInput | boolean
+    connect?: UpgradeRequestWhereUniqueInput
+    update?: XOR<XOR<UpgradeRequestUpdateToOneWithWhereWithoutUserInput, UpgradeRequestUpdateWithoutUserInput>, UpgradeRequestUncheckedUpdateWithoutUserInput>
   }
 
   export type EmploymentUncheckedUpdateManyWithoutUserNestedInput = {
@@ -41092,6 +42483,16 @@ export namespace Prisma {
     update?: OrderUpdateWithWhereUniqueWithoutTakenByEmpInput | OrderUpdateWithWhereUniqueWithoutTakenByEmpInput[]
     updateMany?: OrderUpdateManyWithWhereWithoutTakenByEmpInput | OrderUpdateManyWithWhereWithoutTakenByEmpInput[]
     deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  }
+
+  export type UpgradeRequestUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<UpgradeRequestCreateWithoutUserInput, UpgradeRequestUncheckedCreateWithoutUserInput>
+    connectOrCreate?: UpgradeRequestCreateOrConnectWithoutUserInput
+    upsert?: UpgradeRequestUpsertWithoutUserInput
+    disconnect?: UpgradeRequestWhereInput | boolean
+    delete?: UpgradeRequestWhereInput | boolean
+    connect?: UpgradeRequestWhereUniqueInput
+    update?: XOR<XOR<UpgradeRequestUpdateToOneWithWhereWithoutUserInput, UpgradeRequestUpdateWithoutUserInput>, UpgradeRequestUncheckedUpdateWithoutUserInput>
   }
 
   export type BrandCreateimagesInput = {
@@ -43245,6 +44646,23 @@ export namespace Prisma {
     isSet?: boolean
   }
 
+  export type NestedEnumRequestStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.RequestStatus | EnumRequestStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RequestStatus[] | ListEnumRequestStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RequestStatus[] | ListEnumRequestStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRequestStatusFilter<$PrismaModel> | $Enums.RequestStatus
+  }
+
+  export type NestedEnumRequestStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RequestStatus | EnumRequestStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RequestStatus[] | ListEnumRequestStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RequestStatus[] | ListEnumRequestStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRequestStatusWithAggregatesFilter<$PrismaModel> | $Enums.RequestStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumRequestStatusFilter<$PrismaModel>
+    _max?: NestedEnumRequestStatusFilter<$PrismaModel>
+  }
+
   export type NestedEnumproviderTypeNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.providerType | EnumproviderTypeFieldRefInput<$PrismaModel> | null
     in?: $Enums.providerType[] | ListEnumproviderTypeFieldRefInput<$PrismaModel> | null
@@ -43680,12 +45098,13 @@ export namespace Prisma {
     is_active?: $Enums.AccountStatus
     createdAt?: Date | string
     updatedAt?: Date | string
-    role?: RoleCreateNestedOneWithoutUserInput
+    role: RoleCreateNestedOneWithoutUserInput
     reservations?: ReservationsCreateNestedManyWithoutUserInput
     review_restaurant?: Review_RestaurantCreateNestedManyWithoutUserInput
     reservation_audit_log?: Reservation_Audit_LogCreateNestedManyWithoutChangedByUserInput
     notifications?: NotificationsCreateNestedManyWithoutUserInput
     ordersTaken?: OrderCreateNestedManyWithoutTakenByEmpInput
+    upgradeRequest?: UpgradeRequestCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutEmploymentsInput = {
@@ -43703,12 +45122,13 @@ export namespace Prisma {
     is_active?: $Enums.AccountStatus
     createdAt?: Date | string
     updatedAt?: Date | string
-    roleId?: string | null
+    roleId: string
     reservations?: ReservationsUncheckedCreateNestedManyWithoutUserInput
     review_restaurant?: Review_RestaurantUncheckedCreateNestedManyWithoutUserInput
     reservation_audit_log?: Reservation_Audit_LogUncheckedCreateNestedManyWithoutChangedByUserInput
     notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
     ordersTaken?: OrderUncheckedCreateNestedManyWithoutTakenByEmpInput
+    upgradeRequest?: UpgradeRequestUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutEmploymentsInput = {
@@ -44003,12 +45423,13 @@ export namespace Prisma {
     is_active?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: RoleUpdateOneWithoutUserNestedInput
+    role?: RoleUpdateOneRequiredWithoutUserNestedInput
     reservations?: ReservationsUpdateManyWithoutUserNestedInput
     review_restaurant?: Review_RestaurantUpdateManyWithoutUserNestedInput
     reservation_audit_log?: Reservation_Audit_LogUpdateManyWithoutChangedByUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
     ordersTaken?: OrderUpdateManyWithoutTakenByEmpNestedInput
+    upgradeRequest?: UpgradeRequestUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutEmploymentsInput = {
@@ -44025,12 +45446,13 @@ export namespace Prisma {
     is_active?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: StringFieldUpdateOperationsInput | string
     reservations?: ReservationsUncheckedUpdateManyWithoutUserNestedInput
     review_restaurant?: Review_RestaurantUncheckedUpdateManyWithoutUserNestedInput
     reservation_audit_log?: Reservation_Audit_LogUncheckedUpdateManyWithoutChangedByUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
     ordersTaken?: OrderUncheckedUpdateManyWithoutTakenByEmpNestedInput
+    upgradeRequest?: UpgradeRequestUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type Permission_vs_EmploymentUpsertWithWhereUniqueWithoutEmploymentInput = {
@@ -44523,11 +45945,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     employments?: EmploymentCreateNestedManyWithoutUserInput
-    role?: RoleCreateNestedOneWithoutUserInput
+    role: RoleCreateNestedOneWithoutUserInput
     reservations?: ReservationsCreateNestedManyWithoutUserInput
     review_restaurant?: Review_RestaurantCreateNestedManyWithoutUserInput
     reservation_audit_log?: Reservation_Audit_LogCreateNestedManyWithoutChangedByUserInput
     ordersTaken?: OrderCreateNestedManyWithoutTakenByEmpInput
+    upgradeRequest?: UpgradeRequestCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -44545,12 +45968,13 @@ export namespace Prisma {
     is_active?: $Enums.AccountStatus
     createdAt?: Date | string
     updatedAt?: Date | string
-    roleId?: string | null
+    roleId: string
     employments?: EmploymentUncheckedCreateNestedManyWithoutUserInput
     reservations?: ReservationsUncheckedCreateNestedManyWithoutUserInput
     review_restaurant?: Review_RestaurantUncheckedCreateNestedManyWithoutUserInput
     reservation_audit_log?: Reservation_Audit_LogUncheckedCreateNestedManyWithoutChangedByUserInput
     ordersTaken?: OrderUncheckedCreateNestedManyWithoutTakenByEmpInput
+    upgradeRequest?: UpgradeRequestUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -44661,11 +46085,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employments?: EmploymentUpdateManyWithoutUserNestedInput
-    role?: RoleUpdateOneWithoutUserNestedInput
+    role?: RoleUpdateOneRequiredWithoutUserNestedInput
     reservations?: ReservationsUpdateManyWithoutUserNestedInput
     review_restaurant?: Review_RestaurantUpdateManyWithoutUserNestedInput
     reservation_audit_log?: Reservation_Audit_LogUpdateManyWithoutChangedByUserNestedInput
     ordersTaken?: OrderUpdateManyWithoutTakenByEmpNestedInput
+    upgradeRequest?: UpgradeRequestUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -44682,12 +46107,13 @@ export namespace Prisma {
     is_active?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: StringFieldUpdateOperationsInput | string
     employments?: EmploymentUncheckedUpdateManyWithoutUserNestedInput
     reservations?: ReservationsUncheckedUpdateManyWithoutUserNestedInput
     review_restaurant?: Review_RestaurantUncheckedUpdateManyWithoutUserNestedInput
     reservation_audit_log?: Reservation_Audit_LogUncheckedUpdateManyWithoutChangedByUserNestedInput
     ordersTaken?: OrderUncheckedUpdateManyWithoutTakenByEmpNestedInput
+    upgradeRequest?: UpgradeRequestUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type RestaurantCreateWithoutPaymentConfigsInput = {
@@ -45058,6 +46484,116 @@ export namespace Prisma {
     items?: OrderItemUncheckedUpdateManyWithoutOrderNestedInput
   }
 
+  export type UserCreateWithoutUpgradeRequestInput = {
+    id?: string
+    user_name: string
+    email: string
+    sdt?: string | null
+    password?: string | null
+    providerId?: string | null
+    providerType?: $Enums.providerType | null
+    name?: string | null
+    avatar?: string | null
+    gender?: $Enums.Gender | null
+    date_of_birth?: Date | string | null
+    is_active?: $Enums.AccountStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employments?: EmploymentCreateNestedManyWithoutUserInput
+    role: RoleCreateNestedOneWithoutUserInput
+    reservations?: ReservationsCreateNestedManyWithoutUserInput
+    review_restaurant?: Review_RestaurantCreateNestedManyWithoutUserInput
+    reservation_audit_log?: Reservation_Audit_LogCreateNestedManyWithoutChangedByUserInput
+    notifications?: NotificationsCreateNestedManyWithoutUserInput
+    ordersTaken?: OrderCreateNestedManyWithoutTakenByEmpInput
+  }
+
+  export type UserUncheckedCreateWithoutUpgradeRequestInput = {
+    id?: string
+    user_name: string
+    email: string
+    sdt?: string | null
+    password?: string | null
+    providerId?: string | null
+    providerType?: $Enums.providerType | null
+    name?: string | null
+    avatar?: string | null
+    gender?: $Enums.Gender | null
+    date_of_birth?: Date | string | null
+    is_active?: $Enums.AccountStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    roleId: string
+    employments?: EmploymentUncheckedCreateNestedManyWithoutUserInput
+    reservations?: ReservationsUncheckedCreateNestedManyWithoutUserInput
+    review_restaurant?: Review_RestaurantUncheckedCreateNestedManyWithoutUserInput
+    reservation_audit_log?: Reservation_Audit_LogUncheckedCreateNestedManyWithoutChangedByUserInput
+    notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
+    ordersTaken?: OrderUncheckedCreateNestedManyWithoutTakenByEmpInput
+  }
+
+  export type UserCreateOrConnectWithoutUpgradeRequestInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUpgradeRequestInput, UserUncheckedCreateWithoutUpgradeRequestInput>
+  }
+
+  export type UserUpsertWithoutUpgradeRequestInput = {
+    update: XOR<UserUpdateWithoutUpgradeRequestInput, UserUncheckedUpdateWithoutUpgradeRequestInput>
+    create: XOR<UserCreateWithoutUpgradeRequestInput, UserUncheckedCreateWithoutUpgradeRequestInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUpgradeRequestInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUpgradeRequestInput, UserUncheckedUpdateWithoutUpgradeRequestInput>
+  }
+
+  export type UserUpdateWithoutUpgradeRequestInput = {
+    user_name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    sdt?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    providerId?: NullableStringFieldUpdateOperationsInput | string | null
+    providerType?: NullableEnumproviderTypeFieldUpdateOperationsInput | $Enums.providerType | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    date_of_birth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_active?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employments?: EmploymentUpdateManyWithoutUserNestedInput
+    role?: RoleUpdateOneRequiredWithoutUserNestedInput
+    reservations?: ReservationsUpdateManyWithoutUserNestedInput
+    review_restaurant?: Review_RestaurantUpdateManyWithoutUserNestedInput
+    reservation_audit_log?: Reservation_Audit_LogUpdateManyWithoutChangedByUserNestedInput
+    notifications?: NotificationsUpdateManyWithoutUserNestedInput
+    ordersTaken?: OrderUpdateManyWithoutTakenByEmpNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutUpgradeRequestInput = {
+    user_name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    sdt?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    providerId?: NullableStringFieldUpdateOperationsInput | string | null
+    providerType?: NullableEnumproviderTypeFieldUpdateOperationsInput | $Enums.providerType | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    date_of_birth?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    is_active?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    roleId?: StringFieldUpdateOperationsInput | string
+    employments?: EmploymentUncheckedUpdateManyWithoutUserNestedInput
+    reservations?: ReservationsUncheckedUpdateManyWithoutUserNestedInput
+    review_restaurant?: Review_RestaurantUncheckedUpdateManyWithoutUserNestedInput
+    reservation_audit_log?: Reservation_Audit_LogUncheckedUpdateManyWithoutChangedByUserNestedInput
+    notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
+    ordersTaken?: OrderUncheckedUpdateManyWithoutTakenByEmpNestedInput
+  }
+
   export type EmploymentCreateWithoutUserInput = {
     id?: string
     salary_type?: $Enums.salary_type | null
@@ -45345,6 +46881,31 @@ export namespace Prisma {
     data: OrderCreateManyTakenByEmpInput | OrderCreateManyTakenByEmpInput[]
   }
 
+  export type UpgradeRequestCreateWithoutUserInput = {
+    id?: string
+    brandName: string
+    tax_code?: string | null
+    businessLicense?: string | null
+    status?: $Enums.RequestStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UpgradeRequestUncheckedCreateWithoutUserInput = {
+    id?: string
+    brandName: string
+    tax_code?: string | null
+    businessLicense?: string | null
+    status?: $Enums.RequestStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UpgradeRequestCreateOrConnectWithoutUserInput = {
+    where: UpgradeRequestWhereUniqueInput
+    create: XOR<UpgradeRequestCreateWithoutUserInput, UpgradeRequestUncheckedCreateWithoutUserInput>
+  }
+
   export type EmploymentUpsertWithWhereUniqueWithoutUserInput = {
     where: EmploymentWhereUniqueInput
     update: XOR<EmploymentUpdateWithoutUserInput, EmploymentUncheckedUpdateWithoutUserInput>
@@ -45549,6 +47110,35 @@ export namespace Prisma {
     payment_method?: EnumPaymentMethodNullableFilter<"Order"> | $Enums.PaymentMethod | null
     paid_at?: DateTimeNullableFilter<"Order"> | Date | string | null
     createdAt?: DateTimeFilter<"Order"> | Date | string
+  }
+
+  export type UpgradeRequestUpsertWithoutUserInput = {
+    update: XOR<UpgradeRequestUpdateWithoutUserInput, UpgradeRequestUncheckedUpdateWithoutUserInput>
+    create: XOR<UpgradeRequestCreateWithoutUserInput, UpgradeRequestUncheckedCreateWithoutUserInput>
+    where?: UpgradeRequestWhereInput
+  }
+
+  export type UpgradeRequestUpdateToOneWithWhereWithoutUserInput = {
+    where?: UpgradeRequestWhereInput
+    data: XOR<UpgradeRequestUpdateWithoutUserInput, UpgradeRequestUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UpgradeRequestUpdateWithoutUserInput = {
+    brandName?: StringFieldUpdateOperationsInput | string
+    tax_code?: NullableStringFieldUpdateOperationsInput | string | null
+    businessLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UpgradeRequestUncheckedUpdateWithoutUserInput = {
+    brandName?: StringFieldUpdateOperationsInput | string
+    tax_code?: NullableStringFieldUpdateOperationsInput | string | null
+    businessLicense?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RestaurantCreateWithoutBrandInput = {
@@ -46953,11 +48543,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     employments?: EmploymentCreateNestedManyWithoutUserInput
-    role?: RoleCreateNestedOneWithoutUserInput
+    role: RoleCreateNestedOneWithoutUserInput
     reservations?: ReservationsCreateNestedManyWithoutUserInput
     review_restaurant?: Review_RestaurantCreateNestedManyWithoutUserInput
     reservation_audit_log?: Reservation_Audit_LogCreateNestedManyWithoutChangedByUserInput
     notifications?: NotificationsCreateNestedManyWithoutUserInput
+    upgradeRequest?: UpgradeRequestCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOrdersTakenInput = {
@@ -46975,12 +48566,13 @@ export namespace Prisma {
     is_active?: $Enums.AccountStatus
     createdAt?: Date | string
     updatedAt?: Date | string
-    roleId?: string | null
+    roleId: string
     employments?: EmploymentUncheckedCreateNestedManyWithoutUserInput
     reservations?: ReservationsUncheckedCreateNestedManyWithoutUserInput
     review_restaurant?: Review_RestaurantUncheckedCreateNestedManyWithoutUserInput
     reservation_audit_log?: Reservation_Audit_LogUncheckedCreateNestedManyWithoutChangedByUserInput
     notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
+    upgradeRequest?: UpgradeRequestUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOrdersTakenInput = {
@@ -47206,11 +48798,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employments?: EmploymentUpdateManyWithoutUserNestedInput
-    role?: RoleUpdateOneWithoutUserNestedInput
+    role?: RoleUpdateOneRequiredWithoutUserNestedInput
     reservations?: ReservationsUpdateManyWithoutUserNestedInput
     review_restaurant?: Review_RestaurantUpdateManyWithoutUserNestedInput
     reservation_audit_log?: Reservation_Audit_LogUpdateManyWithoutChangedByUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
+    upgradeRequest?: UpgradeRequestUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersTakenInput = {
@@ -47227,12 +48820,13 @@ export namespace Prisma {
     is_active?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: StringFieldUpdateOperationsInput | string
     employments?: EmploymentUncheckedUpdateManyWithoutUserNestedInput
     reservations?: ReservationsUncheckedUpdateManyWithoutUserNestedInput
     review_restaurant?: Review_RestaurantUncheckedUpdateManyWithoutUserNestedInput
     reservation_audit_log?: Reservation_Audit_LogUncheckedUpdateManyWithoutChangedByUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
+    upgradeRequest?: UpgradeRequestUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type OrderItemUpsertWithWhereUniqueWithoutOrderInput = {
@@ -47697,11 +49291,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     employments?: EmploymentCreateNestedManyWithoutUserInput
-    role?: RoleCreateNestedOneWithoutUserInput
+    role: RoleCreateNestedOneWithoutUserInput
     reservations?: ReservationsCreateNestedManyWithoutUserInput
     review_restaurant?: Review_RestaurantCreateNestedManyWithoutUserInput
     notifications?: NotificationsCreateNestedManyWithoutUserInput
     ordersTaken?: OrderCreateNestedManyWithoutTakenByEmpInput
+    upgradeRequest?: UpgradeRequestCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReservation_audit_logInput = {
@@ -47719,12 +49314,13 @@ export namespace Prisma {
     is_active?: $Enums.AccountStatus
     createdAt?: Date | string
     updatedAt?: Date | string
-    roleId?: string | null
+    roleId: string
     employments?: EmploymentUncheckedCreateNestedManyWithoutUserInput
     reservations?: ReservationsUncheckedCreateNestedManyWithoutUserInput
     review_restaurant?: Review_RestaurantUncheckedCreateNestedManyWithoutUserInput
     notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
     ordersTaken?: OrderUncheckedCreateNestedManyWithoutTakenByEmpInput
+    upgradeRequest?: UpgradeRequestUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReservation_audit_logInput = {
@@ -47835,11 +49431,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employments?: EmploymentUpdateManyWithoutUserNestedInput
-    role?: RoleUpdateOneWithoutUserNestedInput
+    role?: RoleUpdateOneRequiredWithoutUserNestedInput
     reservations?: ReservationsUpdateManyWithoutUserNestedInput
     review_restaurant?: Review_RestaurantUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
     ordersTaken?: OrderUpdateManyWithoutTakenByEmpNestedInput
+    upgradeRequest?: UpgradeRequestUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReservation_audit_logInput = {
@@ -47856,12 +49453,13 @@ export namespace Prisma {
     is_active?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: StringFieldUpdateOperationsInput | string
     employments?: EmploymentUncheckedUpdateManyWithoutUserNestedInput
     reservations?: ReservationsUncheckedUpdateManyWithoutUserNestedInput
     review_restaurant?: Review_RestaurantUncheckedUpdateManyWithoutUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
     ordersTaken?: OrderUncheckedUpdateManyWithoutTakenByEmpNestedInput
+    upgradeRequest?: UpgradeRequestUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type ReservationsCreateWithoutReservation_tablesInput = {
@@ -48268,11 +49866,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     employments?: EmploymentCreateNestedManyWithoutUserInput
-    role?: RoleCreateNestedOneWithoutUserInput
+    role: RoleCreateNestedOneWithoutUserInput
     review_restaurant?: Review_RestaurantCreateNestedManyWithoutUserInput
     reservation_audit_log?: Reservation_Audit_LogCreateNestedManyWithoutChangedByUserInput
     notifications?: NotificationsCreateNestedManyWithoutUserInput
     ordersTaken?: OrderCreateNestedManyWithoutTakenByEmpInput
+    upgradeRequest?: UpgradeRequestCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReservationsInput = {
@@ -48290,12 +49889,13 @@ export namespace Prisma {
     is_active?: $Enums.AccountStatus
     createdAt?: Date | string
     updatedAt?: Date | string
-    roleId?: string | null
+    roleId: string
     employments?: EmploymentUncheckedCreateNestedManyWithoutUserInput
     review_restaurant?: Review_RestaurantUncheckedCreateNestedManyWithoutUserInput
     reservation_audit_log?: Reservation_Audit_LogUncheckedCreateNestedManyWithoutChangedByUserInput
     notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
     ordersTaken?: OrderUncheckedCreateNestedManyWithoutTakenByEmpInput
+    upgradeRequest?: UpgradeRequestUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReservationsInput = {
@@ -48631,11 +50231,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employments?: EmploymentUpdateManyWithoutUserNestedInput
-    role?: RoleUpdateOneWithoutUserNestedInput
+    role?: RoleUpdateOneRequiredWithoutUserNestedInput
     review_restaurant?: Review_RestaurantUpdateManyWithoutUserNestedInput
     reservation_audit_log?: Reservation_Audit_LogUpdateManyWithoutChangedByUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
     ordersTaken?: OrderUpdateManyWithoutTakenByEmpNestedInput
+    upgradeRequest?: UpgradeRequestUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReservationsInput = {
@@ -48652,12 +50253,13 @@ export namespace Prisma {
     is_active?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: StringFieldUpdateOperationsInput | string
     employments?: EmploymentUncheckedUpdateManyWithoutUserNestedInput
     review_restaurant?: Review_RestaurantUncheckedUpdateManyWithoutUserNestedInput
     reservation_audit_log?: Reservation_Audit_LogUncheckedUpdateManyWithoutChangedByUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
     ordersTaken?: OrderUncheckedUpdateManyWithoutTakenByEmpNestedInput
+    upgradeRequest?: UpgradeRequestUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type EmploymentUpsertWithoutReservationsInput = {
@@ -49917,11 +51519,12 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     employments?: EmploymentCreateNestedManyWithoutUserInput
-    role?: RoleCreateNestedOneWithoutUserInput
+    role: RoleCreateNestedOneWithoutUserInput
     reservations?: ReservationsCreateNestedManyWithoutUserInput
     reservation_audit_log?: Reservation_Audit_LogCreateNestedManyWithoutChangedByUserInput
     notifications?: NotificationsCreateNestedManyWithoutUserInput
     ordersTaken?: OrderCreateNestedManyWithoutTakenByEmpInput
+    upgradeRequest?: UpgradeRequestCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReview_restaurantInput = {
@@ -49939,12 +51542,13 @@ export namespace Prisma {
     is_active?: $Enums.AccountStatus
     createdAt?: Date | string
     updatedAt?: Date | string
-    roleId?: string | null
+    roleId: string
     employments?: EmploymentUncheckedCreateNestedManyWithoutUserInput
     reservations?: ReservationsUncheckedCreateNestedManyWithoutUserInput
     reservation_audit_log?: Reservation_Audit_LogUncheckedCreateNestedManyWithoutChangedByUserInput
     notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
     ordersTaken?: OrderUncheckedCreateNestedManyWithoutTakenByEmpInput
+    upgradeRequest?: UpgradeRequestUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReview_restaurantInput = {
@@ -50141,11 +51745,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employments?: EmploymentUpdateManyWithoutUserNestedInput
-    role?: RoleUpdateOneWithoutUserNestedInput
+    role?: RoleUpdateOneRequiredWithoutUserNestedInput
     reservations?: ReservationsUpdateManyWithoutUserNestedInput
     reservation_audit_log?: Reservation_Audit_LogUpdateManyWithoutChangedByUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
     ordersTaken?: OrderUpdateManyWithoutTakenByEmpNestedInput
+    upgradeRequest?: UpgradeRequestUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReview_restaurantInput = {
@@ -50162,12 +51767,13 @@ export namespace Prisma {
     is_active?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: StringFieldUpdateOperationsInput | string
     employments?: EmploymentUncheckedUpdateManyWithoutUserNestedInput
     reservations?: ReservationsUncheckedUpdateManyWithoutUserNestedInput
     reservation_audit_log?: Reservation_Audit_LogUncheckedUpdateManyWithoutChangedByUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
     ordersTaken?: OrderUncheckedUpdateManyWithoutTakenByEmpNestedInput
+    upgradeRequest?: UpgradeRequestUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type RestaurantUpsertWithoutReview_restaurantInput = {
@@ -50281,6 +51887,7 @@ export namespace Prisma {
     reservation_audit_log?: Reservation_Audit_LogCreateNestedManyWithoutChangedByUserInput
     notifications?: NotificationsCreateNestedManyWithoutUserInput
     ordersTaken?: OrderCreateNestedManyWithoutTakenByEmpInput
+    upgradeRequest?: UpgradeRequestCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRoleInput = {
@@ -50304,6 +51911,7 @@ export namespace Prisma {
     reservation_audit_log?: Reservation_Audit_LogUncheckedCreateNestedManyWithoutChangedByUserInput
     notifications?: NotificationsUncheckedCreateNestedManyWithoutUserInput
     ordersTaken?: OrderUncheckedCreateNestedManyWithoutTakenByEmpInput
+    upgradeRequest?: UpgradeRequestUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRoleInput = {
@@ -50349,7 +51957,7 @@ export namespace Prisma {
     is_active?: EnumAccountStatusFilter<"User"> | $Enums.AccountStatus
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    roleId?: StringNullableFilter<"User"> | string | null
+    roleId?: StringFilter<"User"> | string
   }
 
   export type RestaurantCreateWithoutSpecial_schedulesInput = {
@@ -53077,6 +54685,7 @@ export namespace Prisma {
     reservation_audit_log?: Reservation_Audit_LogUpdateManyWithoutChangedByUserNestedInput
     notifications?: NotificationsUpdateManyWithoutUserNestedInput
     ordersTaken?: OrderUpdateManyWithoutTakenByEmpNestedInput
+    upgradeRequest?: UpgradeRequestUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRoleInput = {
@@ -53099,6 +54708,7 @@ export namespace Prisma {
     reservation_audit_log?: Reservation_Audit_LogUncheckedUpdateManyWithoutChangedByUserNestedInput
     notifications?: NotificationsUncheckedUpdateManyWithoutUserNestedInput
     ordersTaken?: OrderUncheckedUpdateManyWithoutTakenByEmpNestedInput
+    upgradeRequest?: UpgradeRequestUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutRoleInput = {

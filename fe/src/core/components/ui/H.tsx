@@ -3,7 +3,7 @@ import { cn } from "../../lib/tw";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const HVariantProps = cva(
-    "flex transition-all duration-300 ", 
+    "flex transition-all duration-300 ",
     {
         variants: {
             variant: {
@@ -12,18 +12,21 @@ const HVariantProps = cva(
                 glow: "text-white shadow-[0_0_20px_rgba(255,255,255,0.3)] bg-white/10 backdrop-blur-md border border-white/20",
                 // Shadow mờ rộng màu sắc rực rỡ (Neon)
                 neon: "text-cyan-400 shadow-[0_0_30px_rgba(34,211,238,0.4)] border border-cyan-500/50 bg-cyan-500/5",
-                truncate_1line:"line-clamp-1 h-7",
-                truncate_2line:"line-clamp-2 h-14",
-                text_black:"font-semibold text-gray-900 text-lg",
-                text_green:"text-green-600 font-semibold tracking-wide",
-                text_Ocean :"bg-ocean-gradient bg-clip-text text-transparent",
-                text_FireIce :"bg-fire-ice bg-clip-text text-transparent",
+                truncate_1line: "line-clamp-1 h-7",
+                truncate_2line: "line-clamp-2 h-14",
+                text_black: "font-semibold text-gray-900 text-lg",
+                text_green: "text-green-600 font-semibold tracking-wide",
+                text_Ocean: "bg-ocean-gradient bg-clip-text text-transparent",
+                text_FireIce: "bg-fire-ice bg-clip-text text-transparent",
             },
-
-            fonts:{
-                default:"font-sans",
-                serif:"font-serif italic",
-                mono:"font-mono",
+            line: {
+                truncate_1line: "line-clamp-1 h-7",
+                truncate_2line: "line-clamp-2 h-14",
+            },
+            fonts: {
+                default: "font-sans",
+                serif: "font-serif italic",
+                mono: "font-mono",
 
             },
             shape: {
@@ -37,7 +40,7 @@ const HVariantProps = cva(
         },
         defaultVariants: {
 
-            fonts:"default",
+            fonts: "default",
             variant: "default",
             shape: "square",
         }
@@ -48,10 +51,10 @@ const HVariantProps = cva(
 interface HProps extends React.HTMLAttributes<HTMLHeadingElement>, VariantProps<typeof HVariantProps> { }
 
 const H = React.forwardRef<HTMLHeadingElement, HProps>(
-    ({ className, variant, shape, size, fonts, ...props }, ref) => {
+    ({ className, variant, shape, size, fonts,line, ...props }, ref) => {
         return (
             <h1
-                className={cn(HVariantProps({ variant, shape, size, fonts, className }))}
+                className={cn(HVariantProps({ variant, shape, size, fonts, line, className }))}
                 ref={ref}
                 {...props}
             />

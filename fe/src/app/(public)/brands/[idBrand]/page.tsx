@@ -2,15 +2,7 @@
 import { Div, P, A } from "@/src/core/components/ui"
 import PublicItemImages from "@/src/core/components/layout/public-item-image";
 
-const images = [
-    "https://images.unsplash.com/photo-1552566626-52f8b828add9",
-    "https://images.unsplash.com/photo-1504674900247-0877df9cc836",
-    "https://images.unsplash.com/photo-1528605248644-14dd04022da1",
-    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4",
-    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4",
-    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4",
-    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4",
-];
+
 import { use } from "react";
 import { MdOutlineMail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";

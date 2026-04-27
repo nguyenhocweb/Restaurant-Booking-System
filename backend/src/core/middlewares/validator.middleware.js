@@ -1,7 +1,8 @@
 // src/middlewares/validator.middleware.js
-import  asyncHandler  from '../utils/asyncHandler.js';
+import asyncHandler from '../utils/asyncHandler.js';
 import { BadRequestError } from '../constants/error/index.js';
 import { ZodError } from "zod";
+import { fi } from 'zod/v4/locales';
 
 export const validate = (schema) => asyncHandler(async (req, res, next) => {
   try {
@@ -11,6 +12,8 @@ export const validate = (schema) => asyncHandler(async (req, res, next) => {
       body: req.body,
       query: req.query,
       params: req.params,
+      file: req.file, // nếu có file upload
+      files: req.files // nếu có multiple file upload
     });
 
     next();

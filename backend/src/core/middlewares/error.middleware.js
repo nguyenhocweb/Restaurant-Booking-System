@@ -4,7 +4,7 @@ import {appConfig} from "../../config/app.config.js"
 
 export const errorHandler = (err, req, res, next) => {
   let error = err;
-
+  
   // 1. Nếu lỗi không phải là ApiError (ví dụ lỗi cú pháp, lỗi database crash...)
   // Ta convert nó về dạng ApiError để có cấu trúc chuẩn
   if (!(error instanceof ApiError)) {

@@ -6,6 +6,7 @@ model Category_Restaurant {
   restaurantIds String[]     @db.ObjectId
   restaurants   Restaurant[] @relation(fields: [restaurantIds], references: [id])
 
+  @@index([isActive])
   @@map("category_restaurant")
 }
 
@@ -170,6 +171,26 @@ model Transaction {
   @@map("transactions")
 }
 
+model UpgradeRequest {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @unique // Mỗi user chỉ có 1 request chờ duyệt tại 1 thời điểm
+  user   User   @relation(fields: [userId], references: [id])
+
+  // Các thông tin user phải nộp để xin lên quản lý
+  brandName       String // Tên thương hiệu muốn tạo
+  tax_code        String? // Mã số thuế (nếu cần)
+  businessLicense String? // Ảnh chụp giấy phép KD (URL từ Cloudinary)
+
+  status    RequestStatus @default(PENDING)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@index([status]) // Tối ưu cho query: đếm số đơn PENDING của Admin
+  @@index([createdAt]) // Tối ưu cho việc Admin sort đơn mới nhất lên đầu
+  @@index([userId, status]) // Compound Index: Tối ưu cho việc check xem User này có đơn nào đang PENDING không
+  @@map("upgrade_request")
+}
+
 model User {
   id           String        @id @default(auto()) @map("_id") @db.ObjectId
   user_name    String        @unique
@@ -193,13 +214,14 @@ model User {
 
   // --- Các Relations (Liên kết tới các vai trò của User) ---
   employments           Employment[] // Liên kết: User này làm nhân viên ở đâu? có or ko 
-  roleId                String?                 @db.ObjectId // Liên kết : User này là khách hàng hay admin
-  role                  Role?                   @relation(fields: [roleId], references: [id])
+  roleId                String                  @db.ObjectId // Liên kết : User này là khách hàng hay admin
+  role                  Role                    @relation(fields: [roleId], references: [id])
   reservations          Reservations[] //khách hàng đặt bàn
   review_restaurant     Review_Restaurant[] // người đánh fias nhà hàng
   reservation_audit_log Reservation_Audit_Log[] // thay đổi đặt 
   notifications         Notifications[]
   ordersTaken           Order[]                 @relation("EmployeeOrders")
+  upgradeRequest        UpgradeRequest?
 
   @@index([roleId])
   @@index([name])
@@ -229,7 +251,7 @@ model Brand {
   link           String?
   imageMain      String
   images         String[]
-  isActive       isActive                  @default(ACTIVE)
+  isActive       isActive                  @default(PENDING)
   address        String?
   city           String?
   isFeatured     Boolean                   @default(false) // 👈 tiêu biểu
@@ -262,9 +284,16 @@ enum AccountStatus {
 }
 
 enum isActive {
+  PENDING
   ACTIVE // đang hoạt động
   INACTIVE // tạm thời nghĩ
   TERMINATED // nghĩ vĩnh viễn
+}
+
+enum RequestStatus {
+  PENDING // Đang chờ duyệt
+  APPROVED // Đã duyệt
+  REJECTED // Từ chối
 }
 
 enum role_enum {

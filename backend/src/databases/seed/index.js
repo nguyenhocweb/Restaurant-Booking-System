@@ -21,6 +21,7 @@ import {reservationAuditLogsExtension} from "./extensions/reservation_audit_log.
 import {menusExtension} from "./extensions/menu.extension.js";
 import {categoriesAndItemsExtension}from "./extensions/menuCategory-items.extension.js"
 import {category_restaurant_extension} from "./extensions/category_restaurant.extension.js"
+import { upgradeRequest_Extension } from './extensions/UpgradeRequest.extension.js';
 
 import {deleteAllVector} from "../../modules/vector/service/vectorDB.service.js"
 const runSeed = async () => {
@@ -30,7 +31,10 @@ const runSeed = async () => {
         // 1. Kết nối
         await connectDB();
         //
-        await deleteAllVector();
+        await deleteAllVector("Brand_vector");
+        await deleteAllVector("Category_vector");
+        await deleteAllVector("Menu_vector");
+        await deleteAllVector("Restaurant_vector");
         await prisma.permission_vs_Employment.deleteMany({});
         await prisma.permission.deleteMany({});
         await prisma.notifications.deleteMany({})
@@ -49,6 +53,7 @@ const runSeed = async () => {
         await prisma.restaurant.deleteMany();
         await prisma.category_Restaurant.deleteMany();
         await prisma.brand.deleteMany();
+        await prisma.upgradeRequest.deleteMany();
         await prisma.user.deleteMany();
         await prisma.role.deleteMany({})
 
@@ -57,6 +62,9 @@ const runSeed = async () => {
        // tạo role cho nhân viên thương hiệu và nhà hàng
          // tạo dữ liệu user admin, khách hàng, nhân viên thương hiệu và nhà hàng
        await users_Extension(prisma);
+       /// tạo dữ liệu yêu cầu nâng cấp tài khoản
+       await upgradeRequest_Extension(prisma)
+
         // tạo dữ liệu thương hiệu
         await Brand_Extension(prisma);
         // tạo dữ liệu category restaurant

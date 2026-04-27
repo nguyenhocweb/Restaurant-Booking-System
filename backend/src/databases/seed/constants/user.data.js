@@ -1,3 +1,31 @@
+export default [
+  {
+    id: "65b2a1c0d4f3e2a1b0c9d8fb",
+    name: "Admin",
+    description: "Quản trị viên hệ thống",
+  },
+  {    
+    id: "65b2a1c0d4f3e2a1b0c9d8fc",
+    name: "Khách hàng",
+    description: "Người sử dụng dịch vụ của nhà hàng hoặc thương hiệu",
+  },
+  {    
+    id: "65b2a1c0d4f3e2a1b0c9d8fd",
+    name: "Quản lý thương hiệu",
+    description: "Người quản lý cấp cao của thương hiệu",
+  },
+  {    
+    id: "65b2a1c0d4f3e2a1b0c9d8fe",
+    name: "Quản lý nhà hàng",
+    description: "Người quản lý một chi nhánh nhà hàng cụ thể",
+  },
+  {    
+    id: "65b2a1c0d4f3e2a1b0c9d8ff",
+    name: "Nhân viên",
+    description: "Nhân viên các bộ phận (Bếp, phục vụ, kế toán, marketing...)",
+  },
+];
+
 import { hashPass } from "../../../core/utils/bcrypt.js";
 
 // Helper tạo ngày sinh (Senior way)
@@ -12,7 +40,7 @@ export const User_Admin = async () => [
   {
     id: "65b2a1c0d4f3e2a1b0c9d900",
     roleId: "65b2a1c0d4f3e2a1b0c9d8fb", // Role: Admin
-    user_name: "admin01",
+    user_name: "admin012",
     name: "Nguyễn Văn A",
     email: "admin01@example.com",
     password: await hashedPassword(),
@@ -27,7 +55,7 @@ export const User_Admin = async () => [
 export const User_Brand = async () => [
   {
     id: "65b2a1c0d4f3e2a1b0c9d901",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fd", // Role: Brand Staff
+    roleId: "65b2a1c0d4f3e2a1b0c9d8fd", // Role: Quản lý thương hiệu
     user_name: "brand_director",
     name: "Trần Thị B",
     email: "director@brand.com",
@@ -37,7 +65,7 @@ export const User_Brand = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d902",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fd",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "brand_accountant",
     name: "Lê Văn C",
     email: "accountant@brand.com",
@@ -47,7 +75,7 @@ export const User_Brand = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d903",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fd",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "brand_marketing",
     name: "Phạm Thị D",
     email: "marketing@brand.com",
@@ -57,7 +85,7 @@ export const User_Brand = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d904",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fd",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "brand_sales",
     name: "Nguyễn Văn E",
     email: "sales@brand.com",
@@ -67,7 +95,7 @@ export const User_Brand = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d905",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fd",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "brand_support",
     name: "Trần Văn F",
     email: "support@brand.com",
@@ -77,7 +105,7 @@ export const User_Brand = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d906",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fd",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "brand_warehouse",
     name: "Lê Thị G",
     email: "warehouse@brand.com",
@@ -87,7 +115,7 @@ export const User_Brand = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d907",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fd",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "brand_production",
     name: "Phạm Văn H",
     email: "production@brand.com",
@@ -97,7 +125,7 @@ export const User_Brand = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d908",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fd",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "brand_it",
     name: "Nguyễn Thị I",
     email: "it@brand.com",
@@ -107,7 +135,7 @@ export const User_Brand = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d909",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fd",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "brand_tech",
     name: "Trần Văn J",
     email: "tech@brand.com",
@@ -117,7 +145,7 @@ export const User_Brand = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d90a",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fd",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "brand_extra",
     name: "Lê Văn K",
     email: "extra@brand.com",
@@ -133,7 +161,7 @@ export const User_Brand = async () => [
 export const User_Restaurant = async () => [
   {
     id: "65b2a1c0d4f3e2a1b0c9d90b",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fe", // Role: Restaurant Staff
+    roleId: "65b2a1c0d4f3e2a1b0c9d8fe", // Role: Quản lý nhà hàng
     user_name: "rest_manager",
     name: "Nguyễn Văn L",
     email: "manager@restaurant.com",
@@ -143,7 +171,7 @@ export const User_Restaurant = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d90c",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fe",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "rest_cashier",
     name: "Trần Thị M",
     email: "cashier@restaurant.com",
@@ -153,7 +181,7 @@ export const User_Restaurant = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d90d",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fe",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "rest_waiter1",
     name: "Lê Văn N",
     email: "waiter1@restaurant.com",
@@ -163,7 +191,7 @@ export const User_Restaurant = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d90e",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fe",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "rest_chef",
     name: "Phạm Thị O",
     email: "chef@restaurant.com",
@@ -173,7 +201,7 @@ export const User_Restaurant = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d90f",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fe",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "rest_barista",
     name: "Nguyễn Văn P",
     email: "barista@restaurant.com",
@@ -183,7 +211,7 @@ export const User_Restaurant = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d910",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fe",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "rest_cleaning",
     name: "Trần Văn Q",
     email: "cleaning@restaurant.com",
@@ -193,7 +221,7 @@ export const User_Restaurant = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d911",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fe",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "rest_maintenance",
     name: "Lê Thị R",
     email: "maintenance@restaurant.com",
@@ -203,7 +231,7 @@ export const User_Restaurant = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d912",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fe",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "rest_stock",
     name: "Phạm Văn S",
     email: "stock@restaurant.com",
@@ -213,7 +241,7 @@ export const User_Restaurant = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d913",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fe",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "rest_supervisor",
     name: "Nguyễn Thị T",
     email: "supervisor@restaurant.com",
@@ -223,7 +251,7 @@ export const User_Restaurant = async () => [
   },
   {
     id: "65b2a1c0d4f3e2a1b0c9d914",
-    roleId: "65b2a1c0d4f3e2a1b0c9d8fe",
+    roleId: "65b2a1c0d4f3e2a1b0c9d8ff", // Role: Nhân viên
     user_name: "rest_support",
     name: "Trần Văn U",
     email: "support@restaurant.com",

@@ -10,7 +10,8 @@ type LoginResponse = {
    avatar?: string,
    gender?: "NAM" | "NU" | "KHAC",
    date_of_birth?: Date,
-   role?: string,
+   address?: string,
+   role: "Khách hàng"|"Admin"|"Quản lý thương hiệu"|"Quản lý nhà hàng"|"Nhân viên",
    brand?: {
       id:string
       name:string,

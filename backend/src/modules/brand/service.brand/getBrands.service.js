@@ -10,8 +10,6 @@ export const getBrandsService = async (page, limit, city, search) => {
         brandIds = aiResult.filter(result => result.type === "brand").map(result => result.id);
 
     }
-
-
     const baseWhere = [
 
         { isActive: "ACTIVE" },

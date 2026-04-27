@@ -200,6 +200,17 @@ exports.Prisma.TransactionScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.UpgradeRequestScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  brandName: 'brandName',
+  tax_code: 'tax_code',
+  businessLicense: 'businessLicense',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   user_name: 'user_name',
@@ -530,6 +541,12 @@ exports.TransactionStatus = exports.$Enums.TransactionStatus = {
   VOIDED: 'VOIDED'
 };
 
+exports.RequestStatus = exports.$Enums.RequestStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
 exports.providerType = exports.$Enums.providerType = {
   GOOGLE: 'GOOGLE',
   FACEBOOK: 'FACEBOOK',
@@ -550,6 +567,7 @@ exports.AccountStatus = exports.$Enums.AccountStatus = {
 };
 
 exports.isActive = exports.$Enums.isActive = {
+  PENDING: 'PENDING',
   ACTIVE: 'ACTIVE',
   INACTIVE: 'INACTIVE',
   TERMINATED: 'TERMINATED'
@@ -645,6 +663,7 @@ exports.Prisma.ModelName = {
   Promotion: 'Promotion',
   RestaurantPaymentConfig: 'RestaurantPaymentConfig',
   Transaction: 'Transaction',
+  UpgradeRequest: 'UpgradeRequest',
   User: 'User',
   Brand: 'Brand',
   Menu: 'Menu',

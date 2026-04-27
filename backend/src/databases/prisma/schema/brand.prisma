@@ -9,7 +9,8 @@ model Brand {
   link        String?
   imageMain   String
   images      String[]
-  isActive    isActive     @default(ACTIVE)
+  isActive    isActive     @default(PENDING)
+  reason      String?
   address     String? 
   city        String?
   isFeatured  Boolean @default(false) // 👈 tiêu biểu

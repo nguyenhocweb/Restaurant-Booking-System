@@ -3,23 +3,34 @@
 import { aiFlash, aiPro } from "../../config/ai.config.js";
 import buildSystemPrompt from "./prompt/chat.prompt.js";
 
-import { executeCountBrand,executeGetBrands,executeGetBrand } from "./tools/brand.tools/executeBrand.js"; // File chứa logic tool của bạn
-import { executeCountRestaurant,executeGetRestaurant,executeGetRestaurants } from "./tools/restaurant.tools/executeRestaurant.js";
-import { executeCountMenuItem,executeGetMenuItem,executeGetMenuItems } from "./tools/dish/executeDish.js";
+import { executeCountBrand, executeGetBrands, executeGetBrand } from "./tools/brand.tools/executeBrand.js"; // File chứa logic tool của bạn
+import { executeCountRestaurant, executeGetRestaurant, executeGetRestaurants } from "./tools/restaurant.tools/executeRestaurant.js";
+import { executeCountMenuItem, executeGetMenuItem, executeGetMenuItems } from "./tools/dish/executeDish.js";
 // Giả định bạn đã có hàm tạo embedding từ text
 import { tools } from "./tools/index.js";
 
+// Map tên tool của AI với hàm gọi Database tương ứng
+const toolExecutors = {
+    countBrand: executeCountBrand,
+    countRestaurant: executeCountRestaurant,
+    countMenuItem: executeCountMenuItem,
+    getBrand: executeGetBrand,
+    getBrands: executeGetBrands,
+    getRestaurant: executeGetRestaurant,
+    getRestaurants: executeGetRestaurants,
+    getMenuItem: executeGetMenuItem,
+    getMenuItems: executeGetMenuItems,
+    
+};
 
-export const chatBoxAiLLMService = async (userMessage,question, useProModel = false) => {
+export const chatBoxAiLLMService = async (userMessage, question, useProModel = false) => {
     const MAX_ATTEMPTS = 3; // Tổng số lần thử (1 lần gọi đầu + 2 lần retry)
     for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
         try {
-            
 
 
-            // Trích xuất nội dung text từ metadata của kết quả vector
-           
 
+            //cso thể thêm vectorDB nếu muốn 
             // Bước 3: Khởi tạo Model, System Prompt và Chat Session
             const model = useProModel ? aiPro : aiFlash;
             const systemPrompt = buildSystemPrompt(
@@ -51,68 +62,27 @@ export const chatBoxAiLLMService = async (userMessage,question, useProModel = fa
             const functionCalls = response.functionCalls();
 
             if (functionCalls && functionCalls.length > 0) {
-                console.log(`AI yêu cầu gọi ${functionCalls.length} hàm song song.`);
+                // 1. Map và gọi hàm song song
+                const promises = functionCalls.map(async (call) => {
+                    const executor = toolExecutors[call.name]; // Tra từ điển
 
-                // 1. Tạo một mảng để gom tất cả kết quả từ Database
-                const apiResponses = [];
+                    if (!executor) {
+                        console.warn(`Tool ${call.name} chưa được khai báo!`);
+                        return null;
+                    }
 
-                // 2. Dùng vòng lặp duyệt qua tất cả các hàm (bao gồm [0], [1], [2]...)
-                for (const call of functionCalls) {
-                    console.log(`Đang xử lý hàm: ${call.name} với tham số:`, call.args);
+                    // Gọi hàm động bằng executor
+                    const dbResult = await executor(call.args);
+                    return { functionResponse: { name: call.name, response: dbResult } };
+                });
 
-                    let dbResult = null;
+                // 2. Chạy Promise.all và .filter(Boolean) để loại bỏ các kết quả null/undefined
+                const apiResponses = (await Promise.all(promises)).filter(Boolean);
 
-                    // Định tuyến (Routing) các hàm
-                    if (call.name === 'countBrand') {
-                        dbResult = await executeCountBrand(call.args);
-                    } else if (call.name === 'countRestaurant') {
-                        // Ví dụ xử lý cho hàm thứ 2 (nếu có)
-                        dbResult = await executeCountRestaurant(call.args);
-                    } 
-                    else if(call.name==='countMenuItem'){
-                          dbResult=await executeCountMenuItem(call.args);
-                       
-                          
-                    }
-                    //thuowgn hiệu
-                    else if(call.name==="getBrand"){
-                         dbResult=await executeGetBrand(call.args)
-                    }
-                    else if(call.name==="getBrands"){
-                         dbResult=await executeGetBrands(call.args)
-                    }
-                    else if(call.name==="getRestaurant"){
-                         dbResult=await executeGetRestaurant(call.args)
-                    }
-                    else if(call.name==="getRestaurants"){
-                         dbResult=await executeGetRestaurants(call.args)
-                    }
-                    else if(call.name==="getMenuItem"){
-                         dbResult=await executeGetMenuItem(call.args)
-                    }
-                    else if(call.name==="getMenuItems"){
-                         dbResult=await executeGetMenuItems(call.args)
-                    }
-                    else {
-                        console.warn(`Tool ${call.name} chưa được khai báo backend!`);
-                    }
-                    console.log(`Kết quả trả về từ DB cho hàm ${call.name}:`, dbResult);
-
-                    // 3. Đóng gói kết quả của từng hàm vào mảng apiResponses
-                    if (dbResult) {
-                        apiResponses.push({
-                            functionResponse: {
-                                name: call.name,
-                                response: dbResult
-                            }
-                        });
-                    }
-                }
-
-                // 4. Gửi TOÀN BỘ mảng kết quả ngược lại cho AI đọc (đây là bước quan trọng nhất)
+                // 3. Gửi lại cho AI
                 if (apiResponses.length > 0) {
                     let result = await chatSession.sendMessage(apiResponses);
-                    response = result.response; // Cập nhật lại response cuối cùng từ AI
+                    response = result.response;
                 }
             }
 

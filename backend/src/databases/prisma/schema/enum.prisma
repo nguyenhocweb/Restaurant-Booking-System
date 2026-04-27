@@ -10,9 +10,15 @@ enum AccountStatus {
   BANNED          // Cấm vĩnh viễn (Vi phạm)
 }
 enum isActive {
+    PENDING  
     ACTIVE  // đang hoạt động
     INACTIVE // tạm thời nghĩ
     TERMINATED // nghĩ vĩnh viễn
+}
+enum RequestStatus {
+  PENDING   // Đang chờ duyệt
+  APPROVED  // Đã duyệt
+  REJECTED  // Từ chối
 }
 enum role_enum {
     BRAND 
